@@ -6,13 +6,21 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AltaSocioComponent } from './socios/alta-socio/alta-socio.component';
+import { AltaProductoComponent } from './productos/alta-producto/alta-producto.component';
+import { AltaUsuarioExternoComponent } from './usuarios/alta-usuario-externo/alta-usuario-externo.component';
+import { AltaPedidoComponent } from './pedidos/alta-pedido/alta-pedido.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    AltaSocioComponent,
+    AltaProductoComponent,
+    AltaUsuarioExternoComponent,
+    AltaPedidoComponent
   ],
   imports: [
     BrowserModule,
