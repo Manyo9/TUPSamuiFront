@@ -19,9 +19,14 @@ export class UsuarioService {
   // horrible feo feísimo
   // implementar con POST cuando tengamos la API con springboot
   // solo matchea con el nombre
-  login(usuario: UsuarioLogin): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.apiUrl}?nombre=${usuario.nombre}&contrasenia=${usuario.contrasenia}`);
+  // mockapi devuelve un array por más que el resultado sea solo 1
+  login(usuario: UsuarioLogin): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}?nombre=${usuario.nombre}$&contrasenia=${usuario.contrasenia}`);
   }
+
+  /*login(usuario: UsuarioLogin): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}?nombre=${usuario.nombre}&contrasenia=${usuario.contrasenia}`);
+  }*/
 
   obtenerUnUsuario(id: number): Observable<Usuario>{
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`)

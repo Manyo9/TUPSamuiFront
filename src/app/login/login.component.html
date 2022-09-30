@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div id="main" class="container center border border-secondary rounded">
+    <div class="py-5 px-5">
+        <form [formGroup]="formulario">
+            <div class="mb-3">
+              <label for="inputNombre" class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputNombre"
+                formControlName="nombre"
+                [class.is-invalid]="formulario.controls['nombre'].hasError('required') && formulario.controls['nombre'].touched"
+              />
+              <p *ngIf="formulario.controls['nombre'].hasError('required') && formulario.controls['nombre'].touched"
+              class="invalid-feedback">Debe ingresar un nombre</p>
+            </div>
+            <div class="mb-3">
+              <label for="inputContrasenia" class="form-label">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="inputContrasenia"
+                formControlName="contrasenia"
+                [class.is-invalid]="formulario.controls['contrasenia'].hasError('required') && formulario.controls['contrasenia'].touched"
+              />
+              <p *ngIf="formulario.controls['contrasenia'].hasError('required') && formulario.controls['contrasenia'].touched"
+              class="invalid-feedback">Debe ingresar una contraseña</p>
+            </div>
+            <button type="submit" class="btn btn-success" (click)="iniciarSesion()">Iniciar Sesión</button>
+            <button type="submit" class="btn btn-danger ms-3" (click)="volver()">Volver</button>
+          </form>
+    </div>
+</div>
