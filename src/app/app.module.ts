@@ -13,6 +13,7 @@ import { AltaPedidoComponent } from './pedidos/alta-pedido/alta-pedido.component
 import { UsuarioService } from './services/usuario.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ItemProductoComponent } from './pedidos/item-producto/item-producto.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     AltaSocioComponent,
     AltaProductoComponent,
     AltaUsuarioExternoComponent,
-    AltaPedidoComponent
+    AltaPedidoComponent,
+    ItemProductoComponent
   ],
   imports: [
     BrowserModule,
