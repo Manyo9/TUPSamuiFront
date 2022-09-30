@@ -3,4 +3,5 @@ export interface UsuarioList {
     nombre: string;
     fechaAlta: Date;
     fechaBaja: Date;
+    idRol: number
 }
