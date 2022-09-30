@@ -1,4 +1,2 @@
-export interface UsuarioLogin {
-    nombre: string;
-    contrasenia: string;
+export class UsuarioLogin {
 }
