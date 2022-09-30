@@ -13,4 +13,7 @@ export class ProductoService {
   agregar(producto : Producto) : Observable<Producto>{
     return this.http.post<Producto>(this.API_URL,producto);
   }
+  obtenerTodos(): Observable<Producto[]>{
+    return this.http.get<Producto[]>(this.API_URL)
+  }
 }
