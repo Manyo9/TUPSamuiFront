@@ -10,6 +10,9 @@ import { AltaSocioComponent } from './socios/alta-socio/alta-socio.component';
 import { AltaProductoComponent } from './productos/alta-producto/alta-producto.component';
 import { AltaUsuarioExternoComponent } from './usuarios/alta-usuario-externo/alta-usuario-externo.component';
 import { AltaPedidoComponent } from './pedidos/alta-pedido/alta-pedido.component';
+import { UsuarioService } from './services/usuario.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,13 @@ import { AltaPedidoComponent } from './pedidos/alta-pedido/alta-pedido.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UsuarioService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
