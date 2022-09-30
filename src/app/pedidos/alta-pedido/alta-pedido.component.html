@@ -1,1 +1,55 @@
-<p>alta-pedido works!</p>
+
+<div class="container-fluid px-5">
+    <div class="row">
+        <div class="col-lg-9 col-md-6 col-sm-12 py-5">
+            <div class="container-fluid">
+                <h1>Productos</h1>
+                <h5 class="text-muted">Seleccione el producto que desee agregar a su pedido:</h5>
+            </div>
+            <div class=" container overflow-auto d-flex justify-content-around flex-wrap" style="max-height: 500px;">
+                <app-item-producto *ngFor="let p of productos" [modalId]="p.id" [producto]="p"
+                    (onAgregar)="agregarDetalle($event)"></app-item-producto>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 py-5">
+            <div class="container-fluid ">
+                <div class="row">
+
+                    <h1>Pedido:</h1>
+                </div>
+                <div class="row">
+                    <ol class="list-group">
+                        <li *ngFor="let d of pedido.detalles"
+                            class="list-group-item d-flex justify-content-between align-items-start">
+                            <span class="badge align-self-center bg-info rounded-pill">{{d.cantidad}}x</span>
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{d.producto.nombre}}</div>
+                                ${{d.producto.precio * d.cantidad}}
+                            </div>
+                            <button class="btn btn-close align-self-center ms-2" (click)="quitarDetalle(d)"></button>
+                        </li>
+                        <li
+                            class="list-group-item list-group-item-info d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">TOTAL: ${{calcularTotal()}}</div>
+                            </div>
+                            <p class="m-0">Items: {{calcularCantidadTotal()}}</p>
+                        </li>
+                    </ol>
+                    <div class="row">
+                        <div class="container-fluid p-0">
+                            <div class="mb-3 mt-5">
+                                <label for="observaciones" class="form-label">Observaciones</label>
+                                <textarea class="form-control" id="observaciones" rows="3"></textarea>
+                              </div>
+                            <button class="btn btn-info mt-3">Enviar Pedido</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+</div>
