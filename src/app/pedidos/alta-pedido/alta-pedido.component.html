@@ -40,9 +40,9 @@
                         <div class="container-fluid p-0">
                             <div class="mb-3 mt-5">
                                 <label for="observaciones" class="form-label">Observaciones</label>
-                                <textarea class="form-control" id="observaciones" rows="3"></textarea>
+                                <textarea class="form-control" id="observaciones" rows="3" [formControl]="controlObservaciones"></textarea>
                               </div>
-                            <button class="btn btn-info mt-3">Enviar Pedido</button>
+                            <button class="btn btn-info mt-3" (click)="guardar()">Enviar Pedido</button>
                         </div>
                     </div>
                 </div>

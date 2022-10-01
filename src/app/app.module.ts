@@ -14,6 +14,8 @@ import { UsuarioService } from './services/usuario.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemProductoComponent } from './pedidos/item-producto/item-producto.component';
+import { Pedido } from './models/pedido';
+import { PedidoService } from './services/pedido.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { ItemProductoComponent } from './pedidos/item-producto/item-producto.com
     HttpClientModule
   ],
   providers: [
-    UsuarioService
+    UsuarioService,
+    PedidoService
   ],
   bootstrap: [AppComponent]
 })
