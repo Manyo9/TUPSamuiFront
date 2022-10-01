@@ -9,4 +9,5 @@ export class DetallePedido {
     precioUnitario: number;
     porcentajeDescuento?: number;
     puntosGanados?: number;
+    comentarios?: string;
 }
