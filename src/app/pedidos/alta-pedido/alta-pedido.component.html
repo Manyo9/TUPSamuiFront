@@ -29,12 +29,18 @@
                             <button class="btn btn-close align-self-center ms-2" (click)="quitarDetalle(d)"></button>
                         </li>
                         <li
-                            class="list-group-item list-group-item-info d-flex justify-content-between align-items-start">
+                            class="list-group-item d-flex justify-content-between align-items-start"
+                            [ngClass]="(calcularCantidadTotal() > 50) ? 'list-group-item-danger' : 'list-group-item-info' ">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">TOTAL: ${{calcularTotal()}}</div>
                             </div>
-                            <p class="m-0">Items: {{calcularCantidadTotal()}}</p>
+                            <p class="m-0">Items: {{calcularCantidadTotal()}} / 50</p>
                         </li>
+                        <div class="text-danger" *ngIf="(calcularCantidadTotal() > 50)">
+                            <p>
+                                Se excedió el limite de 50 productos 
+                            </p>
+                        </div>
                     </ol>
                     <div class="row">
                         <div class="container-fluid p-0">
@@ -42,7 +48,8 @@
                                 <label for="observaciones" class="form-label">Observaciones</label>
                                 <textarea class="form-control" id="observaciones" rows="3" [formControl]="controlObservaciones"></textarea>
                               </div>
-                            <button class="btn btn-info mt-3" (click)="guardar()">Enviar Pedido</button>
+                            <button class="btn btn-info mt-3" [disabled]="calcularCantidadTotal() > 50" (click)="guardar()">Enviar Pedido</button>
+
                         </div>
                     </div>
                 </div>
