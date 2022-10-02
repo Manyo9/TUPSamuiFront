@@ -24,7 +24,8 @@ constructor(private formBuilder : FormBuilder,
       descripcion : [],
       observaciones : [],
       activo : [false],
-      puntosGanados : [,Validators.required]
+      puntosGanados : [,Validators.required],
+      urlImagen : []
     })
   }
   cambioCheck(x: boolean){
