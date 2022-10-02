@@ -25,7 +25,7 @@
               <p *ngIf="formulario.controls['contrasenia'].hasError('required') && formulario.controls['contrasenia'].touched"
               class="invalid-feedback">Debe ingresar una contraseña</p>
             </div>
-            <button type="submit" class="btn btn-success" (click)="iniciarSesion()">Iniciar Sesión</button>
+            <button type="submit" class="btn btn-success" [disabled]="!formulario.valid" (click)="iniciarSesion()">Iniciar Sesión</button>
             <button type="submit" class="btn btn-danger ms-3" (click)="volver()">Volver</button>
           </form>
     </div>

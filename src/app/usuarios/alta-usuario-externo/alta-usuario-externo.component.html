@@ -1,1 +1,30 @@
-<p>alta-usuario-externo works!</p>
+<div id="main" class="container center border border-secondary rounded">
+    <div class="py-5 px-5">
+        <form [formGroup]="formulario">
+            <div class="mb-3">
+                <label for="inputUsuario" class="form-label">Nombre de usuario</label>
+                <input type="text" class="form-control" id="inputUsuario" formControlName="usuario"
+                    [class.is-invalid]="formulario.controls['usuario'].hasError('required') && formulario.controls['usuario'].touched" />
+                <p *ngIf="formulario.controls['usuario'].hasError('required')"
+                    class="invalid-feedback">Debe ingresar un nombre de usuario.</p>
+                <p *ngIf="formulario.controls['usuario'].hasError('minLength')"
+                    class="invalid-feedback">El usuario debe tener más de 3 caracteres.</p>
+                <p *ngIf="formulario.controls['usuario'].hasError('maxLength')"
+                    class="invalid-feedback">El usuario no puede tener más de 30 caracteres.</p>
+            </div>
+            <div class="mb-3">
+                <label for="inputContrasenia" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="inputContrasenia" formControlName="contrasenia"
+                    [class.is-invalid]="formulario.controls['contrasenia'].hasError('required') && formulario.controls['contrasenia'].touched" />
+                <p *ngIf="formulario.controls['contrasenia'].hasError('required')"
+                    class="invalid-feedback">Debe ingresar una contraseña.</p>
+                <p *ngIf="formulario.controls['contrasenia'].hasError('minLength')"
+                    class="invalid-feedback">La contraseña debe tener más de 8 caracteres.</p>
+                <p *ngIf="formulario.controls['contrasenia'].hasError('max')"
+                    class="invalid-feedback">La contraseña debe tener más de 32 caracteres.</p>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!formulario.valid" (click)="registrar()">Registrarme</button>
+            <button type="submit" class="btn btn-danger ms-3" (click)="volver()">Volver</button>
+        </form>
+    </div>
+</div>

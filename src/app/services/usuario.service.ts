@@ -23,4 +23,8 @@ export class UsuarioService {
   obtenerUsuarioPorId(id: number): Observable<ResultadoGenerico>{
     return this.http.get<ResultadoGenerico>(`${this.apiUrl}/${id}`)
   }
+
+  registrarExterno(usuario: UsuarioLogin): Observable<ResultadoGenerico>{
+    return this.http.post<ResultadoGenerico>(`${this.apiUrl}/nuevoUsuarioSocio`,usuario)
+  }
 }

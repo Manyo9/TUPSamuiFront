@@ -5,11 +5,13 @@ import { LoginComponent } from './login/login.component';
 import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 import { AltaPedidoComponent } from './pedidos/alta-pedido/alta-pedido.component';
 import { AltaProductoComponent } from './productos/alta-producto/alta-producto.component';
+import { AltaUsuarioExternoComponent } from './usuarios/alta-usuario-externo/alta-usuario-externo.component';
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
   {path : 'productos/nuevo',component : AltaProductoComponent},
+  {path : 'registro',component : AltaUsuarioExternoComponent},
   {path : 'login', component: LoginComponent},
   {path : '', redirectTo: 'home', pathMatch: 'full'},
   {path : '**' ,component : NoEncontradoComponent}
