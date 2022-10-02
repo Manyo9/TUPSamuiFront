@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ItemProductoComponent } from './pedidos/item-producto/item-producto.component';
 import { Pedido } from './models/pedido';
 import { PedidoService } from './services/pedido.service';
+import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PedidoService } from './services/pedido.service';
     AltaProductoComponent,
     AltaUsuarioExternoComponent,
     AltaPedidoComponent,
-    ItemProductoComponent
+    ItemProductoComponent,
+    NoEncontradoComponent
   ],
   imports: [
     BrowserModule,
