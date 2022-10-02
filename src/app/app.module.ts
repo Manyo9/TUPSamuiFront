@@ -17,6 +17,8 @@ import { ItemProductoComponent } from './pedidos/item-producto/item-producto.com
 import { Pedido } from './models/pedido';
 import { PedidoService } from './services/pedido.service';
 import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
+import { ProductoService } from './services/producto.service';
+import { SocioService } from './services/socio.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
   ],
   providers: [
     UsuarioService,
-    PedidoService
+    PedidoService,
+    ProductoService,
+    SocioService
   ],
   bootstrap: [AppComponent]
 })

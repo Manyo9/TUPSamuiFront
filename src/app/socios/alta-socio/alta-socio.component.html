@@ -1,1 +1,79 @@
-<p>alta-socio works!</p>
+<div class="container">
+  <h2>Registrar Socio</h2>
+    <form [formGroup]="formulario">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                        [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
+                        <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
+                        class="invalid-feedback">
+                          Nombre es requerido,complete el campo por favor.
+                        </span>
+                      </div> 
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" formControlName="apellido"
+                        [class.is-invalid]="controlApellido.touched && controlApellido.hasError('required')">
+                        <span *ngIf="controlApellido.touched && controlApellido.hasError('required')"
+                        class="invalid-feedback">
+                          Apellido es requerido,complete el campo por favor.
+                        </span>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="dni" class="form-label">Dni</label>
+                        <input type="text" class="form-control" id="dni" formControlName="dni"
+                        [class.is-invalid]="controlDni.touched && controlDni.hasError('required')">
+                        <span *ngIf="controlDni.touched && controlDni.hasError('required')"
+                        class="invalid-feedback">
+                          Dni es requerido,complete el campo por favor.
+                        </span>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono" formControlName="telefono">
+                      </div> 
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mb-3">
+                        <label for="domicilio" class="form-label">Domicilio</label>
+                        <input type="text" class="form-control" id="domicilio" formControlName="domicilio">
+                      </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" formControlName="email"
+                        [class.is-invalid]="controlEmail.touched && controlEmail.hasError('required')">
+                        <span *ngIf="controlEmail.touched && controlEmail.hasError('required')"
+                        class="invalid-feedback">
+                          Email es requerido,complete el campo por favor.
+                        </span>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
+        <button type="button" class="btn btn-outline-danger ms-3" routerLink="/home">Cancelar</button>
+      </form>
+</div>
