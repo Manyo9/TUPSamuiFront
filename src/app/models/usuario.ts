@@ -1,7 +1,7 @@
 export class Usuario {
     id: number;
-    nombre: string;
+    usuario: string;
     fechaAlta: Date;
     fechaBaja: Date;
-    idRol: number
+    rol: string;
 }

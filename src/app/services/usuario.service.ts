@@ -1,34 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuario } from '../models/usuario';
+import { ResultadoGenerico } from '../models/resultado-generico';
 import { UsuarioLogin } from '../models/usuario-login';
 
 @Injectable()
 export class UsuarioService {
   private recurso: string = 'usuarios'
-  private apiUrl: string = `https://633617a38aa85b7c5d282607.mockapi.io/api/${this.recurso}`;
+  private apiUrl: string = `http://localhost:3000/${this.recurso}`;
 
 
   constructor(private http: HttpClient) { }
 
-  obtenerUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl);
+  obtenerUsuarios(): Observable<ResultadoGenerico> {
+    return this.http.get<ResultadoGenerico>(this.apiUrl);
   }
 
-  // horrible feo feísimo
-  // implementar con POST cuando tengamos la API con springboot
-  // solo matchea con el nombre
-  // mockapi devuelve un array por más que el resultado sea solo 1
-  login(usuario: UsuarioLogin): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.apiUrl}?nombre=${usuario.nombre}$&contrasenia=${usuario.contrasenia}`);
+  login(usuario: UsuarioLogin): Observable<ResultadoGenerico> {
+    return this.http.post<ResultadoGenerico>(`${this.apiUrl}/iniciarSesion`,usuario);
   }
 
-  /*login(usuario: UsuarioLogin): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.apiUrl}?nombre=${usuario.nombre}&contrasenia=${usuario.contrasenia}`);
-  }*/
-
-  obtenerUnUsuario(id: number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.apiUrl}/${id}`)
+  obtenerUsuarioPorId(id: number): Observable<ResultadoGenerico>{
+    return this.http.get<ResultadoGenerico>(`${this.apiUrl}/${id}`)
   }
 }

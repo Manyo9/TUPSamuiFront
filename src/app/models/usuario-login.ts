@@ -1,9 +1,4 @@
 export class UsuarioLogin {
-    nombre: string;
+    usuario: string;
     contrasenia: string;
-
-    constructor(n: string, c: string){
-        this.nombre = n;
-        this.contrasenia = c;
-    }
 }
