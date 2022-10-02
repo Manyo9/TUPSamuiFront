@@ -1,5 +1,5 @@
 export interface ResultadoGenerico {
     ok: boolean,
-    resultado?: Object[],
+    resultado?: any[],
     mensaje?: string;
 }
