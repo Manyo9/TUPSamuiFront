@@ -16,8 +16,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   formulario: FormGroup;
   private subscription = new Subscription();
-  private usuario: Usuario = new Usuario();
-  private usuLogin: UsuarioLogin;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,19 +40,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   iniciarSesion(): void {
 
     if (this.formulario.valid) {
-      this.usuLogin = this.formulario.value as UsuarioLogin;
+      let usuLogin = new UsuarioLogin();
+      usuLogin = this.formulario.value as UsuarioLogin;
       this.subscription.add(
-        this.usuService.login(this.usuLogin).subscribe({
+        this.usuService.login(usuLogin).subscribe({
           next: (res: ResultadoGenerico) => {
-            console.log(res);
             if (res.ok && res.resultado != null) {
-              //this.usuario = res.resultado?[0]
-              //alert(`Bienvenido, ${this.usuario.usuario}!`);
+              localStorage.setItem('token',res.resultado[0]);
+              alert('Bienvenido/a!');
+              this.router.navigate(['home']);
             } else {
               alert(`Error: ${res.mensaje}`)
             }
           },
-          error: (e) => { alert("Error al iniciar sesión"), console.log(e) }
+          error: (err) => { alert("Error al iniciar sesión:") }
         })
       );
     }
