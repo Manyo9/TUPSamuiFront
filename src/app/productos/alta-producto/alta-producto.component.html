@@ -1,49 +1,77 @@
 <div class="container">
+  <h2>Registrar Producto</h2>
     <form [formGroup]="formulario">
-        <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nombre" formControlName="nombre"
-          [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
-          <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
-          class="invalid-feedback">
-            Nombre es requerido
-          </span>
-        </div>
-        <div class="mb-3">
-            <label for="precio" class="form-label">Precio</label>
-            <input type="text" class="form-control" id="precio" formControlName="precio"
-            [class.is-invalid]="controlPrecio.touched&&controlPrecio.hasError('required')">
-            <span *ngIf="controlPrecio.touched && controlPrecio.hasError('required')"
-            class="invalid-feedback">
-              Precio es requerido
-            </span>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" formControlName="nombre"
+              [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
+              <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
+              class="invalid-feedback">
+                Nombre es requerido
+              </span>
+            </div>
           </div>
+          
+          <div class="col-sm-2">
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio</label>
+              <input type="text" class="form-control" id="precio" formControlName="precio"
+              [class.is-invalid]="controlPrecio.touched&&controlPrecio.hasError('required')">
+              <span *ngIf="controlPrecio.touched && controlPrecio.hasError('required')"
+              class="invalid-feedback">
+                Precio es requerido
+              </span>
+            </div>
+          </div>
+
+
+          <div class="col-sm-2">
+            <div class="mb-3">
+              <label for="puntosGanados" class="form-label">Puntos ganados</label>
+              <input type="text" class="form-control" id="puntosGanados" formControlName="puntosGanados"
+              [class.is-invalid]="controlPuntos.touched&&controlPuntos.hasError('required')"
+              >
+              <span *ngIf="controlPuntos.touched && controlPuntos.hasError('required')"
+              class="invalid-feedback">
+                Puntos es requerido
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-3 form-check">
+              <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" 
+              (change)="cambioCheck(activo.checked)"/>
+              <label class="form-check-label" for="inputActivo">Activo</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
           <div class="mb-3">
             <label for="descripcion" class="form-label">Descripcion</label>
-            <input type="text" class="form-control" id="descripcion" formControlName="descripcion">
+            <textarea class="form-control" id="descripcion" rows="3" formControlName="descripcion"></textarea>
           </div>
           <div class="mb-3">
             <label for="observaciones" class="form-label">Observaciones</label>
-            <input type="text" class="form-control" id="observaciones" formControlName="observaciones">
+            <textarea class="form-control" id="observaciones" rows="3" formControlName="observaciones"></textarea>
           </div>
-          <div class="mb-3 form-check">
-            <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" 
-            (change)="cambioCheck(activo.checked)"/>
-            <label class="form-check-label" for="inputActivo">Activo</label>
-          </div>
-          <div class="mb-3">
-            <label for="puntosGanados" class="form-label">Puntos ganados</label>
-            <input type="text" class="form-control" id="puntosGanados" formControlName="puntosGanados"
-            [class.is-invalid]="controlPuntos.touched&&controlPuntos.hasError('required')"
-            >
-            <span *ngIf="controlPuntos.touched && controlPuntos.hasError('required')"
-            class="invalid-feedback">
-              Puntos es requerido
-            </span>
-          </div>
-          <div class="mb-3">
-            <label for="urlImagen" class="form-label">Url imagen</label>
-            <input type="text" class="form-control" id="urlImagen" formControlName="urlImagen">
+
+          <div class="col-lg-12">
+            <div class="mb-3">
+              <label for="urlImagen" class="form-label">Url imagen</label>
+              <input type="text" class="form-control" id="urlImagen" formControlName="urlImagen">
+            </div>
           </div>
         <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
         <button type="button" class="btn btn-outline-danger ms-3" routerLink="/home">Cancelar</button>
