@@ -2,16 +2,16 @@
     <div class="py-5 px-5">
         <form [formGroup]="formulario">
             <div class="mb-3">
-              <label for="inputNombre" class="form-label">Nombre</label>
+              <label for="inputUsuario" class="form-label">Nombre de usuario</label>
               <input
                 type="text"
                 class="form-control"
-                id="inputNombre"
-                formControlName="nombre"
-                [class.is-invalid]="formulario.controls['nombre'].hasError('required') && formulario.controls['nombre'].touched"
+                id="inputUsuario"
+                formControlName="usuario"
+                [class.is-invalid]="formulario.controls['usuario'].hasError('required') && formulario.controls['usuario'].touched"
               />
-              <p *ngIf="formulario.controls['nombre'].hasError('required') && formulario.controls['nombre'].touched"
-              class="invalid-feedback">Debe ingresar un nombre</p>
+              <p *ngIf="formulario.controls['usuario'].hasError('required') && formulario.controls['usuario'].touched"
+              class="invalid-feedback">Debe ingresar un nombre de usuario</p>
             </div>
             <div class="mb-3">
               <label for="inputContrasenia" class="form-label">Contraseña</label>

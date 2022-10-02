@@ -5,6 +5,7 @@ import { UsuarioLogin } from '../models/usuario-login';
 import { Usuario } from '../models/usuario';
 import { UsuarioService } from '../services/usuario.service';
 import { Router } from '@angular/router';
+import { ResultadoGenerico } from '../models/resultado-generico';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +16,21 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   formulario: FormGroup;
   private subscription = new Subscription();
-  usuario: Usuario = new Usuario();
+  private usuario: Usuario = new Usuario();
+  private usuLogin: UsuarioLogin;
 
   constructor(
-      private formBuilder: FormBuilder,
-      private usuService: UsuarioService,
-      private router: Router
-    ){ 
-      this.formulario = this.formBuilder.group(
-        {
-          nombre: [, Validators.required],
-          contrasenia: [, Validators.required]
-        }
-      );
-    }
+    private formBuilder: FormBuilder,
+    private usuService: UsuarioService,
+    private router: Router
+  ) {
+    this.formulario = this.formBuilder.group(
+      {
+        usuario: [, Validators.required],
+        contrasenia: [, Validators.required]
+      }
+    );
+  }
 
   ngOnInit(): void {
   }
@@ -38,26 +40,24 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   iniciarSesion(): void {
-    
-    if(this.formulario.valid){
-    this.subscription.add(
-      this.usuService.login(
-          new UsuarioLogin(
-            this.formulario.controls['nombre']?.value,
-            this.formulario.controls['contrasenia']?.value
-            ) // feo, ver de cambiar
-        ).subscribe({
-        next: (resultado) => {
-          if(resultado.length != 0){ // cambiar cuando dejemos de usar mockapi
-            this.usuario.nombre = resultado[0].nombre; 
-            this.usuario.id = resultado[0].id;
-            this.usuario.idRol = resultado[0].idRol;
-            alert(`Bienvenido, ${this.usuario.nombre}!`);
-          } else {alert("Usuario y/o contraseña incorrectos")}
-        },
-        error: (e) => {alert("Error al iniciar sesión"), console.log(e)} 
-      })
-    );}
+
+    if (this.formulario.valid) {
+      this.usuLogin = this.formulario.value as UsuarioLogin;
+      this.subscription.add(
+        this.usuService.login(this.usuLogin).subscribe({
+          next: (res: ResultadoGenerico) => {
+            console.log(res);
+            if (res.ok && res.resultado != null) {
+              //this.usuario = res.resultado?[0]
+              //alert(`Bienvenido, ${this.usuario.usuario}!`);
+            } else {
+              alert(`Error: ${res.mensaje}`)
+            }
+          },
+          error: (e) => { alert("Error al iniciar sesión"), console.log(e) }
+        })
+      );
+    }
     else {
       alert("Complete los campos");
     }
