@@ -41,8 +41,9 @@
               Puntos es requerido
             </span>
           </div>
-          <div>
-            <p>URL IMAGEN</p>
+          <div class="mb-3">
+            <label for="urlImagen" class="form-label">Url imagen</label>
+            <input type="text" class="form-control" id="urlImagen" formControlName="urlImagen">
           </div>
         <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
         <button type="button" class="btn btn-outline-danger ms-3" routerLink="/home">Cancelar</button>
