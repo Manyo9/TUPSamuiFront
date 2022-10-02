@@ -4,7 +4,7 @@
 
       <div class="form-group">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="nombre" formControlName="nombre"
@@ -16,7 +16,7 @@
             </div>
           </div>
           
-          <div class="col-md-6">
+          <div class="col-sm-2">
             <div class="mb-3">
               <label for="precio" class="form-label">Precio</label>
               <input type="text" class="form-control" id="precio" formControlName="precio"
@@ -27,6 +27,21 @@
               </span>
             </div>
           </div>
+
+
+          <div class="col-sm-2">
+            <div class="mb-3">
+              <label for="puntosGanados" class="form-label">Puntos ganados</label>
+              <input type="text" class="form-control" id="puntosGanados" formControlName="puntosGanados"
+              [class.is-invalid]="controlPuntos.touched&&controlPuntos.hasError('required')"
+              >
+              <span *ngIf="controlPuntos.touched && controlPuntos.hasError('required')"
+              class="invalid-feedback">
+                Puntos es requerido
+              </span>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -37,19 +52,6 @@
               <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" 
               (change)="cambioCheck(activo.checked)"/>
               <label class="form-check-label" for="inputActivo">Activo</label>
-            </div>
-          </div>
-
-          <div class="col-lg-12">
-            <div class="mb-3">
-              <label for="puntosGanados" class="form-label">Puntos ganados</label>
-              <input type="text" class="form-control" id="puntosGanados" formControlName="puntosGanados"
-              [class.is-invalid]="controlPuntos.touched&&controlPuntos.hasError('required')"
-              >
-              <span *ngIf="controlPuntos.touched && controlPuntos.hasError('required')"
-              class="invalid-feedback">
-                Puntos es requerido
-              </span>
             </div>
           </div>
         </div>
