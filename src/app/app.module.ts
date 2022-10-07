@@ -19,6 +19,8 @@ import { PedidoService } from './services/pedido.service';
 import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 import { ProductoService } from './services/producto.service';
 import { SocioService } from './services/socio.service';
+import { ReporteComponent } from './productos/reporte/reporte.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { SocioService } from './services/socio.service';
     AltaUsuarioExternoComponent,
     AltaPedidoComponent,
     ItemProductoComponent,
-    NoEncontradoComponent
+    NoEncontradoComponent,
+    ReporteComponent
   ],
   imports: [
     BrowserModule,
