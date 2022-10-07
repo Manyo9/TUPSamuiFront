@@ -7,11 +7,13 @@ import { AltaPedidoComponent } from './pedidos/alta-pedido/alta-pedido.component
 import { AltaProductoComponent } from './productos/alta-producto/alta-producto.component';
 import { AltaUsuarioExternoComponent } from './usuarios/alta-usuario-externo/alta-usuario-externo.component';
 import { AltaSocioComponent } from './socios/alta-socio/alta-socio.component';
+import { ReporteComponent } from './productos/reporte/reporte.component';
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
   {path : 'productos/nuevo',component : AltaProductoComponent},
+  {path : 'reporte', component : ReporteComponent},
   {path : 'registro',component : AltaUsuarioExternoComponent},
   {path : 'login', component: LoginComponent},
   { path : 'socios/nuevo', component : AltaSocioComponent},
