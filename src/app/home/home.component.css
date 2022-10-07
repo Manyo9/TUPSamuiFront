@@ -1,5 +1,8 @@
 .fondo{
     background-image: url('../../assets/img/fondoHome.jpeg');
-    min-height:800px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-height: 700px;
+    background-position: center;
+    background-color: rgb(0, 4, 111);
 }
