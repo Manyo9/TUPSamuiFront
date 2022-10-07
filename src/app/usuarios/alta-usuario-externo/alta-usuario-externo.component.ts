@@ -24,7 +24,8 @@ export class AltaUsuarioExternoComponent implements OnInit {
     this.formulario = this.formBuilder.group(
       {
         usuario: [, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-        contrasenia: [, [Validators.required, Validators.minLength(8), Validators.maxLength(32)]]
+        contrasenia: [, [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
+        dni : [,[Validators.minLength(7), Validators.required]]
       }
     );
   }
