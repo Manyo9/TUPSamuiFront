@@ -82,6 +82,7 @@ export class ItemProductoComponent implements OnInit {
   // @Input() descripcion: string;
   // @Input() precio: string;
   // @Input() imgSrc: string;
+  @Input() disabled: boolean;
   @Input() producto: Producto;
   @Output() onAgregar = new EventEmitter<DetallePedido>();
   cantidad: number = 1;
@@ -98,6 +99,7 @@ export class ItemProductoComponent implements OnInit {
       comentarios: this.controlComentarios.value? this.controlComentarios.value : ""
     }
     this.onAgregar.emit(this.detalle);
+    this.disabled = true;
     this.limpiarModal();
   }
   limpiarModal():void {
