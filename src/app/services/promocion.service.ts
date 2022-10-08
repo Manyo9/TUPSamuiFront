@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Promocion } from '../models/promocion';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PromocionService {
 
   private API_URL : string = 'https://632b1463713d41bc8e7fdd8b.mockapi.io/wawa/promociones/';
