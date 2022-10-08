@@ -29,4 +29,7 @@ export class ReporteComponent implements OnInit {
   get controlFechaHasta (): FormControl{
     return this.formulario.controls['fechaHasta'] as FormControl;
   }
+
+
+  
 }
