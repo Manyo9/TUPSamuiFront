@@ -14,6 +14,14 @@
         <div class="col-lg-3 col-md-6 col-sm-12 py-5">
             <div class="container-fluid ">
                 <div class="row">
+                    <h1>Gustos:</h1>
+                </div>
+                <div class="row mb-3">
+                    <ul class="list-group gustos">
+                        <li *ngFor="let g of gustos" class="list-group-item list-group-item-secondary">{{g.nombre}}</li>
+                      </ul>
+                </div>
+                <div class="row">
 
                     <h1>Pedido:</h1>
                 </div>

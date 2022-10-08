@@ -3,8 +3,10 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DetallePedido } from 'src/app/models/detalle-pedido';
+import { Gusto } from 'src/app/models/gusto';
 import { Pedido } from 'src/app/models/pedido';
 import { Producto } from 'src/app/models/producto';
+import { GustoService } from 'src/app/services/gusto.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { ProductoService } from 'src/app/services/producto.service';
 
@@ -16,11 +18,13 @@ import { ProductoService } from 'src/app/services/producto.service';
 export class AltaPedidoComponent implements OnInit, OnDestroy {
   controlObservaciones = new FormControl('');
   productos: Producto[];
+  gustos: Gusto[];
   pedido: Pedido
   private subscription: Subscription
   constructor(
     private productoService: ProductoService,
     private pedidoService: PedidoService,
+    private gustoService: GustoService,
     private router: Router
   ) {
     this.subscription = new Subscription();
@@ -28,11 +32,24 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.obtenerProductos();
+    this.obtenerGustos();
     this.pedido = new Pedido();
     this.pedido.detalles = [];
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+  obtenerGustos(): void {
+    this.subscription.add(
+      this.gustoService.obtenerTodos().subscribe({
+        next: (resultado: Gusto[]) => {
+          this.gustos = resultado.filter(x => x.disponible);
+        },
+        error: (e) => {
+          console.error(e);
+        }
+      })
+    )
   }
   obtenerProductos(): void {
     this.subscription.add(

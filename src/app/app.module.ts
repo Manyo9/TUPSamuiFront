@@ -22,6 +22,7 @@ import { SocioService } from './services/socio.service';
 import { ReporteComponent } from './productos/reporte/reporte.component';
 import { AltaPromocionComponent } from './promociones/alta-promocion/alta-promocion.component';
 import { PromocionService } from './services/promocion.service';
+import { GustoService } from './services/gusto.service';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { PromocionService } from './services/promocion.service';
     PedidoService,
     ProductoService,
     SocioService,
-    PromocionService
+    PromocionService,
+    GustoService
   ],
   bootstrap: [AppComponent]
 })
