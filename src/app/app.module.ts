@@ -20,6 +20,7 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 import { ProductoService } from './services/producto.service';
 import { SocioService } from './services/socio.service';
 import { ReporteComponent } from './productos/reporte/reporte.component';
+import { AltaPromocionComponent } from './promociones/alta-promocion/alta-promocion.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ReporteComponent } from './productos/reporte/reporte.component';
     AltaPedidoComponent,
     ItemProductoComponent,
     NoEncontradoComponent,
-    ReporteComponent
+    ReporteComponent,
+    AltaPromocionComponent
   ],
   imports: [
     BrowserModule,

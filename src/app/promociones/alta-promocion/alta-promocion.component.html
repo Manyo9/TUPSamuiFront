@@ -1,0 +1,100 @@
+<div class="container p-5">
+    <h2 class="mb-5">Registrar Promocion</h2>
+    <form [formGroup]="formulario">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="mb-3">
+                        <label class="form-label" for='nombre'>Nombre</label>
+                        <input type='text' name='nombre' id='nombre' class='form-control ' formControlName="nombre"
+                            [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
+                        <div *ngIf="controlNombre.touched && controlNombre.hasError('required')"
+                            class="invalid-feedback">
+                            Nombre es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="mb-3">
+                        <label class="form-label" for='porcentajeDescuento'>Porcentaje de Descuento</label>
+                        <input type='number' name='porcentajeDescuento' id='porcentajeDescuento' class='form-control '
+                            formControlName="porcentajeDescuento"
+                            [class.is-invalid]="controlPorcentajeDescuento.touched && controlPorcentajeDescuento.hasError('required')">
+                        <div *ngIf="controlPorcentajeDescuento.touched && controlPorcentajeDescuento.hasError('required')"
+                            class="invalid-feedback">
+                            Porcentaje de descuento es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label class="form-label" for='descripcion'>Descripción</label>
+                    <textarea class="form-control" id="descripcion" rows="3" formControlName="descripcion"></textarea>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="mb-3">
+                        <label for="fechaDesde" class="form-label">Fecha desde</label>
+                        <input type="date" class="form-control" id="fechaDesde" formControlName="fechaDesde"
+                            [class.is-invalid]="controlFechaDesde.touched && controlFechaDesde.hasError('required')">
+                        <div *ngIf="controlFechaDesde.touched && controlFechaDesde.hasError('required')"
+                            class="invalid-feedback">
+                            Ingrese la fecha desde por favor.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="mb-3">
+                        <label for="fechaHasta" class="form-label">Fecha hasta</label>
+                        <input type="date" class="form-control" id="fechaHasta" formControlName="fechaHasta"
+                            [class.is-invalid]="controlFechaHasta.touched && controlFechaHasta.hasError('required')">
+                        <div *ngIf="controlFechaHasta.touched && controlFechaHasta.hasError('required')"
+                            class="invalid-feedback">
+                            Ingrese la fecha hasta por favor.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row align-items-start">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row">
+                            <label class="form-label" for='productos'>Productos incluidos</label>
+                            <div class="col-6">
+                                <select class="form-control form-select" name="productos" id="productos" [formControl]="controlProductos">
+                                    <option *ngFor="let p of productos" [ngValue]="p">
+                                        {{p.nombre}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <button class="btn btn-primary" (click)="agregarProducto()">Agregar</button>
+                            </div>
+                        
+                    </div>
+            
+                    <div class="row">
+                        <div class="my-3">
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-primary">Productos Seleccionados</li>
+                                <li *ngFor="let p of prodSeleccionados" class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">{{p.nombre}}</div>
+                                    </div>
+                                    <button class="btn btn-close align-self-center ms-2" (click)="quitarProducto(p)"></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
+        <button type="button" class="btn btn-outline-danger ms-3" routerLink="/home">Cancelar</button>
+    </form>
+</div>

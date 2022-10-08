@@ -8,6 +8,7 @@ import { AltaProductoComponent } from './productos/alta-producto/alta-producto.c
 import { AltaUsuarioExternoComponent } from './usuarios/alta-usuario-externo/alta-usuario-externo.component';
 import { AltaSocioComponent } from './socios/alta-socio/alta-socio.component';
 import { ReporteComponent } from './productos/reporte/reporte.component';
+import { AltaPromocionComponent } from './promociones/alta-promocion/alta-promocion.component';
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path : 'registro',component : AltaUsuarioExternoComponent},
   {path : 'login', component: LoginComponent},
   { path : 'socios/nuevo', component : AltaSocioComponent},
+  { path : 'promociones/nuevo', component : AltaPromocionComponent},
   {path : '', redirectTo: 'home', pathMatch: 'full'},
   {path : '**' ,component : NoEncontradoComponent}
 ];
