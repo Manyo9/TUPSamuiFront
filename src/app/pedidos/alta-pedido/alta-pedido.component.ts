@@ -101,8 +101,6 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     )
   }
   estaAgregado(p: Producto): boolean{
-
-    console.log("Me llamaste " + this.num);
     this.num += 1;
     let cond = this.pedido.detalles.find(x => x.producto === p);
     if (cond) {
