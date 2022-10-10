@@ -87,6 +87,7 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
   guardar() {
     this.pedido.fechaPedido = new Date();
     this.pedido.observaciones = this.controlObservaciones.value ? this.controlObservaciones.value : "";
+    this.pedido.idEstado = 1;
     this.subscription.add(
       this.pedidoService.agregar(this.pedido).subscribe({
         next: () => {
