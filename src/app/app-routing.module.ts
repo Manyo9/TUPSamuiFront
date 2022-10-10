@@ -9,10 +9,12 @@ import { AltaUsuarioExternoComponent } from './usuarios/alta-usuario-externo/alt
 import { AltaSocioComponent } from './socios/alta-socio/alta-socio.component';
 import { ReporteComponent } from './productos/reporte/reporte.component';
 import { AltaPromocionComponent } from './promociones/alta-promocion/alta-promocion.component';
+import { ListadoPedidosComponent } from './pedidos/listado-pedidos/listado-pedidos.component';
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
+  {path : 'pedidos/listado', component: ListadoPedidosComponent},
   {path : 'productos/nuevo',component : AltaProductoComponent},
   {path : 'reporte', component : ReporteComponent},
   {path : 'registro',component : AltaUsuarioExternoComponent},

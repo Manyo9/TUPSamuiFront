@@ -23,6 +23,7 @@ import { ReporteComponent } from './productos/reporte/reporte.component';
 import { AltaPromocionComponent } from './promociones/alta-promocion/alta-promocion.component';
 import { PromocionService } from './services/promocion.service';
 import { GustoService } from './services/gusto.service';
+import { ListadoPedidosComponent } from './pedidos/listado-pedidos/listado-pedidos.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { GustoService } from './services/gusto.service';
     ItemProductoComponent,
     NoEncontradoComponent,
     ReporteComponent,
-    AltaPromocionComponent
+    AltaPromocionComponent,
+    ListadoPedidosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,28 @@
+<div class="container">
+    <h1 class="display-4">
+        Pedidos Pendientes
+    </h1>
+    <table class="table">
+        <thead>
+            <tr class="">
+                <th scope="col">Id</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Nombre de Socio / Nombre de referencia</th>
+                <th scope="col">Cantidad de productos</th>
+                <th scope="col" colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of pedidosPendientes">
+                <th scope="row">{{p.id}}</th>
+                <td>{{p.fechaPedido | date:'mediumDate'}}</td>
+                <td>placeholder</td>
+                <td>{{p.detalles.length}}</td>
+                <td><button class="btn btn-primary">Ver Detalles</button>
+                    <button class="btn btn-secondary ms-3">Actualizar estado</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
