@@ -16,7 +16,6 @@ import { ProductoService } from 'src/app/services/producto.service';
   styleUrls: ['./alta-pedido.component.css']
 })
 export class AltaPedidoComponent implements OnInit, OnDestroy {
-  num = 0;
   controlObservaciones = new FormControl('');
   productos: Producto[];
   gustos: Gusto[];
@@ -101,7 +100,6 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     )
   }
   estaAgregado(p: Producto): boolean{
-    this.num += 1;
     let cond = this.pedido.detalles.find(x => x.producto === p);
     if (cond) {
       return true;
