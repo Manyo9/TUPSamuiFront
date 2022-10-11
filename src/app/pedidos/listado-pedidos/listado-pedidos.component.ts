@@ -18,7 +18,6 @@ export class ListadoPedidosComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = new Subscription();
     this.cargarPedidos();
-    this.pedidosPendientes[1].detalles.reduce((x, d) => { return x + d.cantidad; }, 0)
   }
   cargarPedidos(): void{
     this.subscription.add(
