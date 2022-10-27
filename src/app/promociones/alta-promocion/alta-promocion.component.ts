@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Producto } from 'src/app/models/producto';
 import { Promocion } from 'src/app/models/promocion';
+import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { ProductoService } from 'src/app/services/producto.service';
 import { PromocionService } from 'src/app/services/promocion.service';
 
@@ -42,14 +43,17 @@ export class AltaPromocionComponent implements OnInit {
   cargarCombo(): void {
     this.subscription.add(
       this.servicioProducto.obtenerTodos().subscribe({
-        next: (resultado: Producto[]) => {
-          this.productos = resultado;
+        next: (resultado: ResultadoGenerico) => {
+          if (resultado.ok) {
+            this.productos = resultado.resultado as Producto[];
+          }
+          else {
+            console.error(resultado.mensaje)
+          }
         },
-        error: (e) => {
-          console.error(e);
-        }
+        error: (e) => { console.error(e) }
       })
-    );
+    )
   }
   agregarProducto(): void {
     let p: Producto = this.controlProductos.value as unknown as Producto;

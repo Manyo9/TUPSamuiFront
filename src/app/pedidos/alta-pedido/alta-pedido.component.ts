@@ -6,6 +6,7 @@ import { DetallePedido } from 'src/app/models/detalle-pedido';
 import { Gusto } from 'src/app/models/gusto';
 import { Pedido } from 'src/app/models/pedido';
 import { Producto } from 'src/app/models/producto';
+import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { GustoService } from 'src/app/services/gusto.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { ProductoService } from 'src/app/services/producto.service';
@@ -54,8 +55,13 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
   obtenerProductos(): void {
     this.subscription.add(
       this.productoService.obtenerTodos().subscribe({
-        next: (resultado: Producto[]) => {
-          this.productos = resultado;
+        next: (resultado: ResultadoGenerico) => {
+          if (resultado.ok) {
+            this.productos = resultado.resultado as Producto[];
+          }
+          else {
+            console.error(resultado.mensaje)
+          }
         },
         error: (e) => { console.error(e) }
       })

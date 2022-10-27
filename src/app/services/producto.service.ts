@@ -1,19 +1,31 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Producto } from '../models/producto';
+import { ResultadoGenerico } from '../models/resultado-generico';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
-  private API_URL : string = 'https://6336d5ca5327df4c43ca8004.mockapi.io/api/productos';
+  private API_URL : string = 'http://localhost:3000/productos';
   constructor(private http : HttpClient) { }
 
 
   agregar(producto : Producto) : Observable<Producto>{
-    return this.http.post<Producto>(this.API_URL,producto);
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.post<Producto>(this.API_URL,producto,requestOptions);
   }
-  obtenerTodos(): Observable<Producto[]>{
-    return this.http.get<Producto[]>(this.API_URL)
+
+  obtenerTodos(): Observable<ResultadoGenerico>{
+    return this.http.get<ResultadoGenerico>(this.API_URL)
   }
 }
