@@ -31,7 +31,8 @@
           </li>
         </ul>
           <button class="btn btn-dark" routerLink="registro" type="button">Registrarse</button>
-          <button class="btn btn-dark ms-3" routerLink="login" type="button">Iniciar Sesión</button>
+          <button class="btn btn-dark border border-secondary ms-3" routerLink="login" type="button" *ngIf="!sesionIniciada">Iniciar Sesión</button> 
+          <app-cerrar-sesion *ngIf="sesionIniciada"></app-cerrar-sesion>
       </div>
     </div>
   </nav>

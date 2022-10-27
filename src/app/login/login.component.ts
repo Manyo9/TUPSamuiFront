@@ -6,6 +6,7 @@ import { Usuario } from '../models/usuario';
 import { UsuarioService } from '../services/usuario.service';
 import { Router } from '@angular/router';
 import { ResultadoGenerico } from '../models/resultado-generico';
+import { SesionIniciadaService } from '../services/sesion-iniciada.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private usuService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private sesionService : SesionIniciadaService
   ) {
     this.formulario = this.formBuilder.group(
       {
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             if (res.ok && res.resultado != null) {
               localStorage.setItem('token',res.resultado[0]);
               alert('Bienvenido/a!');
+              this.sesionService.cambiarEstado(true);
               this.router.navigate(['home']);
             } else {
               alert(`Error: ${res.mensaje}`)
@@ -61,6 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       alert("Complete los campos");
     }
   }
+
 
   volver(): void {
     this.router.navigate(['home']);
