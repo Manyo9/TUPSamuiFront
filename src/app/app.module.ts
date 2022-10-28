@@ -26,6 +26,8 @@ import { GustoService } from './services/gusto.service';
 import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
 import { SesionIniciadaService } from './services/sesion-iniciada.service';
 import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.component';
+import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
+import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.
     ReporteComponent,
     AltaPromocionComponent,
     ListadoPedidosComponent,
-    CerrarSesionComponent
+    CerrarSesionComponent,
+    ListadoProductosComponent,
+    ListadoSociosComponent
   ],
   imports: [
     BrowserModule,
