@@ -10,16 +10,19 @@ import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.co
 import { ReporteComponent } from './components/productos/reporte/reporte.component';
 import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
 import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
-
+import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
+import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
   {path : 'pedidos/listado', component: ListadoPedidosComponent},
   {path : 'productos/nuevo',component : AltaProductoComponent},
+  { path : 'productos/listado', component: ListadoProductosComponent},
   {path : 'reporte', component : ReporteComponent},
   {path : 'registro',component : AltaUsuarioExternoComponent},
   {path : 'login', component: LoginComponent},
   { path : 'socios/nuevo', component : AltaSocioComponent},
+  { path : 'socios/listado', component : ListadoSociosComponent},
   { path : 'promociones/nuevo', component : AltaPromocionComponent},
   {path : '', redirectTo: 'home', pathMatch: 'full'},
   {path : '**' ,component : NoEncontradoComponent}
