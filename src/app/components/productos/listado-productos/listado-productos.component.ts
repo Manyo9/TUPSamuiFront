@@ -11,6 +11,7 @@ import { ProductoService } from 'src/app/services/producto.service';
 })
 export class ListadoProductosComponent implements OnDestroy,OnInit {
   @Input() listado : Producto[]=[];
+  
   constructor(private servicioProducto : ProductoService) { }
   private subscription = new Subscription();
   ngOnDestroy(): void {

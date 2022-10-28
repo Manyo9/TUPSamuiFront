@@ -28,6 +28,7 @@ import { SesionIniciadaService } from './services/sesion-iniciada.service';
 import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
+import { BajaProductoComponent } from './components/productos/baja-producto/baja-producto.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ListadoSociosComponent } from './components/socios/listado-socios/lista
     ListadoPedidosComponent,
     CerrarSesionComponent,
     ListadoProductosComponent,
-    ListadoSociosComponent
+    ListadoSociosComponent,
+    BajaProductoComponent
   ],
   imports: [
     BrowserModule,

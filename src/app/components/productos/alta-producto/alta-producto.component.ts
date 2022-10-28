@@ -41,7 +41,7 @@ constructor(private formBuilder : FormBuilder,
         this.servicioProducto.agregar(this.producto).subscribe({
           next : ()=>{
             alert('Registro el producto con éxito'); 
-            this.router.navigate(['/home']);
+            this.router.navigate(['/productos/listado']);
           },
           error : () =>{
             alert('Error al registrar producto');
