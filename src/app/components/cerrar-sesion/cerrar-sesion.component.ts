@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SesionIniciadaService } from '../services/sesion-iniciada.service';
+import { SesionIniciadaService } from '../../services/sesion-iniciada.service';
 
 @Component({
   selector: 'app-cerrar-sesion',

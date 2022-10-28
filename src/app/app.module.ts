@@ -25,7 +25,7 @@ import { PromocionService } from './services/promocion.service';
 import { GustoService } from './services/gusto.service';
 import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
 import { SesionIniciadaService } from './services/sesion-iniciada.service';
-import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
+import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.component';
 
 
 @NgModule({
