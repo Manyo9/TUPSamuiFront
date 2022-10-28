@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { UsuarioLogin } from '../models/usuario-login';
-import { Usuario } from '../models/usuario';
-import { UsuarioService } from '../services/usuario.service';
+import { UsuarioLogin } from '../../models/usuario-login';
+import { Usuario } from '../../models/usuario';
+import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
-import { ResultadoGenerico } from '../models/resultado-generico';
+import { ResultadoGenerico } from '../../models/resultado-generico';
 
 @Component({
   selector: 'app-login',
