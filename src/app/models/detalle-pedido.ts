@@ -7,7 +7,6 @@ export class DetallePedido {
     idPromocion?: number;
     cantidad: number;
     precioUnitario: number;
-    porcentajeDescuento?: number;
     puntosGanados?: number;
     comentarios?: string;
 }
