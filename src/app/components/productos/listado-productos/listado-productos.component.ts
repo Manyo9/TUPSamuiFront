@@ -25,7 +25,7 @@ export class ListadoProductosComponent implements OnDestroy,OnInit {
     this.subscription.add(
       this.servicioProducto.obtenerTodos().subscribe({
         next : (listado: ResultadoGenerico) =>{    
-          if(listado.resultado && listado.resultado.length>0){
+          if(listado.resultado && listado.resultado.length>=0){
             this.listado=listado.resultado;
           }
         },
