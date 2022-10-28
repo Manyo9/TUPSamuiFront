@@ -1,5 +1,5 @@
 .fondo{
-    background-image: url('../../assets/img/fondoHome.jpeg');
+    background-image: url('../../../assets/img/fondoHome.jpeg');
     background-size: contain;
     background-repeat: no-repeat;
     min-height: 700px;
