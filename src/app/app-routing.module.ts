@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
-import { AltaPedidoComponent } from './pedidos/alta-pedido/alta-pedido.component';
-import { AltaProductoComponent } from './productos/alta-producto/alta-producto.component';
-import { AltaUsuarioExternoComponent } from './usuarios/alta-usuario-externo/alta-usuario-externo.component';
-import { AltaSocioComponent } from './socios/alta-socio/alta-socio.component';
-import { ReporteComponent } from './productos/reporte/reporte.component';
-import { AltaPromocionComponent } from './promociones/alta-promocion/alta-promocion.component';
-import { ListadoPedidosComponent } from './pedidos/listado-pedidos/listado-pedidos.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { NoEncontradoComponent } from './components/no-encontrado/no-encontrado.component';
+import { AltaPedidoComponent } from './components/pedidos/alta-pedido/alta-pedido.component';
+import { AltaProductoComponent } from './components/productos/alta-producto/alta-producto.component';
+import { AltaUsuarioExternoComponent } from './components/usuarios/alta-usuario-externo/alta-usuario-externo.component';
+import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
+import { ReporteComponent } from './components/productos/reporte/reporte.component';
+import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
+import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
 
 const routes: Routes = [
   {path : 'home', component: HomeComponent},

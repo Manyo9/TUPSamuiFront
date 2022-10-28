@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SesionIniciadaService } from '../services/sesion-iniciada.service';
+import { SesionIniciadaService } from '../../services/sesion-iniciada.service';
 
 @Component({
   selector: 'app-navbar',
