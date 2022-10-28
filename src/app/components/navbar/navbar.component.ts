@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SesionIniciadaService } from '../../services/sesion-iniciada.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private sesionService: SesionIniciadaService) { }
+  sesionIniciada: boolean;
   ngOnInit(): void {
+    this.sesionService.sesionCambio().subscribe({
+      next: (valor: boolean) => {
+        this.sesionIniciada = valor;
+      }
+    })
   }
 
 }

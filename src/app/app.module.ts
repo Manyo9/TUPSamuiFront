@@ -24,6 +24,8 @@ import { AltaPromocionComponent } from './components/promociones/alta-promocion/
 import { PromocionService } from './services/promocion.service';
 import { GustoService } from './services/gusto.service';
 import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
+import { SesionIniciadaService } from './services/sesion-iniciada.service';
+import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/li
     NoEncontradoComponent,
     ReporteComponent,
     AltaPromocionComponent,
-    ListadoPedidosComponent
+    ListadoPedidosComponent,
+    CerrarSesionComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/li
     ProductoService,
     SocioService,
     PromocionService,
-    GustoService
+    GustoService,
+    SesionIniciadaService
   ],
   bootstrap: [AppComponent]
 })
