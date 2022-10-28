@@ -11,21 +11,44 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="home">Inicio</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="pedidos/nuevo">Realizar Pedido</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Pedidos
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" routerLink="pedidos/nuevo">Registrar pedido</a></li>
+              <li><a class="dropdown-item" href="#" routerLink="pedidos/listado">Listado pedidos</a></li>
+              <li><a class="dropdown-item" href="#" routerLink="pedidos/listado">Pedidos pendientes</a></li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="pedidos/listado">Pedidos Pendientes</a>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Promociones
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" routerLink="promociones/nuevo">Registrar promoción</a></li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="promociones/nuevo">Registrar Promoción</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="productos/nuevo">Registrar Producto</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="socios/nuevo">Registrar Socio</a>
-          </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Productos
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" routerLink="productos/nuevo">Registrar producto</a></li>
+            <li><a class="dropdown-item" href="#" routerLink="productos/listado">Listado productos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Socios
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" routerLink="socios/nuevo">Registrar socio</a></li>
+            <li><a class="dropdown-item" href="#" routerLink="socios/listado">Listado socios</a></li>
+          </ul>
+        </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="reporte">Reportes</a>
           </li>
