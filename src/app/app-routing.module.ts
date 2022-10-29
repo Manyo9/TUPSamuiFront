@@ -12,6 +12,7 @@ import { AltaPromocionComponent } from './components/promociones/alta-promocion/
 import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
+import { ListadoPromocionesComponent } from './components/promociones/listado-promociones/listado-promociones.component';
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path : 'socios/nuevo', component : AltaSocioComponent},
   { path : 'socios/listado', component : ListadoSociosComponent},
   { path : 'promociones/nuevo', component : AltaPromocionComponent},
+  {path : 'promociones/listado', component: ListadoPromocionesComponent},
   {path : '', redirectTo: 'home', pathMatch: 'full'},
   {path : '**' ,component : NoEncontradoComponent}
 ];
