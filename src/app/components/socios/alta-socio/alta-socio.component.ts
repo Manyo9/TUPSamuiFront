@@ -58,7 +58,7 @@ export class AltaSocioComponent implements OnInit,OnDestroy {
         this.servicioSocio.agregar(this.socio).subscribe({
           next: () =>{
             alert('Registro socio correctamente');
-            this.router.navigate(['/home'])
+            this.router.navigate(['/socios/listado'])
           },
           error : () =>{
             alert('Error al registrar socio')
