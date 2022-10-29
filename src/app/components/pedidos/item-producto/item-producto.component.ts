@@ -11,72 +11,7 @@ import { Producto } from 'src/app/models/producto';
 export class ItemProductoComponent implements OnInit {
   controlComentarios = new FormControl('');
   rutaDefault = "../../assets/img/img-predet.png";
-  gustos: any[] = [
-    {
-      nombre: "Menta",
-      disponible: true
-    },
-    {
-      nombre: "Chocolate",
-      disponible: false
-    },
-    {
-      nombre: "Banana Split",
-      disponible: true
-    },
-    {
-      nombre: "Crema americana",
-      disponible: true
-    },
-    {
-      nombre: "Tiramisú",
-      disponible: false
-    },
-    {
-      nombre: "Cereza",
-      disponible: true
-    },
-    {
-      nombre: "Chocolate Blanco",
-      disponible: true
-    },
-    {
-      nombre: "Dulce de leche",
-      disponible: true
-    },
-    {
-      nombre: "Tramontana",
-      disponible: true
-    },
-    {
-      nombre: "Crema cookie",
-      disponible: true
-    },
-    {
-      nombre: "Tiramisú",
-      disponible: false
-    },
-    {
-      nombre: "Marroc",
-      disponible: true
-    },
-    {
-      nombre: "Ferrero rocher",
-      disponible: true
-    },
-    {
-      nombre: "Kinder",
-      disponible: true
-    },
-    {
-      nombre: "Nutella",
-      disponible: true
-    },
-    {
-      nombre: "Limón",
-      disponible: true
-    }
-  ]
+
   @Input() modalId: number = 1;
   // @Input() nombre: string;
   // @Input() descripcion: string;
