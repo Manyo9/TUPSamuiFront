@@ -7,6 +7,6 @@ export class Pedido {
     idEmpleado?: number;
     idEstado?: number;
     observaciones: string;
-    fechaPedido: Date;
+    fechaPedido?: Date;
     detalles: DetallePedido[];
 }
