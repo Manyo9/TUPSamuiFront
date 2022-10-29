@@ -4,7 +4,7 @@ export class Promocion {
     id : number;
     nombre : string;
     descripcion : string;
-    porcentajeDescuento : number;
+    precioPuntos : number;
     productos: Producto[];
     fechaDesde : Date;
     fechaHasta : Date;
