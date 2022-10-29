@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ResultadoGenerico } from '../models/resultado-generico';
 import { Socio } from '../models/socio';
 
 @Injectable()
@@ -12,4 +13,15 @@ export class SocioService {
   agregar (socio : Socio) : Observable<Socio>{
     return this.http.post<Socio>(this.API_URL,socio);
   }
+
+
+  obtenerTodos(): Observable<Socio[]>{
+    return this.http.get<Socio[]>(this.API_URL);
+  }
+
+  eliminar(socio : Socio) : Observable<any>{
+
+    return this.http.delete(this.API_URL+socio.id)
+  }
+
 }

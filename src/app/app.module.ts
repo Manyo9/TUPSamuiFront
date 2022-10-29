@@ -29,6 +29,7 @@ import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
 import { BajaProductoComponent } from './components/productos/baja-producto/baja-producto.component';
+import { BajaSocioComponent } from './components/socios/baja-socio/baja-socio.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { BajaProductoComponent } from './components/productos/baja-producto/baja
     CerrarSesionComponent,
     ListadoProductosComponent,
     ListadoSociosComponent,
-    BajaProductoComponent
+    BajaProductoComponent,
+    BajaSocioComponent
   ],
   imports: [
     BrowserModule,
