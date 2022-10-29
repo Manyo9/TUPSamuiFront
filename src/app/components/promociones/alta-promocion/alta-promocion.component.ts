@@ -30,7 +30,7 @@ export class AltaPromocionComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       nombre: [, Validators.required],
       descripcion: [],
-      porcentajeDescuento: [, Validators.required],
+      precioPuntos: [, Validators.required],
       fechaDesde: [, Validators.required],
       fechaHasta: [, Validators.required]
     })
@@ -92,8 +92,8 @@ export class AltaPromocionComponent implements OnInit {
   get controlNombre(): FormControl {
     return this.formulario.controls['nombre'] as FormControl;
   }
-  get controlPorcentajeDescuento(): FormControl {
-    return this.formulario.controls['porcentajeDescuento'] as FormControl;
+  get controlPrecioPuntos(): FormControl {
+    return this.formulario.controls['precioPuntos'] as FormControl;
   }
   get controlFechaDesde(): FormControl {
     return this.formulario.controls['fechaDesde'] as FormControl;

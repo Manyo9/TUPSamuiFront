@@ -16,13 +16,13 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="mb-3">
-                        <label class="form-label" for='porcentajeDescuento'>Porcentaje de Descuento</label>
-                        <input type='number' name='porcentajeDescuento' id='porcentajeDescuento' class='form-control '
-                            formControlName="porcentajeDescuento"
-                            [class.is-invalid]="controlPorcentajeDescuento.touched && controlPorcentajeDescuento.hasError('required')">
-                        <div *ngIf="controlPorcentajeDescuento.touched && controlPorcentajeDescuento.hasError('required')"
+                        <label class="form-label" for='precioPuntos'>Precio puntos</label>
+                        <input type='number' name='precioPuntos' id='precioPuntos' class='form-control '
+                            formControlName="precioPuntos"
+                            [class.is-invalid]="controlPrecioPuntos.touched && controlPrecioPuntos.hasError('required')">
+                        <div *ngIf="controlPrecioPuntos.touched && controlPrecioPuntos.hasError('required')"
                             class="invalid-feedback">
-                            Porcentaje de descuento es requerido
+                            Precio puntos es requerido
                         </div>
                     </div>
                 </div>
