@@ -13,4 +13,12 @@ export class PromocionService {
   agregar(promocion : Promocion) : Observable<Promocion>{
     return this.http.post<Promocion>(this.API_URL,promocion);
   }
+
+  obtenerTodos(): Observable<Promocion[]>{
+    return this.http.get<Promocion[]>(this.API_URL)
+  }
+
+  eliminar(promocion : Promocion) : Observable<any>{
+    return this.http.delete(this.API_URL+promocion.id)
+  }
 }
