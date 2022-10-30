@@ -30,7 +30,7 @@ export class ItemProductoComponent implements OnInit {
       producto: this.producto,
       cantidad: this.cantidad,
       precioUnitario: this.producto.precio,
-      puntosGanados: this.producto.puntosGanados,
+      puntosGanados: this.producto.puntosGanados * this.cantidad,
       comentarios: this.controlComentarios.value? this.controlComentarios.value : ""
     }
     this.onAgregar.emit(this.detalle);
