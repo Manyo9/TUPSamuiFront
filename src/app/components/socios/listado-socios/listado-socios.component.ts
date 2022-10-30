@@ -21,8 +21,14 @@ export class ListadoSociosComponent implements OnInit,OnDestroy {
   actualizarListado(){
     this.subscription.add(
       this.servicioSocio.obtenerTodos().subscribe({
-        next : (listado: Socio[]) =>{    
-          this.listado = listado;
+        next : (r: ResultadoGenerico) =>{   
+          if(r.ok){
+            this.listado = r.resultado as Socio[];
+          }else {
+            console.error(r.mensaje);
+            alert('Error al actualizar listado socios');
+          } 
+          
         },
         error :() =>{
           alert('Error al actualizar listado socios');
