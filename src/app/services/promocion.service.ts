@@ -1,24 +1,55 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Promocion } from '../models/promocion';
+import { ResultadoGenerico } from '../models/resultado-generico';
 
 @Injectable()
 export class PromocionService {
 
-  private API_URL : string = 'https://632b1463713d41bc8e7fdd8b.mockapi.io/wawa/promociones/';
+  private API_URL : string = 'http://localhost:3000/promociones/';
   constructor(private http : HttpClient) { }
 
 
-  agregar(promocion : Promocion) : Observable<Promocion>{
-    return this.http.post<Promocion>(this.API_URL,promocion);
+  agregar(promocion : Promocion) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.post<ResultadoGenerico>(this.API_URL,promocion,requestOptions);
   }
 
-  obtenerTodos(): Observable<Promocion[]>{
-    return this.http.get<Promocion[]>(this.API_URL)
+  obtenerTodos(): Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.get<ResultadoGenerico>(this.API_URL,requestOptions)
   }
 
   eliminar(promocion : Promocion) : Observable<any>{
-    return this.http.delete(this.API_URL+promocion.id)
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.delete(this.API_URL+promocion.id,requestOptions)
   }
 }

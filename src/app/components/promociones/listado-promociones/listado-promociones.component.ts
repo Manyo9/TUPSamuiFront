@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Promocion } from 'src/app/models/promocion';
+import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PromocionService } from 'src/app/services/promocion.service';
 
 @Component({
@@ -24,8 +25,14 @@ export class ListadoPromocionesComponent implements OnInit,OnDestroy {
   actualizarListado(){
     this.subscription.add(
       this.servicioPromocion.obtenerTodos().subscribe({
-        next : (listado : Promocion[]) =>{
-          this.listado=listado;
+        next : (r : ResultadoGenerico) =>{
+          if(r.ok){
+            this.listado= r.resultado as Promocion[];
+
+          }
+          else {
+            console.error(r.mensaje)
+          }
         },
         error :()=>{
           alert('Error al actualizar listado de promociones');
