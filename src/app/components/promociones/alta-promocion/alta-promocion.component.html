@@ -70,7 +70,13 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-1">
+                            <div class="col-2">
+                                <div class="mb-3">
+                                    <input type='number' name='txtCantidad' id='txtCantidad' class='form-control' [formControl]="cantidadProductos">
+                                </div>
+                                
+                            </div>
+                            <div class="col-2">
                                 <button class="btn btn-primary" (click)="agregarProducto()">Agregar</button>
                             </div>
                         
@@ -80,11 +86,12 @@
                         <div class="my-3">
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-primary">Productos Seleccionados</li>
-                                <li *ngFor="let p of prodSeleccionados" class="list-group-item d-flex justify-content-between align-items-start">
+                                <li *ngFor="let d of detalles" class="list-group-item d-flex justify-content-between align-items-start">
+                                    <span class="badge align-self-center bg-primary rounded-pill">{{d.cantidad}}x</span>
                                     <div class="ms-2 me-auto">
-                                        <div class="fw-bold">{{p.nombre}}</div>
+                                        <div class="fw-bold">{{d.producto.nombre}}</div>
                                     </div>
-                                    <button class="btn btn-close align-self-center ms-2" (click)="quitarProducto(p)"></button>
+                                    <button class="btn btn-close align-self-center ms-2" (click)="quitarProducto(d)"></button>
                                 </li>
                             </ul>
                         </div>
