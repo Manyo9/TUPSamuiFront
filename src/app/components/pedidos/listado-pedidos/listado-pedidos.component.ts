@@ -10,7 +10,7 @@ import { PedidoService } from 'src/app/services/pedido.service';
   styleUrls: ['./listado-pedidos.component.css']
 })
 export class ListadoPedidosComponent implements OnInit {
-  pedidos: Pedido[];
+  listadoPedidos: any;
   private subscription: Subscription;
   constructor(
     private pedidoService: PedidoService
@@ -25,7 +25,7 @@ export class ListadoPedidosComponent implements OnInit {
       this.pedidoService.obtenerTodos().subscribe({
         next: (r: ResultadoGenerico) => {
           if(r.ok) {
-            this.pedidos = r.resultado as Pedido[];
+            this.listadoPedidos = r.resultado;
           }
           else {
             console.error(r.mensaje);
