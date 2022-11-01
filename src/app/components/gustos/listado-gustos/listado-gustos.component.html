@@ -14,7 +14,7 @@
     <tr *ngFor="let g of listado">
       <th scope="row">{{ g.id }}</th>
       <td>{{ g.nombre }}</td>
-      <td>{{ g.activo}}</td>
+      <td>{{ !g.activo ? 'NO' : 'SI'}}</td>
       <td><app-baja-gustos [gusto]="g" (onEliminado)="actualizarListado()"></app-baja-gustos></td>
     </tr>
   </tbody>
