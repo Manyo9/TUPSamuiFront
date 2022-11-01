@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Listado Promociones</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Precio puntos</th>
+      <th scope="col">Fecha desde</th>
+      <th scope="col">Fecha hasta</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of listado">
+      <th scope="row">{{ p.id }}</th>
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.descripcion }}</td>
+      <td>{{ p.precioPuntos }}</td>
+      <td>{{ p.fechaDesde | date:'mediumDate'}}</td>
+      <td>{{ p.fechaHasta | date:'mediumDate'}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
