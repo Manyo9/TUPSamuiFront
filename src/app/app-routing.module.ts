@@ -14,6 +14,8 @@ import { ListadoProductosComponent } from './components/productos/listado-produc
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
 import { ListadoPromocionesComponent } from './components/promociones/listado-promociones/listado-promociones.component';
 import { ListadoPromocionesVigentesComponent } from './components/promociones/listado-promociones-vigentes/listado-promociones-vigentes.component';
+import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos.component';
+import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path : 'promociones/nuevo', component : AltaPromocionComponent},
   {path : 'promociones/listado', component: ListadoPromocionesComponent},
   { path : 'promociones/listado/vigentes' , component : ListadoPromocionesVigentesComponent},
+  {path : 'gustos/nuevo' , component: AltaGustosComponent},
+  {path : 'gustos/listado' , component: ListadoGustosComponent},
   {path : '', redirectTo: 'home', pathMatch: 'full'},
   {path : '**' ,component : NoEncontradoComponent}
 ];

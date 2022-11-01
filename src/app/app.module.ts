@@ -34,6 +34,8 @@ import { ListadoPromocionesComponent } from './components/promociones/listado-pr
 import { BajaPromocionComponent } from './components/promociones/baja-promocion/baja-promocion.component';
 import { ListadoPromocionesVigentesComponent } from './components/promociones/listado-promociones-vigentes/listado-promociones-vigentes.component';
 import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/detalles-pedido.component';
+import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos.component';
+import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/de
     ListadoPromocionesComponent,
     BajaPromocionComponent,
     ListadoPromocionesVigentesComponent,
+    AltaGustosComponent,
+    ListadoGustosComponent,
     DetallesPedidoComponent
   ],
   imports: [
