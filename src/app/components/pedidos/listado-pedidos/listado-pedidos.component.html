@@ -24,7 +24,8 @@
                 <td>{{p.estado}}</td>
                 <td>{{p.observaciones}}</td>
                 <td>{{p.fechaPedido | date:'mediumDate'}}</td>
-                <td><button class="btn btn-primary">Ver Detalles</button>
+                <td>
+                    <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
                     <button class="btn btn-secondary ms-3">Actualizar estado</button>
                 </td>
 

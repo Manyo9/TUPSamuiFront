@@ -33,6 +33,7 @@ import { BajaSocioComponent } from './components/socios/baja-socio/baja-socio.co
 import { ListadoPromocionesComponent } from './components/promociones/listado-promociones/listado-promociones.component';
 import { BajaPromocionComponent } from './components/promociones/baja-promocion/baja-promocion.component';
 import { ListadoPromocionesVigentesComponent } from './components/promociones/listado-promociones-vigentes/listado-promociones-vigentes.component';
+import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/detalles-pedido.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ListadoPromocionesVigentesComponent } from './components/promociones/li
     BajaSocioComponent,
     ListadoPromocionesComponent,
     BajaPromocionComponent,
-    ListadoPromocionesVigentesComponent
+    ListadoPromocionesVigentesComponent,
+    DetallesPedidoComponent
   ],
   imports: [
     BrowserModule,

@@ -7,32 +7,44 @@ import { ResultadoGenerico } from '../models/resultado-generico';
 @Injectable()
 export class PedidoService {
 
-  private API_URL : string = 'http://localhost:3000/pedidos/';
-  constructor(private http : HttpClient) { }
+  private API_URL: string = 'http://localhost:3000/pedidos/';
+  constructor(private http: HttpClient) { }
 
 
-  agregar(pedido : Pedido) : Observable<ResultadoGenerico>{
+  agregar(pedido: Pedido): Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
 
-        'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
 
-        'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${auth_token}`
 
-      });
+    });
     const requestOptions = { headers: headers };
-    return this.http.post<ResultadoGenerico>(this.API_URL,pedido,requestOptions);
+    return this.http.post<ResultadoGenerico>(this.API_URL, pedido, requestOptions);
   }
-  obtenerTodos() : Observable<ResultadoGenerico>{
+  obtenerTodos(): Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
 
-        'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
 
-        'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${auth_token}`
 
-      });
+    });
     const requestOptions = { headers: headers };
     return this.http.get<ResultadoGenerico>(this.API_URL, requestOptions);
+  }
+  obtenerDetalles(id: number): Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+
+      'Authorization': `Bearer ${auth_token}`
+
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get<ResultadoGenerico>(this.API_URL + 'detalles/' + id, requestOptions);
   }
 }
