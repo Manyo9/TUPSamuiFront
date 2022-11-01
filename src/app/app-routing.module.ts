@@ -30,7 +30,6 @@ const routes: Routes = [
   { path : 'promociones/nuevo', component : AltaPromocionComponent},
   {path : 'promociones/listado', component: ListadoPromocionesComponent},
   { path : 'promociones/listado/vigentes' , component : ListadoPromocionesVigentesComponent},
-  {path : 'gustos/nuevo' , component: AltaGustosComponent},
   {path : 'gustos/listado' , component: ListadoGustosComponent},
   {path : '', redirectTo: 'home', pathMatch: 'full'},
   {path : '**' ,component : NoEncontradoComponent}

@@ -36,6 +36,7 @@ import { ListadoPromocionesVigentesComponent } from './components/promociones/li
 import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/detalles-pedido.component';
 import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos.component';
 import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
+import { BajaGustosComponent } from './components/gustos/baja-gustos/baja-gustos.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ListadoGustosComponent } from './components/gustos/listado-gustos/lista
     ListadoPromocionesVigentesComponent,
     AltaGustosComponent,
     ListadoGustosComponent,
-    DetallesPedidoComponent
+    DetallesPedidoComponent,
+    BajaGustosComponent
   ],
   imports: [
     BrowserModule,
