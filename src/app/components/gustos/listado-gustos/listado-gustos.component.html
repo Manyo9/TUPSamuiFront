@@ -1,1 +1,22 @@
-<p>listado-gustos works!</p>
+<div class="container">
+    <h1>Listado Productos</h1>
+    <app-alta-gustos></app-alta-gustos>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Activo</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let g of listado">
+      <th scope="row">{{ g.id }}</th>
+      <td>{{ g.nombre }}</td>
+      <td>{{ g.activo}}</td>
+      <td><app-baja-gustos [gusto]="g" (onEliminado)="actualizarListado()"></app-baja-gustos></td>
+    </tr>
+  </tbody>
+</table>
+</div>
