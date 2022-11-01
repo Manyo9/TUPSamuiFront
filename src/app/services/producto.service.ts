@@ -11,7 +11,7 @@ export class ProductoService {
   constructor(private http : HttpClient) { }
 
 
-  agregar(producto : Producto) : Observable<Producto>{
+  agregar(producto : Producto) : Observable<ResultadoGenerico>{
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
 
@@ -22,11 +22,21 @@ export class ProductoService {
       });
     const requestOptions = { headers: headers };
 
-    return this.http.post<Producto>(this.API_URL,producto,requestOptions);
+    return this.http.post<ResultadoGenerico>(this.API_URL,producto,requestOptions);
   }
 
   obtenerTodos(): Observable<ResultadoGenerico>{
-    return this.http.get<ResultadoGenerico>(this.API_URL)
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.get<ResultadoGenerico>(this.API_URL,requestOptions);
   }
 
   eliminar(producto : Producto) : Observable<any>{
