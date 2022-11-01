@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl} from '@angular/forms';
 import { Gusto } from 'src/app/models/gusto';
 import { Subscription } from 'rxjs';
 import { GustoService } from 'src/app/services/gusto.service';
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
+import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 @Component({
   selector: 'app-alta-gustos',
   templateUrl: './alta-gustos.component.html',
@@ -14,6 +15,7 @@ export class AltaGustosComponent implements OnInit {
 
   formulario : FormGroup;
   gusto : Gusto;
+  @Output() onAgregar = new EventEmitter();
   private subscription = new Subscription();
   constructor(private formBuilder : FormBuilder,
       private servicioGusto : GustoService,
@@ -39,7 +41,7 @@ export class AltaGustosComponent implements OnInit {
         this.servicioGusto.agregar(this.gusto).subscribe({
           next : ()=>{
             alert('Registro el gusto con éxito'); 
-            this.router.navigate(['/gustos/listado']);
+            this.onAgregar.emit();
           },
           error : () =>{
             alert('Error al registrar gusto');
@@ -55,5 +57,4 @@ export class AltaGustosComponent implements OnInit {
   get controlNombre(): FormControl {
     return this.formulario.controls['nombre'] as FormControl;
   }
-
 }

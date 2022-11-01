@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,OnDestroy } from '@angular/core';
+import { Component, OnInit,Input,OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Gusto } from 'src/app/models/gusto';
 import { GustoService } from 'src/app/services/gusto.service';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class ListadoGustosComponent implements OnInit,OnDestroy {
 
   @Input() listado : Gusto[]=[];
-  
   constructor(private servicioGusto : GustoService) { }
   private subscription = new Subscription();
   ngOnDestroy(): void {
@@ -35,9 +34,5 @@ export class ListadoGustosComponent implements OnInit,OnDestroy {
         }
       })
     )
-  }
-
-  nuevoGusto(){
-    
   }
 }
