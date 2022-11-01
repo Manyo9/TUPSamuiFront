@@ -43,8 +43,12 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
   obtenerGustos(): void {
     this.subscription.add(
       this.gustoService.obtenerTodos().subscribe({
-        next: (resultado: Gusto[]) => {
-          this.gustos = resultado.filter(x => x.disponible);
+        next: (r: ResultadoGenerico) => {
+          if(r.ok){
+            this.gustos = r.resultado ? r.resultado.filter(x => x.activo==1) : [];
+          }else{
+            console.log(r.mensaje);            
+          }
         },
         error: (e) => {
           console.error(e);
