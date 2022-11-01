@@ -58,11 +58,10 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
   }
   obtenerProductos(): void {
     this.subscription.add(
-      this.productoService.obtenerTodos().subscribe({
+      this.productoService.obtenerActivos().subscribe({
         next: (resultado: ResultadoGenerico) => {
           if (resultado.ok) {
-            const todosProductos =  resultado.resultado as Producto[];
-            this.productos = todosProductos.filter(x => x.activo);
+            this.productos = resultado.resultado as Producto[];
           }
           else {
             console.error(resultado.mensaje)

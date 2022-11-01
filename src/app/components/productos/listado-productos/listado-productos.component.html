@@ -9,6 +9,7 @@
       <th scope="col">Descripción</th>
       <th scope="col">Observaciones</th>
       <th scope="col">Activo</th>
+      <th scope="col">Disponible</th>
       <th scope="col">Puntos Ganados</th>
       <th scope="col">Url Imagen</th>
       <th scope="col">Eliminar</th>
@@ -22,6 +23,7 @@
       <td>{{ p.descripcion }}</td>
       <td>{{ p.observaciones }}</td>
       <td>{{ !p.activo ? 'NO' : 'SI'}}</td>
+      <td>{{ !p.disponible ? 'NO' : 'SI'}}</td>
       <td>{{ p.puntosGanados }}</td>
       <td>{{ p.urlImagen }}</td>
       <td><app-baja-producto [producto]="p" (onEliminado)="actualizarListado()"></app-baja-producto></td>

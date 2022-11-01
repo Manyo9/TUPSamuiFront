@@ -39,6 +39,9 @@ export class ProductoService {
     return this.http.get<ResultadoGenerico>(this.API_URL,requestOptions);
   }
 
+  obtenerActivos(): Observable<ResultadoGenerico>{
+    return this.http.get<ResultadoGenerico>(this.API_URL + 'activos');
+  }
   eliminar(producto : Producto) : Observable<any>{
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({

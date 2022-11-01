@@ -25,13 +25,19 @@ constructor(private formBuilder : FormBuilder,
       descripcion : [],
       observaciones : [],
       activo : [false],
+      disponible : [false],
       puntosGanados : [,Validators.required],
       urlImagen : []
     })
   }
-  cambioCheck(x: boolean){
+  cambioActivoCheck(x: boolean){
     this.formulario.patchValue({
       activo : x
+    });
+  }
+  cambioDisponibleCheck(x: boolean){
+    this.formulario.patchValue({
+      disponible : x
     });
   }
 

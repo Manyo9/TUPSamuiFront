@@ -5,6 +5,7 @@ export class Producto {
     descripcion : string;
     observaciones : string;
     activo : boolean;
+    disponible : boolean;
     puntosGanados : number;
     urlImagen : string;
 }
