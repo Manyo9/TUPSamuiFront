@@ -1,36 +1,52 @@
-<div class="container-fluid p-5">
-    <h2>Registrar Gustos</h2>
-      <form [formGroup]="formulario">
-  
-        <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre del gusto</label>
-                <input type="text" class="form-control" id="nombre" formControlName="nombre"
-                [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
-                <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
-                class="invalid-feedback">
-                Nombre del gusto es requerido
-                </span>
-              </div>
-            </div>          
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="mb-3 form-check">
-                <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" 
-                (change)="cambioCheck(activo.checked)"/>
-                <label class="form-check-label" for="inputActivo">Activo</label>
-              </div>
+<button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalAlta">Agregar gusto</button>
+
+<!-- Modal -->
+<div class="modal fade" id='modalAlta' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrar gusto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-          </div>
-        </div>      
-          <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
-          <button type="button" class="btn btn-outline-danger ms-3" routerLink="/home">Cancelar</button>
-        </form>
-  </div>
-  
+            <div class="modal-body">
+              <div class="container-fluid p-5">
+                    <form [formGroup]="formulario">
+                
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col">
+                            <div class="mb-3">
+                              <label for="nombre" class="form-label">Nombre del gusto</label>
+                              <input type="text" class="form-control" id="nombre" formControlName="nombre"
+                              [class.is-invalid]="controlNombre.touched && controlNombre.hasError('required')">
+                              <span *ngIf="controlNombre.touched && controlNombre.hasError('required')"
+                              class="invalid-feedback">
+                              Nombre del gusto es requerido
+                              </span>
+                            </div>
+                          </div>          
+                        </div>
+                      </div>
+                
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="mb-3 form-check">
+                              <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" 
+                              (change)="cambioCheck(activo.checked)"/>
+                              <label class="form-check-label" for="inputDisponible">Activo</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>      
+                      </form>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
+              <button type="button" class="btn btn-outline-danger ms-3" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

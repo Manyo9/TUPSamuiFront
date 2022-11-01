@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Subscription } from 'rxjs';
+import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 @Component({
   selector: 'app-alta-producto',
   templateUrl: './alta-producto.component.html',
@@ -39,9 +40,13 @@ constructor(private formBuilder : FormBuilder,
       this.producto=this.formulario.value as Producto;
       this.subscription.add(
         this.servicioProducto.agregar(this.producto).subscribe({
-          next : ()=>{
-            alert('Registro el producto con éxito'); 
-            this.router.navigate(['/productos/listado']);
+          next : (resultado : ResultadoGenerico)=>{
+            if(resultado.ok){
+              alert('Registro el producto con éxito'); 
+              this.router.navigate(['/productos/listado']);
+            }else{
+              console.log(resultado.mensaje);
+            }
           },
           error : () =>{
             alert('Error al registrar producto');
