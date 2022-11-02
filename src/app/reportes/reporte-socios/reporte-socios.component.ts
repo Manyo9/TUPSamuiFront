@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ChartData } from 'chart.js';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
+import { Socio } from 'src/app/models/socio';
 import { SocioService } from 'src/app/services/socio.service';
 
 @Component({
@@ -16,7 +17,9 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
   datos: ChartData<'pie'>;
   cantSociosNuevo : number= 0;
   cantSociosBaja : number= 0;
-  private leyenda: string[] = ['Cantidad de socios nuevos','Cantidad de socios dados de baja'];
+  filasPedidosSocios : any[];
+  socios : Socio[];
+  // private leyenda: string[] = ['Cantidad de socios nuevos','Cantidad de socios dados de baja'];
   constructor(private servicioSocio : SocioService,
     private formBuilder : FormBuilder) { }
     private subscription = new Subscription();
@@ -49,6 +52,22 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
           if(res.ok){ 
             this.cantSociosNuevo=res.resultado ? res.resultado[0].cantSociosNuevos : 0;
             this.obtenerCantSociosBaja();
+            this.obtenerSociosConMasPedidos();
+          }
+        },
+        error :() =>{
+          alert('Error al generar reporte socios')
+        }
+      })
+    )
+  }
+  obtenerSociosConMasPedidos() {
+    this.subscription.add(
+      this.servicioSocio.obtenerSociosConMasPedidos(this.formulario.value).subscribe({
+        next : (res: ResultadoGenerico) =>{    
+          console.log('Socios con mas pedidos :'+ JSON.stringify(res));
+          if(res.ok){ 
+            this.filasPedidosSocios=res.resultado ? res.resultado: [];
           }
         },
         error :() =>{

@@ -30,11 +30,29 @@
         </div>
         </div>
       </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre del socio</th>
+            <th scope="col">Cantidad de pedidos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of filasPedidosSocios">
+            <th scope="row">{{f.ID}}</th>
+            <td>{{f.NombreSocio}}</td>
+            <td>{{f.cantPedidos}}</td>
+          </tr>
+        </tbody>
+      </table>
+
     </form>
 </div>
-
+<!-- 
 <div style="width: 300px;">
   <canvas baseChart type="bar" [data]="datos">
   </canvas>
-</div>
+</div> -->
 
