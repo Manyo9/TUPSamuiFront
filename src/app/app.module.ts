@@ -37,7 +37,7 @@ import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos
 import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
 import { BajaGustosComponent } from './components/gustos/baja-gustos/baja-gustos.component';
 import { ReporteSociosComponent } from './reportes/reporte-socios/reporte-socios.component';
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -71,7 +71,8 @@ import { ReporteSociosComponent } from './reportes/reporte-socios/reporte-socios
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule
   ],
   providers: [
     UsuarioService,
