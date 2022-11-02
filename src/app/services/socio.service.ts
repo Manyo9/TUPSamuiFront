@@ -43,4 +43,18 @@ export class SocioService {
     return this.http.delete(this.API_URL+socio.id,requestOptions);
   }
 
+  obtenerSociosNuevos(): Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.get<ResultadoGenerico>(this.API_URL + 'nuevos',requestOptions);
+  }
+
 }
