@@ -26,9 +26,15 @@
             </div>
           </div>
           <div class="col-md-2"> <br>
-            <button class="btn btn-primary my-2">Generar reporte</button>
+            <button class="btn btn-primary my-2" (click)="generar()">Generar reporte</button>
         </div>
         </div>
       </div>
     </form>
 </div>
+
+<div style="width: 300px;">
+  <canvas baseChart type="bar" [data]="datos">
+  </canvas>
+</div>
+
