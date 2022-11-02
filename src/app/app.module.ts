@@ -36,8 +36,9 @@ import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/de
 import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos.component';
 import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
 import { BajaGustosComponent } from './components/gustos/baja-gustos/baja-gustos.component';
-import { ReporteSociosComponent } from './reportes/reporte-socios/reporte-socios.component';
+import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { NgChartsModule } from 'ng2-charts';
     ListadoGustosComponent,
     DetallesPedidoComponent,
     BajaGustosComponent,
-    ReporteSociosComponent
+    ReporteSociosComponent,
+    ReporteProductosComponent
   ],
   imports: [
     BrowserModule,

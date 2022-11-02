@@ -15,13 +15,15 @@ import { ListadoPromocionesComponent } from './components/promociones/listado-pr
 import { ListadoPromocionesVigentesComponent } from './components/promociones/listado-promociones-vigentes/listado-promociones-vigentes.component';
 import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos.component';
 import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
-import { ReporteSociosComponent } from './reportes/reporte-socios/reporte-socios.component';
+import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
+import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
   {path : 'pedidos/listado', component: ListadoPedidosComponent},
   {path : 'productos/nuevo',component : AltaProductoComponent},
   { path : 'productos/listado', component: ListadoProductosComponent},
+  { path : 'reporte/productos', component: ReporteProductosComponent},
   {path : 'reporte/socios', component : ReporteSociosComponent},
   {path : 'registro',component : AltaUsuarioExternoComponent},
   {path : 'login', component: LoginComponent},

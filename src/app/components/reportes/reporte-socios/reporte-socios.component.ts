@@ -19,7 +19,7 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
   cantSociosBaja : number= 0;
   filasPedidosSocios : any[];
   socios : Socio[];
-  // private leyenda: string[] = ['Cantidad de socios nuevos','Cantidad de socios dados de baja'];
+  private leyenda: string[] = ['Cantidad de socios nuevos','Cantidad de socios dados de baja'];
   constructor(private servicioSocio : SocioService,
     private formBuilder : FormBuilder) { }
     private subscription = new Subscription();
@@ -52,7 +52,6 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
           if(res.ok){ 
             this.cantSociosNuevo=res.resultado ? res.resultado[0].cantSociosNuevos : 0;
             this.obtenerCantSociosBaja();
-            this.obtenerSociosConMasPedidos();
           }
         },
         error :() =>{
@@ -69,6 +68,7 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
           if(res.ok){ 
             this.filasPedidosSocios=res.resultado ? res.resultado: [];
           }
+          this.cargarDatos();
         },
         error :() =>{
           alert('Error al generar reporte socios')
@@ -84,6 +84,7 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
           if(res.ok){ 
             this.cantSociosBaja=res.resultado ? res.resultado[0].cantSociosBaja : 0;
           }
+          this.obtenerSociosConMasPedidos();
         },
         error :() =>{
           alert('Error al generar reporte socios')
@@ -91,7 +92,20 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
       })
     )
   }
-
+  cargarDatos(): void {
+    this.datos = {
+      labels: this.leyenda,
+      datasets: [
+        {
+          data: [
+            this.cantSociosNuevo,
+            this.cantSociosBaja
+          ],
+        },
+      ],
+    };
+    
+  }
   generar(){
     this.obtenerCantSociosNuevos();
   }
