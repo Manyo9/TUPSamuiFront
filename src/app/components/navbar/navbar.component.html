@@ -58,9 +58,14 @@
             <li><a class="dropdown-item" href="#" routerLink="socios/listado">Listado socios</a></li>
           </ul>
         </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="reporte">Reportes</a>
-          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Reportes
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" routerLink="reporte/socios">Reporte socios</a></li>
+          </ul>
+        </li>
         </ul>
           <button class="btn btn-dark" routerLink="registro" type="button">Registrarse</button>
           <button class="btn btn-dark border border-secondary ms-3" routerLink="login" type="button" *ngIf="!sesionIniciada">Iniciar Sesión</button> 

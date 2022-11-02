@@ -7,7 +7,6 @@ import { AltaPedidoComponent } from './components/pedidos/alta-pedido/alta-pedid
 import { AltaProductoComponent } from './components/productos/alta-producto/alta-producto.component';
 import { AltaUsuarioExternoComponent } from './components/usuarios/alta-usuario-externo/alta-usuario-externo.component';
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
-import { ReporteComponent } from './components/productos/reporte/reporte.component';
 import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
 import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
@@ -16,13 +15,14 @@ import { ListadoPromocionesComponent } from './components/promociones/listado-pr
 import { ListadoPromocionesVigentesComponent } from './components/promociones/listado-promociones-vigentes/listado-promociones-vigentes.component';
 import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos.component';
 import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
+import { ReporteSociosComponent } from './reportes/reporte-socios/reporte-socios.component';
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
   {path : 'pedidos/listado', component: ListadoPedidosComponent},
   {path : 'productos/nuevo',component : AltaProductoComponent},
   { path : 'productos/listado', component: ListadoProductosComponent},
-  {path : 'reporte', component : ReporteComponent},
+  {path : 'reporte/socios', component : ReporteSociosComponent},
   {path : 'registro',component : AltaUsuarioExternoComponent},
   {path : 'login', component: LoginComponent},
   { path : 'socios/nuevo', component : AltaSocioComponent},

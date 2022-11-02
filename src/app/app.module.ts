@@ -19,7 +19,6 @@ import { PedidoService } from './services/pedido.service';
 import { NoEncontradoComponent } from './components/no-encontrado/no-encontrado.component';
 import { ProductoService } from './services/producto.service';
 import { SocioService } from './services/socio.service';
-import { ReporteComponent } from './components/productos/reporte/reporte.component';
 import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
 import { PromocionService } from './services/promocion.service';
 import { GustoService } from './services/gusto.service';
@@ -37,6 +36,7 @@ import { DetallesPedidoComponent } from './components/pedidos/detalles-pedido/de
 import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos.component';
 import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
 import { BajaGustosComponent } from './components/gustos/baja-gustos/baja-gustos.component';
+import { ReporteSociosComponent } from './reportes/reporte-socios/reporte-socios.component';
 
 
 @NgModule({
@@ -51,7 +51,6 @@ import { BajaGustosComponent } from './components/gustos/baja-gustos/baja-gustos
     AltaPedidoComponent,
     ItemProductoComponent,
     NoEncontradoComponent,
-    ReporteComponent,
     AltaPromocionComponent,
     ListadoPedidosComponent,
     CerrarSesionComponent,
@@ -65,7 +64,8 @@ import { BajaGustosComponent } from './components/gustos/baja-gustos/baja-gustos
     AltaGustosComponent,
     ListadoGustosComponent,
     DetallesPedidoComponent,
-    BajaGustosComponent
+    BajaGustosComponent,
+    ReporteSociosComponent
   ],
   imports: [
     BrowserModule,
