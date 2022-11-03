@@ -35,6 +35,18 @@ export class PedidoService {
     const requestOptions = { headers: headers };
     return this.http.get<ResultadoGenerico>(this.API_URL, requestOptions);
   }
+  obtenerPendientes(): Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+
+      'Authorization': `Bearer ${auth_token}`
+
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get<ResultadoGenerico>(this.API_URL+'pendientes', requestOptions);
+  }
   obtenerDetalles(id: number): Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
