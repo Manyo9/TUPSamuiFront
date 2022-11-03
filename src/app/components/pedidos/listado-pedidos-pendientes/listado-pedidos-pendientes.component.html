@@ -1,0 +1,36 @@
+<div class="container">
+    <h1 class="display-4">
+        Listado Pedidos Pendientes
+    </h1>
+    <table class="table">
+        <thead>
+            <tr class="">
+                <th scope="col">Id</th>
+                <th scope="col">Punto de Venta</th>
+                <th scope="col">Socio</th>
+                <th scope="col">Empleado</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Observaciones</th>
+                <th scope="col">Fecha</th>
+                <th scope="col" colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of listadoPedidos">
+                <th scope="row">{{p.id}}</th>
+                <td>{{p.puntoVenta}}</td>
+                <td>{{p.socio ? p.socio : '-'}}</td>
+                <td>{{p.empleado ? p.empleado : '-'}}</td>
+                <td>{{p.estado}}</td>
+                <td>{{p.observaciones}}</td>
+                <td>{{p.fechaPedido | date:'mediumDate'}}</td>
+                <td>
+                    <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
+                    <app-cobro [pedido]="p.estado=='Creado'?p:{}" [pagaCliente]="false"></app-cobro>
+                    <button class="btn btn-secondary mx-3">Actualizar estado</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
