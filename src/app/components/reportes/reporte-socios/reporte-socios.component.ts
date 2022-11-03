@@ -13,11 +13,11 @@ import { SocioService } from 'src/app/services/socio.service';
 export class ReporteSociosComponent implements OnInit, OnDestroy {
   formulario : FormGroup;
   reqbody : any;
-  datos: ChartData<'pie'>;
+  datos: ChartData<'bar'>;
   cantSociosNuevo : number= 0;
   cantSociosBaja : number= 0;
   filasPedidosSocios : any[];
-  private leyenda: string[] = ['Cantidad de socios nuevos','Cantidad de socios dados de baja'];
+  private leyenda: string[] = ['Gráfico cantidad de socios'];
   constructor(private servicioSocio : SocioService,
     private formBuilder : FormBuilder) { }
     private subscription = new Subscription();
@@ -103,10 +103,16 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
       labels: this.leyenda,
       datasets: [
         {
+          label : 'Socios nuevos',
           data: [
-            this.cantSociosNuevo,
-            this.cantSociosBaja
+            this.cantSociosNuevo
           ],
+        },
+        {
+          label : 'Socios bajas',
+          data: [
+            this.cantSociosBaja
+          ]
         },
       ],
     };

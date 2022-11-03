@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Listado de Socios</h1>
+    <h1 class="display-4">Listado de Socios</h1>
 <table class="table">
   <thead>
     <tr>
@@ -7,7 +7,7 @@
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">DNI</th>
-      <th scope="col">Eliminar</th>
+      <th scope="col" colspan="2">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +16,10 @@
       <td>{{ s.nombre }}</td>
       <td>{{ s.apellido }}</td>
       <td>{{ s.dni }}</td>
-      <td><app-baja-socio [socio]="s" (onEliminado)="actualizarListado()"></app-baja-socio></td>
+      <td>
+        <app-detalles-socio [socio]="s"></app-detalles-socio>
+        <app-baja-socio [socio]="s" (onEliminado)="actualizarListado()" class="ms-3"></app-baja-socio>
+      </td>
     </tr>
   </tbody>
 </table>
