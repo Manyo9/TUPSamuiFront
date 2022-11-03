@@ -7,6 +7,7 @@
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">DNI</th>
+      <th scope="col">Consultar Socio</th>
       <th scope="col">Eliminar</th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <td>{{ s.nombre }}</td>
       <td>{{ s.apellido }}</td>
       <td>{{ s.dni }}</td>
+      <td><app-detalles-socio [socio]="s"></app-detalles-socio></td>
       <td><app-baja-socio [socio]="s" (onEliminado)="actualizarListado()"></app-baja-socio></td>
     </tr>
   </tbody>
