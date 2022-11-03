@@ -1,4 +1,4 @@
-<button class="btn btn-primary" data-bs-toggle="modal" attr.data-bs-target="#modal{{pedido.id}}"
+<button class="btn btn-primary me-3" data-bs-toggle="modal" attr.data-bs-target="#modal{{pedido.id}}"
     (click)="obtenerDetalles()">Ver Detalles</button>
 
 <!-- Modal -->
@@ -25,7 +25,7 @@
                         <td>{{d.nombreProducto}}</td>
                         <td>{{d.cantidad}}</td>
                         <td>{{d.comentarios}}</td>
-                        <td>{{d.precioUnitario}}</td>
+                        <td>${{d.precioUnitario}}</td>
                         <td>{{d.puntosGanados}}</td>
                       </tr>
                     </tbody>
