@@ -14,6 +14,7 @@ import { ProductoService } from 'src/app/services/producto.service';
 export class ReporteProductosComponent implements OnInit, OnDestroy {
   filasReporte: any[] = [];
   datos: ChartData<'pie'>;
+  reqbody: any;
 
   formulario: FormGroup;
   private subscription: Subscription;
@@ -33,8 +34,16 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
     })
   }
   obtenerReporte(): void {
+    const {fechaDesde, fechaHasta} = this.formulario.value;
+    this.reqbody = {
+      fechaDesde: new Date(fechaDesde),
+      fechaHasta: new Date(fechaHasta)
+    }
+    this.reqbody.fechaHasta.setHours(this.reqbody.fechaHasta.getHours() + 23);
+    this.reqbody.fechaHasta.setMinutes(this.reqbody.fechaHasta.getMinutes() + 59);
+
     this.subscription.add(
-      this.productoService.generarReporte(this.formulario.value).subscribe({
+      this.productoService.generarReporte(this.reqbody).subscribe({
         next: (r: ResultadoGenerico) => {
           if (r.ok) {
             this.filasReporte = r.resultado ? r.resultado : [];

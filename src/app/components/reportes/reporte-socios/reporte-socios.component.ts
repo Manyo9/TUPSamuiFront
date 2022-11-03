@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ChartData } from 'chart.js';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
-import { Socio } from 'src/app/models/socio';
 import { SocioService } from 'src/app/services/socio.service';
 
 @Component({
@@ -12,13 +11,12 @@ import { SocioService } from 'src/app/services/socio.service';
   styleUrls: ['./reporte-socios.component.css']
 })
 export class ReporteSociosComponent implements OnInit, OnDestroy {
-
   formulario : FormGroup;
+  reqbody : any;
   datos: ChartData<'pie'>;
   cantSociosNuevo : number= 0;
   cantSociosBaja : number= 0;
   filasPedidosSocios : any[];
-  socios : Socio[];
   private leyenda: string[] = ['Cantidad de socios nuevos','Cantidad de socios dados de baja'];
   constructor(private servicioSocio : SocioService,
     private formBuilder : FormBuilder) { }
@@ -45,8 +43,16 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
   }
 
   obtenerCantSociosNuevos(){
+    const {fechaDesde, fechaHasta} = this.formulario.value;
+    this.reqbody = {
+      fechaDesde: new Date(fechaDesde),
+      fechaHasta: new Date(fechaHasta)
+    }
+    this.reqbody.fechaHasta.setHours(this.reqbody.fechaHasta.getHours() + 23);
+    this.reqbody.fechaHasta.setMinutes(this.reqbody.fechaHasta.getMinutes() + 59);
+
     this.subscription.add(
-      this.servicioSocio.obtenerSociosNuevos(this.formulario.value).subscribe({
+      this.servicioSocio.obtenerSociosNuevos(this.reqbody).subscribe({
         next : (res: ResultadoGenerico) =>{    
           console.log(res);
           if(res.ok){ 
@@ -62,7 +68,7 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
   }
   obtenerSociosConMasPedidos() {
     this.subscription.add(
-      this.servicioSocio.obtenerSociosConMasPedidos(this.formulario.value).subscribe({
+      this.servicioSocio.obtenerSociosConMasPedidos(this.reqbody).subscribe({
         next : (res: ResultadoGenerico) =>{    
           console.log('Socios con mas pedidos :'+ JSON.stringify(res));
           if(res.ok){ 
@@ -78,7 +84,7 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
   }
   obtenerCantSociosBaja() {
     this.subscription.add(
-      this.servicioSocio.obtenerSociosBaja(this.formulario.value).subscribe({
+      this.servicioSocio.obtenerSociosBaja(this.reqbody).subscribe({
         next : (res: ResultadoGenerico) =>{    
           console.log(res);
           if(res.ok){ 
