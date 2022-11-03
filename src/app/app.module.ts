@@ -40,6 +40,8 @@ import { ReporteSociosComponent } from './components/reportes/reporte-socios/rep
 import { NgChartsModule } from 'ng2-charts';
 import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
 import { DetallesSocioComponent } from './components/socios/detalles-socio/detalles-socio.component';
+import { CobroComponent } from './components/pedidos/cobro/cobro.component';
+import { TipoPagoService } from './services/tipo-pago.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import { DetallesSocioComponent } from './components/socios/detalles-socio/detal
     BajaGustosComponent,
     ReporteSociosComponent,
     ReporteProductosComponent,
-    DetallesSocioComponent
+    DetallesSocioComponent,
+    CobroComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +88,8 @@ import { DetallesSocioComponent } from './components/socios/detalles-socio/detal
     SocioService,
     PromocionService,
     GustoService,
-    SesionIniciadaService
+    SesionIniciadaService,
+    TipoPagoService
   ],
   bootstrap: [AppComponent]
 })
