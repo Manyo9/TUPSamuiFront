@@ -17,10 +17,12 @@ import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos
 import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
 import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
 import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
+import { ListadoPedidosPendientesComponent } from './components/pedidos/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
   {path : 'pedidos/listado', component: ListadoPedidosComponent},
+  {path : 'pedidos/pendientes', component: ListadoPedidosPendientesComponent},
   {path : 'productos/nuevo',component : AltaProductoComponent},
   { path : 'productos/listado', component: ListadoProductosComponent},
   { path : 'reporte/productos', component: ReporteProductosComponent},

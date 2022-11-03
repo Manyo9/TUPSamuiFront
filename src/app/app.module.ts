@@ -42,6 +42,7 @@ import { ReporteProductosComponent } from './components/reportes/reporte-product
 import { DetallesSocioComponent } from './components/socios/detalles-socio/detalles-socio.component';
 import { CobroComponent } from './components/pedidos/cobro/cobro.component';
 import { TipoPagoService } from './services/tipo-pago.service';
+import { ListadoPedidosPendientesComponent } from './components/pedidos/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { TipoPagoService } from './services/tipo-pago.service';
     ReporteSociosComponent,
     ReporteProductosComponent,
     DetallesSocioComponent,
-    CobroComponent
+    CobroComponent,
+    ListadoPedidosPendientesComponent
   ],
   imports: [
     BrowserModule,
