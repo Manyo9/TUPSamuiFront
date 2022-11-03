@@ -17,6 +17,8 @@ import { ProductoService } from 'src/app/services/producto.service';
   styleUrls: ['./alta-pedido.component.css']
 })
 export class AltaPedidoComponent implements OnInit, OnDestroy {
+  cantidadTotal: number =0;
+  importeTotal: number = 0;
   controlObservaciones = new FormControl('');
   productos: Producto[];
   gustos: Gusto[];
@@ -71,27 +73,31 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
       })
     )
   }
-  calcularTotal(): number {
+  calcularTotal(): void {
     let total = 0;
     this.pedido.detalles.forEach(x => {
       total = total + x.producto.precio * x.cantidad;
     });
-    return total;
+    this.importeTotal = total;
   }
-  calcularCantidadTotal(): number {
+  calcularCantidadTotal(): void {
     let total = 0;
     this.pedido.detalles.forEach(x => {
       total = total + x.cantidad;
     })
-    return total;
+    this.cantidadTotal = total;
   }
   agregarDetalle(detalle: DetallePedido): void {
     this.pedido.detalles.push(detalle);
+    this.calcularCantidadTotal();
+    this.calcularTotal();
   }
   quitarDetalle(detalle: DetallePedido): void {
     let indice = this.pedido.detalles.indexOf(detalle);
 
     this.pedido.detalles.splice(indice, 1);
+    this.calcularCantidadTotal();
+    this.calcularTotal();
   }
   guardar() {
     this.pedido.observaciones = this.controlObservaciones.value ? this.controlObservaciones.value : "";
