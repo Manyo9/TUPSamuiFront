@@ -34,6 +34,7 @@ export class CobroComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.disabled = this.pedido.estado != 'Creado';
     this.labelBoton = this.pagaCliente? 'Pagar' : 'Cobrar'
     this.subscription = new Subscription();
     this.formulario = this.formBuilder.group({
