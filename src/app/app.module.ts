@@ -39,6 +39,7 @@ import { BajaGustosComponent } from './components/gustos/baja-gustos/baja-gustos
 import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
 import { NgChartsModule } from 'ng2-charts';
 import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
+import { DetallesSocioComponent } from './components/socios/detalles-socio/detalles-socio.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ReporteProductosComponent } from './components/reportes/reporte-product
     DetallesPedidoComponent,
     BajaGustosComponent,
     ReporteSociosComponent,
-    ReporteProductosComponent
+    ReporteProductosComponent,
+    DetallesSocioComponent
   ],
   imports: [
     BrowserModule,
