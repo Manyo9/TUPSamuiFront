@@ -116,7 +116,8 @@ export class CobroComponent implements OnInit, OnDestroy {
           next: (r: ResultadoGenerico) => {
             if(r.ok){
               this.onCobrado.emit();
-              alert("Cobro realizado con éxito");
+              const verbo = this.pagaCliente ? 'Pago' : 'Cobro';
+              alert(verbo + " realizado con éxito");
             } else {
               console.error(r.mensaje);
             }
