@@ -11,6 +11,7 @@ import { SocioService } from 'src/app/services/socio.service';
 export class BajaSocioComponent implements OnDestroy {
   @Input() socio : Socio;
   @Output () onEliminado = new EventEmitter();
+  @Input() isDisabled : boolean;
   constructor(private socioService : SocioService) { }
 
   private subscription = new Subscription();
