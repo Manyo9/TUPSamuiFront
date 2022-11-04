@@ -43,6 +43,7 @@ import { DetallesSocioComponent } from './components/socios/detalles-socio/detal
 import { CobroComponent } from './components/pedidos/cobro/cobro.component';
 import { TipoPagoService } from './services/tipo-pago.service';
 import { ListadoPedidosPendientesComponent } from './components/pedidos/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
+import { CobroService } from './services/cobro.service';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { ListadoPedidosPendientesComponent } from './components/pedidos/listado-
     PromocionService,
     GustoService,
     SesionIniciadaService,
-    TipoPagoService
+    TipoPagoService,
+    CobroService
   ],
   bootstrap: [AppComponent]
 })

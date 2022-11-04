@@ -9,32 +9,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h1>Monto a pagar: ${{importeTotal}}</h1>
+                <h4 class="mb-3">Monto a pagar: ${{importeTotal}}</h4>
                 <form [formGroup]="formulario">
                 
                     <div class="form-group">
                         <div class="mb-3">
                             <label for="selectTipoPago" class="form-label">Tipo de Pago</label>
                             <select id="selectTipoPago" class="form-select" formControlName="tipoPago"
-                                [class.invalido]="controlTipoPago.touched && controlTipoPago.hasError('required')">
+                                [class.is-invalid]="controlTipoPago.touched && controlTipoPago.hasError('required')">
                                 <option *ngFor="let tipopago of tiposPago" [ngValue]="tipopago">{{ tipopago.nombre }}</option>
                             </select>
-                            <span *ngIf="controlTipoPago.touched && controlTipoPago.invalid" class="invalid-feedback">
+                            <span class="invalid-feedback">
                                 Tipo de pago es requerido
                             </span>
                         </div>
                         <div class="mb-3" *ngIf="cobraConTarjeta">
                             <label for="selectTipoPago" class="form-label">Codigo de Autorización</label>
                             <input type="text" id="txtCodigoAutorizacion" class="form-control" formControlName="codigoAutorizacion"
-                                [class.invalido]="controlCodigoAutorizacion.touched && controlCodigoAutorizacion.hasError('required')">
-                            <span *ngIf="controlCodigoAutorizacion.touched && controlCodigoAutorizacion.invalid" class="invalid-feedback">
-                                Tipo de pago es requerido
+                                [class.is-invalid]="controlCodigoAutorizacion.touched && controlCodigoAutorizacion.hasError('required')">
+                            <span class="invalid-feedback">
+                                Codigo de autorización es requerido
                             </span>
                         </div>
                     </div>  
                     </form>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="guardarCobro()">{{labelBoton}}</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>

@@ -1,9 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DetallePedido } from 'src/app/models/detalle-pedido';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { TipoPago } from 'src/app/models/tipo-pago';
+import { CobroService } from 'src/app/services/cobro.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { TipoPagoService } from 'src/app/services/tipo-pago.service';
 
@@ -27,7 +28,8 @@ export class CobroComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private tipoPagoService: TipoPagoService,
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private cobroService: CobroService
   ) { }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -38,16 +40,20 @@ export class CobroComponent implements OnInit, OnDestroy {
     this.labelBoton = this.pagaCliente? 'Pagar' : 'Cobrar'
     this.subscription = new Subscription();
     this.formulario = this.formBuilder.group({
-      tipoPago: [],
-      codigoAutorizacion: []
+      tipoPago: [,Validators.required],
+      codigoAutorizacion: [,Validators.required],
     })
     this.obtenerTiposPago();
     this.formulario.controls["tipoPago"].valueChanges.subscribe(x => {
       if(x.nombre == 'Tarjeta de Débito' || x.nombre == 'Tarjeta de Crédito') {
+        this.formulario.controls['codigoAutorizacion'].setValidators([Validators.required]);
         this.cobraConTarjeta = true;
       } else {
+        this.formulario.controls['codigoAutorizacion'].clearValidators();
         this.cobraConTarjeta = false;
       }
+      this.formulario.controls['codigoAutorizacion'].reset();
+      this.formulario.controls['codigoAutorizacion'].updateValueAndValidity();
    })
   }
   calcularTotal(): void {
@@ -95,7 +101,34 @@ export class CobroComponent implements OnInit, OnDestroy {
       })
     )
   }
+  guardarCobro(): void {
+    if(this.formulario.valid) {
+      const { tipoPago, codigoAutorizacion } = this.formulario.value;
+      const reqbody = {
+        idPedido: this.pedido.id,
+        tipoPago: tipoPago, 
+        codigoAutorizacion: codigoAutorizacion, 
+        montoCobrado: this.importeTotal
+      }
+      this.subscription.add(
+        this.cobroService.agregar(reqbody).subscribe({
+          next: (r: ResultadoGenerico) => {
+            if(r.ok){
+              alert("Cobro realizado con éxito");
+            } else {
+              console.error(r.mensaje);
+            }
 
+          },
+          error: (e) => {
+            console.error(e);
+          }
+        })
+      )
+    } else {
+      alert("Error al registrar cobro: Revise los campos!");
+    }
+  }
   get controlTipoPago(): FormControl {
     return this.formulario.controls['tipoPago'] as FormControl;
   }
