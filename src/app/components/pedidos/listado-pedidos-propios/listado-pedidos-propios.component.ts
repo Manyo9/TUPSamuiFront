@@ -34,7 +34,7 @@ export class ListadoPedidosPropiosComponent implements OnInit {
         },
         error: (e) => {
           console.error(e);
-          alert('Error al actualizar listado pedidos pendientes');
+          alert('Error al actualizar listado de pedidos propios');
         }
       })
     )
