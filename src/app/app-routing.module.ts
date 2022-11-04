@@ -31,6 +31,7 @@ const routes: Routes = [
   {path : 'registro',component : AltaUsuarioExternoComponent},
   {path : 'login', component: LoginComponent},
   { path : 'socios/nuevo', component : AltaSocioComponent},
+  { path : 'socios/nuevo/:id', component : AltaSocioComponent},
   { path : 'socios/listado', component : ListadoSociosComponent},
   { path : 'promociones/nuevo', component : AltaPromocionComponent},
   {path : 'promociones/listado', component: ListadoPromocionesComponent},

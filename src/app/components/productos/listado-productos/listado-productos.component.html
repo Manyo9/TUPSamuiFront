@@ -28,7 +28,7 @@
       <td>{{ p.puntosGanados }}</td>
       <td>{{ p.urlImagen }}</td>
       <td><app-baja-producto [producto]="p" (onEliminado)="actualizarListado()"></app-baja-producto></td>
-      <td><button class="btn btn-outline-success" [routerLink]="['/productos/nuevo',p.id]">Editar</button></td>
+      <td><button class="btn btn-success bi bi-pencil ms-3" [routerLink]="['/productos/nuevo',p.id]"></button></td>
     </tr>
   </tbody>
 </table>
