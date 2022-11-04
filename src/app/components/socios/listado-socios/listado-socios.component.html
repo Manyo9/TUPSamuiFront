@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="display-4">Listado de Socios</h1>
+    <h1 class="display-4 my-3">Listado de Socios</h1>
 <table class="table">
   <thead>
     <tr>
@@ -7,7 +7,8 @@
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">DNI</th>
-      <th scope="col" colspan="2">Acciones</th>
+      <th scope="col">Activo</th>
+      <th scope="col" colspan="3">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -16,11 +17,11 @@
       <td>{{ s.nombre }}</td>
       <td>{{ s.apellido }}</td>
       <td>{{ s.dni }}</td>
-      <td>
-        <app-detalles-socio [socio]="s"></app-detalles-socio>
-        <app-baja-socio [socio]="s" (onEliminado)="actualizarListado()" class="ms-3"></app-baja-socio>
-        <button class="btn btn-success bi bi-pencil ms-3" [routerLink]="['/socios/nuevo',s.id]"></button>
-      </td>
+      <td>{{ s.fechaBaja ? 'NO' : 'SI' }}</td>
+      <td><app-detalles-socio [socio]="s"></app-detalles-socio></td>
+      <td><app-baja-socio [socio]="s" (onEliminado)="actualizarListado()" [isDisabled]="s.fechaBaja!==null"></app-baja-socio></td>
+      <td><button class="btn btn-success bi bi-pencil" [routerLink]="['/socios/nuevo',s.id]"></button></td>
+
     </tr>
   </tbody>
 </table>
