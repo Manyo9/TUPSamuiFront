@@ -13,6 +13,7 @@
       <th scope="col">Puntos Ganados</th>
       <th scope="col">Url Imagen</th>
       <th scope="col">Eliminar</th>
+      <th scope="col">Editar</th>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +28,7 @@
       <td>{{ p.puntosGanados }}</td>
       <td>{{ p.urlImagen }}</td>
       <td><app-baja-producto [producto]="p" (onEliminado)="actualizarListado()"></app-baja-producto></td>
+      <td><button class="btn btn-success" [routerLink]="['/productos/nuevo',p.id]">Editar</button></td>
     </tr>
   </tbody>
 </table>
