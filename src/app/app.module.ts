@@ -44,6 +44,7 @@ import { CobroComponent } from './components/pedidos/cobro/cobro.component';
 import { TipoPagoService } from './services/tipo-pago.service';
 import { ListadoPedidosPendientesComponent } from './components/pedidos/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
 import { CobroService } from './services/cobro.service';
+import { ListadoPedidosPropiosComponent } from './components/pedidos/listado-pedidos-propios/listado-pedidos-propios.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { CobroService } from './services/cobro.service';
     ReporteProductosComponent,
     DetallesSocioComponent,
     CobroComponent,
-    ListadoPedidosPendientesComponent
+    ListadoPedidosPendientesComponent,
+    ListadoPedidosPropiosComponent
   ],
   imports: [
     BrowserModule,
