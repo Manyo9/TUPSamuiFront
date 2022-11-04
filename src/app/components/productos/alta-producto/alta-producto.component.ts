@@ -26,8 +26,8 @@ constructor(private formBuilder : FormBuilder,
       precio : [,Validators.required],
       descripcion : [],
       observaciones : [],
-      activo : [false],
-      disponible : [false],
+      activo : [],
+      disponible : [],
       puntosGanados : [,Validators.required],
       urlImagen : []
     })
@@ -122,7 +122,7 @@ constructor(private formBuilder : FormBuilder,
                 },
                 error : (err) =>{
                   console.log(err);
-                  alert('Error al cargar el formulario de edición');
+                  alert('No esta autorizado para editar un producto');
                 }
               }
             )
