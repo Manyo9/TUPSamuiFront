@@ -29,10 +29,12 @@ export class ListadoPedidosPendientesComponent implements OnInit {
           }
           else {
             console.error(r.mensaje);
+            
           }
         },
         error: (e) => {
           console.error(e);
+          alert('Error al actualizar listado pedidos pendientes');
         }
       })
     )

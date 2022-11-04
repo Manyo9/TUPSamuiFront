@@ -67,4 +67,32 @@ export class ProductoService {
     const requestOptions = { headers: headers };
     return this.http.post<ResultadoGenerico>(this.API_URL+'reporte',body,requestOptions);
   }
+
+
+
+  modificar(body : Producto) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+    return this.http.put<ResultadoGenerico>(this.API_URL,body,requestOptions);
+   }
+
+   getProducto(id : number) : Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+      return this.http.get<ResultadoGenerico>(this.API_URL +id,requestOptions);
+   }
 }

@@ -1,5 +1,5 @@
 <div class="container-fluid p-5">
-  <h2>Registrar Producto</h2>
+  <h2>{{!isEdit ? 'Registrar Producto' : 'Editar Producto'}}</h2>
     <form [formGroup]="formulario">
 
       <div class="form-group">
@@ -49,12 +49,12 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="mb-3 form-check">
-              <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" 
+              <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" formControlName="activo"
               (change)="cambioActivoCheck(activo.checked)"/>
               <label class="form-check-label" for="inputActivo">Activo</label>
             </div>
             <div class="mb-3 form-check">
-              <input #disponible type="checkbox" name="inputDisponible" class="form-check-input" id="inputDisponible" 
+              <input #disponible type="checkbox" name="inputDisponible" class="form-check-input" id="inputDisponible" formControlName="disponible" 
               (change)="cambioDisponibleCheck(disponible.checked)"/>
               <label class="form-check-label" for="inputDisponible">Disponible</label>
             </div>
@@ -78,7 +78,8 @@
               <input type="text" class="form-control" id="urlImagen" formControlName="urlImagen">
             </div>
           </div>
-        <button type="submit" class="btn btn-outline-primary" (click)="guardar()">Guardar</button>
+          <button type="submit" class="btn btn-outline-primary" *ngIf="!isEdit" (click)="guardar()">Guardar</button>
+          <button type="submit" class="btn btn-outline-success" *ngIf="isEdit" (click)="editar()">Editar</button>
         <button type="button" class="btn btn-outline-danger ms-3" routerLink="/home">Cancelar</button>
       </form>
 </div>
