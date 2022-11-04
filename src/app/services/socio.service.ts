@@ -98,4 +98,30 @@ export class SocioService {
     const requestOptions = { headers: headers };
     return this.http.get<ResultadoGenerico>(this.API_URL + id, requestOptions);
   }
+
+  modificar(body : Socio) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+    return this.http.put<ResultadoGenerico>(this.API_URL,body,requestOptions);
+   }
+
+   getSocio(id : number) : Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+      return this.http.get<ResultadoGenerico>(this.API_URL +id,requestOptions);
+   }
 }
