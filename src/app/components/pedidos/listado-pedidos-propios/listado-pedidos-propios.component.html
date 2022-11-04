@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 class="display-4">
+        Mis Pedidos
+    </h1>
+    <table class="table">
+        <thead>
+            <tr class="">
+                <th scope="col">Id</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha</th>
+                <th scope="col" colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of listadoPedidos">
+                <th scope="row">{{p.id}}</th>
+                <td>{{p.estado}}</td>
+                <td>{{p.fechaPedido | date:'mediumDate'}}</td>
+                <td>
+                    <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
+                    <app-cobro (onCobrado)="cargarPedidos()" [pedido]="p.estado=='Creado'?p:{}" [pagaCliente]="true"></app-cobro>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
