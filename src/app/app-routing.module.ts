@@ -25,6 +25,7 @@ const routes: Routes = [
   {path : 'pedidos/pendientes', component: ListadoPedidosPendientesComponent},
   {path : 'productos/nuevo',component : AltaProductoComponent},
   { path : 'productos/listado', component: ListadoProductosComponent},
+  { path : 'productos/nuevo/:id', component: AltaProductoComponent},
   { path : 'reporte/productos', component: ReporteProductosComponent},
   {path : 'reporte/socios', component : ReporteSociosComponent},
   {path : 'registro',component : AltaUsuarioExternoComponent},
