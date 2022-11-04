@@ -19,7 +19,7 @@
       <td>
         <app-detalles-socio [socio]="s"></app-detalles-socio>
         <app-baja-socio [socio]="s" (onEliminado)="actualizarListado()" class="ms-3"></app-baja-socio>
-        <button class="btn btn-success bi bi-pencil ms-3"></button>
+        <button class="btn btn-success bi bi-pencil ms-3" [routerLink]="['/socios/nuevo',s.id]"></button>
       </td>
     </tr>
   </tbody>
