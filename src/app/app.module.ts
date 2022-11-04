@@ -46,6 +46,7 @@ import { ListadoPedidosPendientesComponent } from './components/pedidos/listados
 import { CobroService } from './services/cobro.service';
 import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
 import { EstadoPedidoService } from './services/estado-pedido.service';
+import { ActualizarEstadoComponent } from './components/pedidos/actualizar-estado/actualizar-estado.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { EstadoPedidoService } from './services/estado-pedido.service';
     DetallesSocioComponent,
     CobroComponent,
     ListadoPedidosPendientesComponent,
-    ListadoPedidosPropiosComponent
+    ListadoPedidosPropiosComponent,
+    ActualizarEstadoComponent
   ],
   imports: [
     BrowserModule,

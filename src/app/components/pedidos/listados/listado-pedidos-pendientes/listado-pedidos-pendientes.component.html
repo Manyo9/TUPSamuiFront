@@ -27,7 +27,7 @@
                 <td>
                     <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
                     <app-cobro (onCobrado)="cargarPedidos()" [pedido]="p.estado=='Creado'?p:{}" [pagaCliente]="false"></app-cobro>
-                    <button class="btn btn-secondary mx-3">Actualizar estado</button>
+                    <app-actualizar-estado (onActualizado)="cargarPedidos()" [pedido]="p"></app-actualizar-estado>
                 </td>
 
             </tr>

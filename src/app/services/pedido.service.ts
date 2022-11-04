@@ -71,4 +71,16 @@ export class PedidoService {
     const requestOptions = { headers: headers };
     return this.http.get<ResultadoGenerico>(this.API_URL + 'detalles/' + id, requestOptions);
   }
+  actualizarEstado(body: any){
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+
+      'Authorization': `Bearer ${auth_token}`
+
+    });
+    const requestOptions = { headers: headers };
+    return this.http.put<ResultadoGenerico>(this.API_URL + 'estado',body, requestOptions);
+  }
 }
