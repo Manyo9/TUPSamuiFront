@@ -26,7 +26,7 @@
                 <td>{{p.fechaPedido | date:'mediumDate'}}</td>
                 <td>
                     <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
-                    <app-cobro [pedido]="p.estado=='Creado'?p:{}" [pagaCliente]="false"></app-cobro>
+                    <app-cobro (onCobrado)="cargarPedidos()" [pedido]="p.estado=='Creado'?p:{}" [pagaCliente]="false"></app-cobro>
                     <button class="btn btn-secondary mx-3">Actualizar estado</button>
                 </td>
 

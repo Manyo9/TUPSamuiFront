@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DetallePedido } from 'src/app/models/detalle-pedido';
@@ -22,6 +22,7 @@ export class CobroComponent implements OnInit, OnDestroy {
   @Input() pagaCliente: boolean;
   @Input() disabled: boolean;
   @Input() pedido: any;
+  @Output() onCobrado = new EventEmitter();
   detalles: DetallePedido[];
   importeTotal: number = 0;
 
@@ -114,6 +115,7 @@ export class CobroComponent implements OnInit, OnDestroy {
         this.cobroService.agregar(reqbody).subscribe({
           next: (r: ResultadoGenerico) => {
             if(r.ok){
+              this.onCobrado.emit();
               alert("Cobro realizado con éxito");
             } else {
               console.error(r.mensaje);
