@@ -15,7 +15,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
   filasReporte: any[] = [];
   datos: ChartData<'pie'>;
   reqbody: any;
-
+  filtro = new FormControl('');
   formulario: FormGroup;
   private subscription: Subscription;
   constructor(
@@ -25,12 +25,19 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
+  ordenarPor(array: any[], columna: string): any[] {
+    return array.sort((a,b) => (a[columna] > b[columna]) ? 1 : ((b[columna] > a[columna]) ? -1 : 0));
+  }
   ngOnInit(): void {
     this.subscription = new Subscription();
     this.formulario = this.formBuilder.group({
       fechaDesde: [, Validators.required],
       fechaHasta: [, Validators.required]
+    })
+    this.filtro.valueChanges.subscribe( x => {
+      if(x){
+        this.filasReporte = this.ordenarPor(this.filasReporte,x);
+      }
     })
   }
   obtenerReporte(): void {

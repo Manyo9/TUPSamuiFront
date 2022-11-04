@@ -38,6 +38,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-sm-12 p-5">
+          <label for="selectTipoPago" class="form-label">Filtrar por:</label>
+          <select id="selectTipoPago" class="form-select" [formControl]="filtro">
+              <option value="id">Id</option>
+              <option value="nombre">Producto</option>
+              <option value="cantidadVendida">Unidades Vendidas</option>
+              <option value="promedioCantidad">Promedio de cantidad vendida por pedido</option>
+          </select>
             <table class="table ">
                 <thead>
                   <tr>
