@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Subscription } from 'rxjs';
@@ -13,10 +13,12 @@ import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 export class AltaProductoComponent implements OnInit {
 formulario : FormGroup;
 producto : Producto;
+isEdit : boolean = false;
 private subscription = new Subscription();
 constructor(private formBuilder : FormBuilder,
     private servicioProducto : ProductoService,
-    private router : Router) { }
+    private router : Router,
+    private activatedRoute : ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -29,6 +31,7 @@ constructor(private formBuilder : FormBuilder,
       puntosGanados : [,Validators.required],
       urlImagen : []
     })
+    this.cargar();
   }
   cambioActivoCheck(x: boolean){
     this.formulario.patchValue({
@@ -77,4 +80,57 @@ constructor(private formBuilder : FormBuilder,
     return this.formulario.controls['puntosGanados'] as FormControl;
   }
 
+  editar(){
+    console.log(this.formulario.value);
+    let body = this.formulario.value as Producto;
+    body.id=this.producto.id;
+    this.subscription.add(
+      this.servicioProducto.modificar(body).subscribe({
+        next : (res : ResultadoGenerico) =>{
+          if(res.ok){
+            alert('Edito el producto correctamente');
+            this.router.navigate(['/productos/listado']);
+          }else{
+            console.log(res.mensaje);
+          }
+        },
+        error: (e) => { 
+          console.error(e);
+          alert('Error al editar producto')
+        }
+      })
+    )
+  }
+
+  
+  cargar () : void{
+    this.subscription.add(
+      this.activatedRoute.params.subscribe(
+        e=>{
+          let id = e['id'];
+          if(id){
+            this.isEdit=true;
+            this.subscription.add(
+              this.servicioProducto.getProducto(id).subscribe({
+                next : (r : ResultadoGenerico) =>{
+                  if(r.ok && r.resultado){
+                    this.producto=r.resultado[0];
+                    this.formulario.patchValue(this.producto);
+                  }else{
+                    console.log(r.mensaje);                   
+                  }
+                },
+                error : (err) =>{
+                  console.log(err);
+                  alert('Error al cargar el formulario de edición');
+                }
+              }
+            )
+          )}else{
+            this.isEdit=false;
+          }
+        }
+      ) 
+    )
+  }
 }
