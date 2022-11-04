@@ -22,7 +22,7 @@ import { SocioService } from './services/socio.service';
 import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
 import { PromocionService } from './services/promocion.service';
 import { GustoService } from './services/gusto.service';
-import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
+import { ListadoPedidosComponent } from './components/pedidos/listados/listado-pedidos/listado-pedidos.component';
 import { SesionIniciadaService } from './services/sesion-iniciada.service';
 import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
@@ -42,9 +42,10 @@ import { ReporteProductosComponent } from './components/reportes/reporte-product
 import { DetallesSocioComponent } from './components/socios/detalles-socio/detalles-socio.component';
 import { CobroComponent } from './components/pedidos/cobro/cobro.component';
 import { TipoPagoService } from './services/tipo-pago.service';
-import { ListadoPedidosPendientesComponent } from './components/pedidos/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
+import { ListadoPedidosPendientesComponent } from './components/pedidos/listados/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
 import { CobroService } from './services/cobro.service';
-import { ListadoPedidosPropiosComponent } from './components/pedidos/listado-pedidos-propios/listado-pedidos-propios.component';
+import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
+import { EstadoPedidoService } from './services/estado-pedido.service';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { ListadoPedidosPropiosComponent } from './components/pedidos/listado-ped
     GustoService,
     SesionIniciadaService,
     TipoPagoService,
-    CobroService
+    CobroService,
+    EstadoPedidoService
   ],
   bootstrap: [AppComponent]
 })

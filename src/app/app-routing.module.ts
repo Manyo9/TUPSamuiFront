@@ -8,7 +8,7 @@ import { AltaProductoComponent } from './components/productos/alta-producto/alta
 import { AltaUsuarioExternoComponent } from './components/usuarios/alta-usuario-externo/alta-usuario-externo.component';
 import { AltaSocioComponent } from './components/socios/alta-socio/alta-socio.component';
 import { AltaPromocionComponent } from './components/promociones/alta-promocion/alta-promocion.component';
-import { ListadoPedidosComponent } from './components/pedidos/listado-pedidos/listado-pedidos.component';
+import { ListadoPedidosComponent } from './components/pedidos/listados/listado-pedidos/listado-pedidos.component';
 import { ListadoProductosComponent } from './components/productos/listado-productos/listado-productos.component';
 import { ListadoSociosComponent } from './components/socios/listado-socios/listado-socios.component';
 import { ListadoPromocionesComponent } from './components/promociones/listado-promociones/listado-promociones.component';
@@ -17,8 +17,8 @@ import { AltaGustosComponent } from './components/gustos/alta-gustos/alta-gustos
 import { ListadoGustosComponent } from './components/gustos/listado-gustos/listado-gustos.component';
 import { ReporteSociosComponent } from './components/reportes/reporte-socios/reporte-socios.component';
 import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
-import { ListadoPedidosPendientesComponent } from './components/pedidos/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
-import { ListadoPedidosPropiosComponent } from './components/pedidos/listado-pedidos-propios/listado-pedidos-propios.component';
+import { ListadoPedidosPendientesComponent } from './components/pedidos/listados/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
+import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
