@@ -34,30 +34,33 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
     })
   }
   obtenerReporte(): void {
-    const {fechaDesde, fechaHasta} = this.formulario.value;
-    this.reqbody = {
-      fechaDesde: new Date(fechaDesde),
-      fechaHasta: new Date(fechaHasta)
+    if(this.formulario.valid){
+      const {fechaDesde, fechaHasta} = this.formulario.value;
+      this.reqbody = {
+        fechaDesde: new Date(fechaDesde),
+        fechaHasta: new Date(fechaHasta)
+      }
+      this.reqbody.fechaHasta.setHours(this.reqbody.fechaHasta.getHours() + 23);
+      this.reqbody.fechaHasta.setMinutes(this.reqbody.fechaHasta.getMinutes() + 59);
+  
+      this.subscription.add(
+        this.productoService.generarReporte(this.reqbody).subscribe({
+          next: (r: ResultadoGenerico) => {
+            if (r.ok) {
+              this.filasReporte = r.resultado ? r.resultado : [];
+              this.cargarDatos();
+            }
+            else {
+              console.error(r.mensaje);
+            }
+          },
+          error: (e) => {
+            console.error(e);
+          }
+        }))
+    }else{
+      alert ('Debe especificar los filtros de fechas')
     }
-    this.reqbody.fechaHasta.setHours(this.reqbody.fechaHasta.getHours() + 23);
-    this.reqbody.fechaHasta.setMinutes(this.reqbody.fechaHasta.getMinutes() + 59);
-
-    this.subscription.add(
-      this.productoService.generarReporte(this.reqbody).subscribe({
-        next: (r: ResultadoGenerico) => {
-          if (r.ok) {
-            this.filasReporte = r.resultado ? r.resultado : [];
-            this.cargarDatos();
-          }
-          else {
-            console.error(r.mensaje);
-          }
-        },
-        error: (e) => {
-          console.error(e);
-        }
-      })
-    )
   }
   cargarDatos(): void {
     this.datos = {
