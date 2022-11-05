@@ -77,9 +77,8 @@ export class CobroComponent implements OnInit, OnDestroy {
         next: (r: ResultadoGenerico)=> {
           if(r.ok && r.resultado){
             if (this.pagaCliente){
-              this.tiposPago = [r.resultado[3]];
+              this.tiposPago = r.resultado.filter(x => {return x.nombre == 'Mercado Pago'});
             } else {
-
               this.tiposPago = r.resultado as TipoPago[];
             }
           } else {
