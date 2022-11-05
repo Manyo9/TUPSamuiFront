@@ -1,48 +1,49 @@
-<div class="container p-3">
-  <h1 class="display-4 my-3">Reportes de Productos</h1>
-  <form [formGroup]="formulario">
-    <div class="form-group">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="mb-3">
-            <label for="inputFechaDesde" class="form-label">Fecha desde</label>
-            <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaDesde"
-              [class.is-invalid]="controlFechaDesde.touched && controlFechaDesde.hasError('required')">
-            <p *ngIf="controlFechaDesde.touched && controlFechaDesde.hasError('required')" class="invalid-feedback">
-              Ingrese la fecha desde por favor.
-            </p>
+<div class="container" id="htmlData">
+  <div class="container p-3">
+    <h1 class="display-4 my-3">Reportes de Productos</h1>
+    <form [formGroup]="formulario">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label for="inputFechaDesde" class="form-label">Fecha desde</label>
+              <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaDesde"
+                [class.is-invalid]="controlFechaDesde.touched && controlFechaDesde.hasError('required')">
+              <p *ngIf="controlFechaDesde.touched && controlFechaDesde.hasError('required')" class="invalid-feedback">
+                Ingrese la fecha desde por favor.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-5">
-          <div class="mb-3">
-            <label for="inputFechaDesde" class="form-label">Fecha hasta</label>
-            <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
-              [class.is-invalid]="controlFechaHasta.touched && controlFechaHasta.hasError('required')">
-            <p *ngIf="controlFechaHasta.touched && controlFechaHasta.hasError('required')" class="invalid-feedback">
-              Ingrese la fecha hasta por favor.
-            </p>
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label for="inputFechaDesde" class="form-label">Fecha hasta</label>
+              <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
+                [class.is-invalid]="controlFechaHasta.touched && controlFechaHasta.hasError('required')">
+              <p *ngIf="controlFechaHasta.touched && controlFechaHasta.hasError('required')" class="invalid-feedback">
+                Ingrese la fecha hasta por favor.
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="col-md-2"> <br>
-          <button class="btn btn-primary my-2" (click)="obtenerReporte()">Generar reporte</button>
-          <button class="btn btn-danger ms-2" (click)="openPDF()"><i class="bi bi-file-earmark-pdf-fill"></i></button>
+          <div class="col-md-2"> <br>
+            <button class="btn btn-primary my-2" (click)="obtenerReporte()">Generar reporte</button>
+            <button class="btn btn-danger ms-2" (click)="openPDF()"><i class="bi bi-file-earmark-pdf-fill"></i></button>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
 
-</div>
-<div class="container-fluid px-5" id="htmlData">
+  </div>
+
   <div class="row">
-    <div class="col-md-6 col-sm-12 p-5">
+    <div class="col-md-6 col-sm-12">
       <h3>Listado:</h3>
       <label for="selectTipoPago" class="form-label">Filtrar por:</label>
       <select id="selectTipoPago" class="form-select" [formControl]="filtro">
         <option value="id">Id</option>
         <option value="nombre">Producto</option>
         <option value="cantidadVendida">Unidades Vendidas</option>
-        <option value="promedioCantidad">Promedio de cantidad vendida por pedido</option>
+        <option value="promedioCantidad">Promedio por pedido</option>
       </select>
       <table class="table ">
         <thead>
@@ -50,7 +51,7 @@
             <th scope="col">ID</th>
             <th scope="col">Producto</th>
             <th scope="col">Unidades Vendidas</th>
-            <th scope="col">Promedio de cantidad vendida por pedido</th>
+            <th scope="col">Promedio por pedido</th>
           </tr>
         </thead>
         <tbody>
@@ -63,9 +64,9 @@
         </tbody>
       </table>
     </div>
-    <div class="col-md-6 col-sm-12 py-5 ps-5">
+    <div class="col-md-6 col-sm-12">
       <div class="row text-center">
-        
+
         <h3>Unidades vendidas por producto</h3>
       </div>
       <div class="row justify-content-center">
