@@ -81,6 +81,10 @@ export class AltaPromocionComponent implements OnInit {
     if (this.formulario.valid ) {
       this.promocion = this.formulario.value as Promocion;
       this.promocion.detalles = this.detalles;
+      this.promocion.fechaDesde = new Date(this.formulario.value.fechaDesde);
+      this.promocion.fechaHasta = new Date(this.formulario.value.fechaHasta);
+      this.promocion.fechaHasta.setHours(this.promocion.fechaHasta.getHours() + 23);
+      this.promocion.fechaHasta.setMinutes(this.promocion.fechaHasta.getMinutes() + 59);
       this.subscription.add(
         this.servicioPromocion.agregar(this.promocion).subscribe({
           next: () => {
