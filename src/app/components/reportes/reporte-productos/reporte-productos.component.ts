@@ -14,8 +14,10 @@ import html2canvas from 'html2canvas';
 })
 
 export class ReporteProductosComponent implements OnInit, OnDestroy {
+  mostrarReporte: boolean = false;
   filasReporte: any[] = [];
-  datos: ChartData<'pie'>;
+  datosPie: ChartData<'pie'>;
+  datosBar: ChartData<'bar'>;
   reqbody: any;
   filtro = new FormControl('');
   formulario: FormGroup;
@@ -43,6 +45,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
     })
   }
   obtenerReporte(): void {
+    this.mostrarReporte = true;
     if(this.formulario.valid){
       const {fechaDesde, fechaHasta} = this.formulario.value;
       this.reqbody = {
@@ -72,7 +75,7 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
     }
   }
   cargarDatos(): void {
-    this.datos = {
+    this.datosPie = {
       labels: [],
       datasets: [
         {
@@ -81,9 +84,26 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
       ],
     };
     this.filasReporte.forEach(f => {
-      this.datos.labels?.push(f.nombre);
-      this.datos.datasets[0].data.push(
+      this.datosPie.labels?.push(f.nombre);
+      this.datosPie.datasets[0].data.push(
         f.cantidadVendida
+      );
+
+    });
+    this.datosBar = {
+        labels: ['productos'],
+        datasets: [
+        ],
+      };
+
+    this.filasReporte.forEach(f => {
+      this.datosBar.datasets.push(
+        {
+          label : f.nombre,
+          data: [
+            f.promedioCantidad
+          ],
+        }
       );
 
     });
@@ -91,13 +111,12 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
   openPDF(): void {
     let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA).then((canvas) => {
-      let fileWidth = 300;
+      let fileWidth = 200;
       let fileHeight = (canvas.height * fileWidth) / canvas.width;
       const FILEURI = canvas.toDataURL('image/png');
-      let PDF = new jsPDF('l', 'mm', 'a4');
+      let PDF = new jsPDF('p', 'mm', 'a4');
       let position = 0;
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      console.log(new Date().toLocaleDateString("es-AR"));
       PDF.save(`Reporte Productos (${new Date().toLocaleDateString("es-AR")}).pdf`);
     });
   }

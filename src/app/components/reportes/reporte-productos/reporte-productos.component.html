@@ -34,17 +34,18 @@
     </form>
 
   </div>
-
-  <div class="row">
-    <div class="col-md-6 col-sm-12">
+  <div class="div" *ngIf="mostrarReporte">
+    <div class="row mb-5">
       <h3>Listado:</h3>
-      <label for="selectTipoPago" class="form-label">Filtrar por:</label>
-      <select id="selectTipoPago" class="form-select" [formControl]="filtro">
-        <option value="id">Id</option>
-        <option value="nombre">Producto</option>
-        <option value="cantidadVendida">Unidades Vendidas</option>
-        <option value="promedioCantidad">Promedio por pedido</option>
-      </select>
+      <div class="col-md-6 col-sm-12">
+        <label for="selectTipoPago" class="form-label">Filtrar por:</label>
+        <select id="selectTipoPago" class="form-select" [formControl]="filtro">
+          <option value="id">Id</option>
+          <option value="nombre">Producto</option>
+          <option value="cantidadVendida">Unidades Vendidas</option>
+          <option value="promedioCantidad">Promedio por pedido</option>
+        </select>
+      </div>
       <table class="table ">
         <thead>
           <tr>
@@ -64,15 +65,31 @@
         </tbody>
       </table>
     </div>
-    <div class="col-md-6 col-sm-12">
-      <div class="row text-center">
+    <div class="row">
+      <h3>Gráficos:</h3>
+      <div class="col-md-6 col-sm-12">
+        <div class="row text-center">
 
-        <h3>Unidades vendidas por producto</h3>
+          <h3>Unidades vendidas por producto</h3>
+        </div>
+        <div class="row justify-content-center">
+
+          <div style="width: 500px;">
+            <canvas baseChart type="pie" [data]="datosPie"></canvas>
+          </div>
+        </div>
       </div>
-      <div class="row justify-content-center">
+      <div class="col-md-6 col-sm-12 mb-5">
 
-        <div style="width: 500px;">
-          <canvas baseChart type="pie" [data]="datos"></canvas>
+        <div class="row text-center">
+
+          <h3>Promedio de unidades por pedido de cada producto</h3>
+        </div>
+        <div class="row justify-content-center">
+
+          <div>
+            <canvas baseChart type="bar" [data]="datosBar"></canvas>
+          </div>
         </div>
       </div>
     </div>
