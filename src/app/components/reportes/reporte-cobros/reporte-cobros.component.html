@@ -1,1 +1,96 @@
-<p>reporte-cobros works!</p>
+<div class="container p-3">
+    <h1 class="display-4 my-3">Reportes de Cobros</h1>
+    <form [formGroup]="formulario">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label for="inputFechaDesde" class="form-label">Fecha desde</label>
+              <input
+                type="date"
+                class="form-control"
+                id="inputFechaDesde"
+                formControlName="fechaDesde"
+                [class.is-invalid]="
+                  controlFechaDesde.touched &&
+                  controlFechaDesde.hasError('required')
+                "
+              />
+              <p
+                *ngIf="
+                  controlFechaDesde.touched &&
+                  controlFechaDesde.hasError('required')
+                "
+                class="invalid-feedback"
+              >
+                Ingrese la fecha desde por favor.
+              </p>
+            </div>
+          </div>
+  
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label for="inputFechaDesde" class="form-label">Fecha hasta</label>
+              <input
+                type="date"
+                class="form-control"
+                id="inputFechaDesde"
+                formControlName="fechaHasta"
+                [class.is-invalid]="
+                  controlFechaHasta.touched &&
+                  controlFechaHasta.hasError('required')
+                "
+              />
+              <p
+                *ngIf="
+                  controlFechaHasta.touched &&
+                  controlFechaHasta.hasError('required')
+                "
+                class="invalid-feedback"
+              >
+                Ingrese la fecha hasta por favor.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <br />
+            <button class="btn btn-primary my-2" (click)="generar()">
+              Generar reporte
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 p-5">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo de cobro</th>
+                <th scope="col">Cantidad de cobros</th>
+                <th scope="col">Monto total cobrado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let f of filasReporte">
+                <th scope="row">{{ f.idTipoPago }}</th>
+                <td>{{ f.nombre }}</td>
+                <td>{{ f.cantCobros }}</td>
+                <td>{{ f.total }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div>
+            <canvas baseChart type="bar" [data]="datos"> </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
