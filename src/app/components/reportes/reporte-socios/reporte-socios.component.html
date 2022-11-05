@@ -1,101 +1,112 @@
-<div class="container p-3">
-  <h1 class="display-4 my-3">Reportes de Socios</h1>
-  <form [formGroup]="formulario">
-    <div class="form-group">
+<div id="htmlData">
+  <div class="container p-3">
+    <h1 class="display-4 my-3">Reportes de Socios</h1>
+    <pre>
+  </pre>
+    <form [formGroup]="formulario">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label for="inputFechaDesde" class="form-label">Fecha desde</label>
+              <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaDesde"
+                [class.is-invalid]="
+                controlFechaDesde.touched &&
+                controlFechaDesde.hasError('required')
+              " />
+              <p *ngIf="
+                controlFechaDesde.touched &&
+                controlFechaDesde.hasError('required')
+              " class="invalid-feedback">
+                Ingrese la fecha desde por favor.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="mb-3">
+              <label for="inputFechaDesde" class="form-label">Fecha hasta</label>
+              <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
+                [class.is-invalid]="
+                controlFechaHasta.touched &&
+                controlFechaHasta.hasError('required')
+              " />
+              <p *ngIf="
+                controlFechaHasta.touched &&
+                controlFechaHasta.hasError('required')
+              " class="invalid-feedback">
+                Ingrese la fecha hasta por favor.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <br />
+            <button class="btn btn-primary my-2" (click)="generar()">
+              Generar reporte
+            </button>
+            <button class="btn btn-danger ms-2" (click)="openPDF()"><i class="bi bi-file-earmark-pdf-fill"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-md-5">
-          <div class="mb-3">
-            <label for="inputFechaDesde" class="form-label">Fecha desde</label>
-            <input
-              type="date"
-              class="form-control"
-              id="inputFechaDesde"
-              formControlName="fechaDesde"
-              [class.is-invalid]="
-                controlFechaDesde.touched &&
-                controlFechaDesde.hasError('required')
-              "
-            />
-            <p
-              *ngIf="
-                controlFechaDesde.touched &&
-                controlFechaDesde.hasError('required')
-              "
-              class="invalid-feedback"
-            >
-              Ingrese la fecha desde por favor.
-            </p>
+        <div class="col-md-6 col-sm-12 p-5">
+          <div class="row">
+            <h3>Ranking de pedidos por socio</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nombre del socio</th>
+                  <th scope="col">Cantidad de pedidos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let f of filasPedidosSocios">
+                  <th scope="row">{{ f.ID }}</th>
+                  <td>{{ f.NombreSocio }}</td>
+                  <td>{{ f.cantPedidos }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <h3>Ranking de socios con más puntos</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Nombre del socio</th>
+                  <th scope="col">DNI</th>
+                  <th scope="col">Puntos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let s of sociosConMasPuntos">
+                  <th scope="row">{{ s.idSocio }}</th>
+                  <td>{{ s.socio }}</td>
+                  <td>{{ s.dni }}</td>
+                  <td>{{ s.puntos }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
+        <div class="col-md-6 col-sm-12 p-5">
+          <div class="row text-center">
 
-        <div class="col-md-5">
-          <div class="mb-3">
-            <label for="inputFechaDesde" class="form-label">Fecha hasta</label>
-            <input
-              type="date"
-              class="form-control"
-              id="inputFechaDesde"
-              formControlName="fechaHasta"
-              [class.is-invalid]="
-                controlFechaHasta.touched &&
-                controlFechaHasta.hasError('required')
-              "
-            />
-            <p
-              *ngIf="
-                controlFechaHasta.touched &&
-                controlFechaHasta.hasError('required')
-              "
-              class="invalid-feedback"
-            >
-              Ingrese la fecha hasta por favor.
-            </p>
+            <h3>Nuevos socios vs Bajas socios</h3>
           </div>
-        </div>
-        <div class="col-md-2">
-          <br />
-          <button class="btn btn-primary my-2" (click)="generar()">
-            Generar reporte
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
+          <div class="row justify-content-center">
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6 col-sm-12 p-5">
-        <h3>Ranking de pedidos por socio</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nombre del socio</th>
-              <th scope="col">Cantidad de pedidos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let f of filasPedidosSocios">
-              <th scope="row">{{ f.ID }}</th>
-              <td>{{ f.NombreSocio }}</td>
-              <td>{{ f.cantPedidos }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-6 col-sm-12 p-5">
-        <div class="row text-center">
-  
-          <h3>Nuevos socios vs Bajas socios</h3>
-        </div>
-        <div class="row justify-content-center">
-  
-          <div style="width: 500px;">
-            <canvas baseChart type="bar" [data]="datos"></canvas>
+            <div style="width: 700px; height: 700px;">
+              <canvas baseChart type="bar" [data]="datos"></canvas>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
-
-

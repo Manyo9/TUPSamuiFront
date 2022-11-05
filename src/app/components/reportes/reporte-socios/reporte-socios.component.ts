@@ -4,6 +4,8 @@ import { ChartData } from 'chart.js';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { SocioService } from 'src/app/services/socio.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-reporte-socios',
@@ -17,6 +19,7 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
   cantSociosNuevo : number= 0;
   cantSociosBaja : number= 0;
   filasPedidosSocios : any[];
+  sociosConMasPuntos: any[];
   private leyenda: string[] = ['Gráfico cantidad de socios'];
   constructor(private servicioSocio : SocioService,
     private formBuilder : FormBuilder) { }
@@ -74,7 +77,7 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
           if(res.ok){ 
             this.filasPedidosSocios=res.resultado ? res.resultado: [];
           }
-          this.cargarDatos();
+          this.obtenerSociosConMasPuntos();
         },
         error :() =>{
           alert('Error al generar reporte socios')
@@ -94,6 +97,23 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
         },
         error :() =>{
           alert('Error al generar reporte socios')
+        }
+      })
+    )
+  }
+  obtenerSociosConMasPuntos(): void {
+    this.subscription.add(
+      this.servicioSocio.getSociosConMasPuntos(10).subscribe({
+        next: (r: ResultadoGenerico) => {
+          if(r.ok) {
+            this.sociosConMasPuntos = r.resultado? r.resultado : [];
+            this.cargarDatos();
+          } else {
+            console.error(r.mensaje);
+          }
+        },
+        error: (e) => {
+          console.error(e);
         }
       })
     )
@@ -121,5 +141,17 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
   generar(){
     this.obtenerCantSociosNuevos();
   }
-
+  openPDF(): void {
+    let DATA: any = document.getElementById('htmlData');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 320;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('l', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      console.log(new Date().toLocaleDateString("es-AR"));
+      PDF.save(`Reporte Socios (${new Date().toLocaleDateString("es-AR")}).pdf`);
+    });
+  }
 }

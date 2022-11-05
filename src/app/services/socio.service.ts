@@ -139,4 +139,17 @@ export class SocioService {
    existeSocioConDNI(dni:number): Observable<boolean> {
     return this.http.get<boolean>(this.API_URL+'exists?dni='+dni);
    }
+
+   getSociosConMasPuntos(limite : number) : Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+      return this.http.get<ResultadoGenerico>(this.API_URL + 'reportePuntos/' + limite,requestOptions);
+   }
 }
