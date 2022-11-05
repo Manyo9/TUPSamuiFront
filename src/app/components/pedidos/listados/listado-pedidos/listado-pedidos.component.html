@@ -22,7 +22,7 @@
                 <td>{{p.socio ? p.socio : '-'}}</td>
                 <td>{{p.empleado ? p.empleado : '-'}}</td>
                 <td>{{p.estado}}</td>
-                <td>{{p.observaciones}}</td>
+                <td>{{p.observaciones ? p.observaciones : '-'}}</td>
                 <td>{{p.fechaPedido | date:'mediumDate'}}</td>
                 <td>
                     <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
