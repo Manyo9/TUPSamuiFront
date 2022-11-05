@@ -1,7 +1,7 @@
-<button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalAlta">Agregar gusto</button>
+<button class="btn ms-3" [ngClass]="isEdit? 'btn-success bi bi-pencil':'btn-primary'" data-bs-toggle="modal" attr.data-bs-target="#modal{{gusto.id}}">{{isEdit? '': 'Agregar gusto'}}</button>
 
 <!-- Modal -->
-<div class="modal fade" id='modalAlta' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" [id]="'modal'+gusto.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -32,7 +32,7 @@
                         <div class="row">
                           <div class="col-lg-12">
                             <div class="mb-3 form-check">
-                              <input #activo type="checkbox" name="inputActivo" class="form-check-input" id="inputActivo" 
+                              <input #activo type="checkbox" name="inputActivo" class="form-check-input" formControlName="activo" id="inputActivo" 
                               (change)="cambioCheck(activo.checked)"/>
                               <label class="form-check-label" for="inputDisponible">Disponible</label>
                             </div>
@@ -44,7 +44,8 @@
                 
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-outline-primary"(click)="guardar()" data-bs-dismiss="modal">Guardar</button>
+              <button type="submit" class="btn btn-outline-primary"(click)="guardar()" *ngIf="!isEdit" data-bs-dismiss="modal">Guardar</button>
+              <button type="submit" class="btn btn-outline-primary"(click)="editar()" *ngIf="isEdit" data-bs-dismiss="modal">Editar</button>
               <button type="button" class="btn btn-outline-danger ms-3" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>

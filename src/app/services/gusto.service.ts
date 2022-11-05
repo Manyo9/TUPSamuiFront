@@ -7,37 +7,53 @@ import { ResultadoGenerico } from '../models/resultado-generico';
 @Injectable()
 export class GustoService {
 
-  private API_URL : string = 'http://localhost:3000/gustos/';
-  constructor(private http : HttpClient) { }
+  private API_URL: string = 'http://localhost:3000/gustos/';
+  constructor(private http: HttpClient) { }
 
-  agregar(gusto : Gusto) : Observable<ResultadoGenerico>{
+  agregar(gusto: Gusto): Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
 
-        'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
 
-        'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${auth_token}`
 
-      });
+    });
     const requestOptions = { headers: headers };
 
-    return this.http.post<ResultadoGenerico>(this.API_URL,gusto,requestOptions);
+    return this.http.post<ResultadoGenerico>(this.API_URL, gusto, requestOptions);
   }
-  
-  obtenerTodos(): Observable<ResultadoGenerico>{
+
+  obtenerTodos(): Observable<ResultadoGenerico> {
     return this.http.get<ResultadoGenerico>(this.API_URL);
   }
 
-  eliminar(gusto : Gusto) : Observable<any>{
+  obtenerPorId(id: number): Observable<ResultadoGenerico> {
+    return this.http.get<ResultadoGenerico>(this.API_URL + id);
+  }
+  modificar(gusto: Gusto): Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
     const headers = new HttpHeaders({
 
-        'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
 
-        'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${auth_token}`
 
-      });
+    });
     const requestOptions = { headers: headers };
-    return this.http.delete(this.API_URL+gusto.id,requestOptions)
+    return this.http.put<ResultadoGenerico>(this.API_URL, gusto, requestOptions);
+  }
+
+  eliminar(gusto: Gusto): Observable<any> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+
+      'Authorization': `Bearer ${auth_token}`
+
+    });
+    const requestOptions = { headers: headers };
+    return this.http.delete(this.API_URL + gusto.id, requestOptions)
   }
 }
