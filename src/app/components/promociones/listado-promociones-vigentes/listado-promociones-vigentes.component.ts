@@ -35,7 +35,7 @@ export class ListadoPromocionesVigentesComponent implements OnInit {
       this.servicioSocios.obtenerPuntosDeSocio().subscribe({
         next: (r: ResultadoGenerico) => {
           if(r.ok && r.resultado){
-            this.misPuntos = r.resultado[0].puntos;
+            this.misPuntos = r.resultado[0]? r.resultado[0].puntos : 0;
           } else {
             console.error(r.mensaje);
           }
