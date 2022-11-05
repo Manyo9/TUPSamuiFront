@@ -8,7 +8,9 @@ import { ResultadoGenerico } from '../models/resultado-generico';
 export class PedidoService {
 
   private API_URL: string = 'http://localhost:3000/pedidos/';
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) { }
 
 
   agregar(pedido: Pedido): Observable<ResultadoGenerico> {
@@ -21,7 +23,12 @@ export class PedidoService {
 
     });
     const requestOptions = { headers: headers };
-    return this.http.post<ResultadoGenerico>(this.API_URL, pedido, requestOptions);
+    if (auth_token) {
+
+      return this.http.post<ResultadoGenerico>(this.API_URL, pedido, requestOptions);
+    } else {
+      return this.http.post<ResultadoGenerico>(this.API_URL + 'sinLogin', pedido);
+    }
   }
   obtenerTodos(): Observable<ResultadoGenerico> {
     let auth_token = localStorage.getItem('token');
