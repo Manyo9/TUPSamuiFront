@@ -14,10 +14,10 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy {
   formulario : FormGroup;
   reqbody : any;
   datos: ChartData<'bar'>;
-  filasReporte : any[];
+  filasReporte : any[]=[];
   cantCobros : number= 0;
   total : number= 0;
-  // private leyenda: string[] = ['Gráfico estadistico de cobros'];
+  private leyenda: string[] = ['Gráfico estadistico de cobros'];
   constructor(private servicioCobro : CobroService,
     private formBuilder : FormBuilder) { }
     private subscription = new Subscription();
@@ -60,7 +60,7 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy {
               this.filasReporte = r.resultado ? r.resultado : [];
               this.cantCobros=r.resultado ? r.resultado[0].cantCobros : 0;
               this.total=r.resultado ? r.resultado[0].total : 0;
-              // this.cargarDatos();
+              this.cargarDatos();
             }
             else {
               console.error(r.mensaje);
@@ -75,25 +75,23 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy {
     }
   }
 
-//   cargarDatos(): void {
-//     this.datos = {
-//       labels: this.leyenda,
-//       datasets: [
-//         {
-//           label : 'Cantidad de cobros',
-//           data: [
-//             this.cantCobros
-//           ],
-//         },
-//         {
-//           label : 'Total',
-//           data: [
-//             this.total
-//           ],
-//         }
-//       ]
-//   }
-// }
+  cargarDatos(): void {
+    this.datos = {
+      labels: [],
+      datasets: [
+        {
+          data: [],
+        },
+      ],
+    };
+    this.filasReporte.forEach(f => {
+      this.datos.labels?.push(f.nombre);
+      this.datos.datasets[0].data.push(
+        f.total
+      );
+
+    });
+  }
 
   generar(){
     this.obtenerReporteCobros();
