@@ -2,7 +2,7 @@
 
 <!-- Modal -->
 <div class="modal fade" [id]="'modalCobro' + pedido.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 900px;">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="max-width: 500px;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{labelBoton}}</h5>
@@ -11,7 +11,6 @@
             <div class="modal-body">
                 <h4 class="mb-3">Monto a pagar: ${{importeTotal}}</h4>
                 <form [formGroup]="formulario">
-                
                     <div class="form-group">
                         <div class="mb-3">
                             <label for="selectTipoPago" class="form-label">Tipo de Pago</label>
@@ -30,6 +29,9 @@
                             <span class="invalid-feedback">
                                 Codigo de autorización es requerido
                             </span>
+                        </div>
+                        <div class="row mb-3 justify-content-center" *ngIf="mostrarQr" >
+                            <img class="img" style="max-width: 300px;"  src="../../../../assets/img/qr.png" alt="Códico QR">
                         </div>
                     </div>  
                     </form>

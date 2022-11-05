@@ -19,6 +19,7 @@ export class CobroComponent implements OnInit, OnDestroy {
   formulario: FormGroup;
   tiposPago: TipoPago[];
   cobraConTarjeta: boolean;
+  mostrarQr: boolean = false;
   @Input() pagaCliente: boolean;
   @Input() disabled: boolean;
   @Input() pedido: any;
@@ -49,9 +50,15 @@ export class CobroComponent implements OnInit, OnDestroy {
       if(x.nombre == 'Tarjeta de Débito' || x.nombre == 'Tarjeta de Crédito') {
         this.formulario.controls['codigoAutorizacion'].setValidators([Validators.required]);
         this.cobraConTarjeta = true;
+        this.mostrarQr = false;
+      } else if (x.nombre == 'Mercado Pago') {
+        this.formulario.controls['codigoAutorizacion'].clearValidators();
+        this.cobraConTarjeta = false;
+        this.mostrarQr = true;
       } else {
         this.formulario.controls['codigoAutorizacion'].clearValidators();
         this.cobraConTarjeta = false;
+        this.mostrarQr = false;
       }
       this.formulario.controls['codigoAutorizacion'].reset();
       this.formulario.controls['codigoAutorizacion'].updateValueAndValidity();
@@ -68,8 +75,13 @@ export class CobroComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.tipoPagoService.obtenerTodos().subscribe({
         next: (r: ResultadoGenerico)=> {
-          if(r.ok){
-            this.tiposPago = r.resultado as TipoPago[];
+          if(r.ok && r.resultado){
+            if (this.pagaCliente){
+              this.tiposPago = [r.resultado[3]];
+            } else {
+
+              this.tiposPago = r.resultado as TipoPago[];
+            }
           } else {
             console.error(r.mensaje);
           }
