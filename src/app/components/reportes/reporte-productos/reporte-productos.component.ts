@@ -4,6 +4,8 @@ import { ChartData } from 'chart.js';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { ProductoService } from 'src/app/services/producto.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-reporte-productos',
@@ -86,6 +88,20 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
 
     });
   }
+  openPDF(): void {
+    let DATA: any = document.getElementById('htmlData');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 300;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('l', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      console.log(new Date().toLocaleDateString("es-AR"));
+      PDF.save(`Reporte Productos (${new Date().toLocaleDateString("es-AR")}).pdf`);
+    });
+  }
+
   get controlFechaDesde(): FormControl {
     return this.formulario.controls['fechaDesde'] as FormControl;
   }

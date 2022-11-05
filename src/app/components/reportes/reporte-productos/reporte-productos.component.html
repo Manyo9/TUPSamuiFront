@@ -1,78 +1,79 @@
-
 <div class="container p-3">
   <h1 class="display-4 my-3">Reportes de Productos</h1>
-    <form [formGroup]="formulario">
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-5">
-            <div class="mb-3">
-              <label for="inputFechaDesde" class="form-label">Fecha desde</label>
-              <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaDesde" 
+  <form [formGroup]="formulario">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="mb-3">
+            <label for="inputFechaDesde" class="form-label">Fecha desde</label>
+            <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaDesde"
               [class.is-invalid]="controlFechaDesde.touched && controlFechaDesde.hasError('required')">
-              <p *ngIf="controlFechaDesde.touched && controlFechaDesde.hasError('required')"
-              class="invalid-feedback">
-                Ingrese la fecha desde por favor.
+            <p *ngIf="controlFechaDesde.touched && controlFechaDesde.hasError('required')" class="invalid-feedback">
+              Ingrese la fecha desde por favor.
             </p>
-            </div>
           </div>
-    
-          <div class="col-md-5">
-            <div class="mb-3">
-              <label for="inputFechaDesde" class="form-label">Fecha hasta</label>
-              <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta" 
-              [class.is-invalid]="controlFechaHasta.touched && controlFechaHasta.hasError('required')">
-              <p *ngIf="controlFechaHasta.touched && controlFechaHasta.hasError('required')"
-              class="invalid-feedback">
-                Ingrese la fecha hasta por favor.
-            </p>
-            </div>
-          </div>
-          <div class="col-md-2"> <br>
-            <button class="btn btn-primary my-2" (click)="obtenerReporte()">Generar reporte</button>
         </div>
+
+        <div class="col-md-5">
+          <div class="mb-3">
+            <label for="inputFechaDesde" class="form-label">Fecha hasta</label>
+            <input type="date" class="form-control" id="inputFechaDesde" formControlName="fechaHasta"
+              [class.is-invalid]="controlFechaHasta.touched && controlFechaHasta.hasError('required')">
+            <p *ngIf="controlFechaHasta.touched && controlFechaHasta.hasError('required')" class="invalid-feedback">
+              Ingrese la fecha hasta por favor.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-2"> <br>
+          <button class="btn btn-primary my-2" (click)="obtenerReporte()">Generar reporte</button>
+          <button class="btn btn-danger ms-2" (click)="openPDF()"><i class="bi bi-file-earmark-pdf-fill"></i></button>
         </div>
       </div>
-    </form>
-    
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 col-sm-12 p-5">
-          <label for="selectTipoPago" class="form-label">Filtrar por:</label>
-          <select id="selectTipoPago" class="form-select" [formControl]="filtro">
-              <option value="id">Id</option>
-              <option value="nombre">Producto</option>
-              <option value="cantidadVendida">Unidades Vendidas</option>
-              <option value="promedioCantidad">Promedio de cantidad vendida por pedido</option>
-          </select>
-            <table class="table ">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Unidades Vendidas</th>
-                    <th scope="col">Promedio de cantidad vendida por pedido</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let f of filasReporte">
-                    <th scope="row">{{ f.id }}</th>
-                    <td>{{ f.nombre }}</td>
-                    <td>{{ f.cantidadVendida }}</td>
-                    <td>{{ f.promedioCantidad }}</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <pre>
-                <div style="width: 500px;">
-                    <canvas baseChart type="pie" [data]="datos"></canvas>
-                  </div>
-                <!-- {{datos|json}} -->
-            </pre>
-
-              
-        </div>
     </div>
+  </form>
+
+</div>
+<div class="container-fluid px-5" id="htmlData">
+  <div class="row">
+    <div class="col-md-6 col-sm-12 p-5">
+      <h3>Listado:</h3>
+      <label for="selectTipoPago" class="form-label">Filtrar por:</label>
+      <select id="selectTipoPago" class="form-select" [formControl]="filtro">
+        <option value="id">Id</option>
+        <option value="nombre">Producto</option>
+        <option value="cantidadVendida">Unidades Vendidas</option>
+        <option value="promedioCantidad">Promedio de cantidad vendida por pedido</option>
+      </select>
+      <table class="table ">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Unidades Vendidas</th>
+            <th scope="col">Promedio de cantidad vendida por pedido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of filasReporte">
+            <th scope="row">{{ f.id }}</th>
+            <td>{{ f.nombre }}</td>
+            <td>{{ f.cantidadVendida }}</td>
+            <td>{{ f.promedioCantidad }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6 col-sm-12 py-5 ps-5">
+      <div class="row text-center">
+        
+        <h3>Unidades vendidas por producto</h3>
+      </div>
+      <div class="row justify-content-center">
+
+        <div style="width: 500px;">
+          <canvas baseChart type="pie" [data]="datos"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
