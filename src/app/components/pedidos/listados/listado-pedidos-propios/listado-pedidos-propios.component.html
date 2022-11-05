@@ -19,6 +19,7 @@
                 <td>
                     <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
                     <app-cobro (onCobrado)="cargarPedidos()" [pedido]="p.estado=='Creado'?p:{}" [pagaCliente]="true"></app-cobro>
+                    <app-cancelar-pedido [pedido]="p" (onCancelar)="cargarPedidos()"></app-cancelar-pedido>
                 </td>
 
             </tr>

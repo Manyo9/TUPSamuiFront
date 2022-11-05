@@ -48,6 +48,7 @@ import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/li
 import { EstadoPedidoService } from './services/estado-pedido.service';
 import { ActualizarEstadoComponent } from './components/pedidos/actualizar-estado/actualizar-estado.component';
 import { BotonCanjearComponent } from './components/promociones/boton-canjear/boton-canjear.component';
+import { CancelarPedidoComponent } from './components/pedidos/cancelar-pedido/cancelar-pedido.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { BotonCanjearComponent } from './components/promociones/boton-canjear/bo
     ListadoPedidosPendientesComponent,
     ListadoPedidosPropiosComponent,
     ActualizarEstadoComponent,
-    BotonCanjearComponent
+    BotonCanjearComponent,
+    CancelarPedidoComponent
   ],
   imports: [
     BrowserModule,
