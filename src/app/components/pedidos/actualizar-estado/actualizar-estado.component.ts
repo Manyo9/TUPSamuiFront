@@ -38,8 +38,8 @@ export class ActualizarEstadoComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.estadoPedidoService.obtenerTodos().subscribe({
         next: (r: ResultadoGenerico) => {
-          if(r.ok){
-            this.estadosPedido = r.resultado as EstadoPedido[];
+          if(r.ok && r.resultado){
+            this.estadosPedido = r.resultado.filter((x) => {return x.nombre == 'Cancelado' || x.nombre == 'Entregado'}) as EstadoPedido[];
           } else {
             console.error(r.mensaje);
           }
