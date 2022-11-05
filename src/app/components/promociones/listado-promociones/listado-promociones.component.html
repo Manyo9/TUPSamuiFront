@@ -10,7 +10,7 @@
       <!-- <th scope="col">Producto</th> -->
       <th scope="col">Fecha desde</th>
       <th scope="col">Fecha hasta</th>
-      <th scope="col">Eliminar</th>
+      <th scope="col">Terminar</th>
     </tr>
   </thead>
   <tbody>
@@ -20,8 +20,8 @@
       <td>{{ p.descripcion }}</td>
       <td>{{ p.precioPuntos }}</td>
       <!-- <td>{{ p.productos }}</td> -->
-      <td>{{ p.fechaDesde | date:'mediumDate'}}</td>
-      <td>{{ p.fechaHasta | date:'mediumDate'}}</td>
+      <td>{{ p.fechaDesde | date: 'mediumDate':'UTC'}}</td>
+      <td>{{ p.fechaHasta | date:'mediumDate':'UTC'}}</td>
       <td><app-baja-promocion [promocion]="p" (onEliminado)="actualizarListado()"></app-baja-promocion></td>
     </tr>
   </tbody>
