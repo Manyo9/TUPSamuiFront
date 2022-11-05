@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResultadoGenerico } from '../models/resultado-generico';
@@ -26,5 +26,16 @@ export class UsuarioService {
 
   registrarExterno(usuario: UsuarioLogin): Observable<ResultadoGenerico>{
     return this.http.post<ResultadoGenerico>(`${this.apiUrl}/nuevoUsuarioSocio`,usuario)
+  }
+  obtenerRol(): Observable<ResultadoGenerico>{    let auth_token = localStorage.getItem('token');
+  const headers = new HttpHeaders({
+
+      'Content-Type': 'application/json',
+
+      'Authorization': `Bearer ${auth_token}`
+
+    });
+  const requestOptions = { headers: headers };
+    return this.http.get<ResultadoGenerico>(`${this.apiUrl}/rol`, requestOptions);
   }
 }

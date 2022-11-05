@@ -1,38 +1,37 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand active" routerLink="home">
-        <img src="../../assets/img/logo.png" alt="Bootstrap" width="30">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="home">Inicio</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Pedidos
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#" routerLink="pedidos/nuevo">Registrar pedido</a></li>
-              <li><a class="dropdown-item" href="#" routerLink="pedidos/listado">Listado pedidos</a></li>
-              <li><a class="dropdown-item" href="#" routerLink="pedidos/pendientes">Pedidos pendientes</a></li>
-              <li><a class="dropdown-item" href="#" routerLink="pedidos/propios">Mis pedidos</a></li>
-            </ul>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Promociones
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#" routerLink="promociones/nuevo">Registrar promoción</a></li>
-              <li><a class="dropdown-item" href="#" routerLink="promociones/listado">Listado promociones</a></li>
-              <li><a class="dropdown-item" href="#" routerLink="promociones/listado/vigentes">Listado promociones vigentes</a></li>
-            </ul>
-          </li>
+  <div class="container-fluid">
+    <a class="navbar-brand active" routerLink="home">
+      <img src="../../assets/img/logo.png" alt="Bootstrap" width="30">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol === 'Admin' || rol === 'Empleado'">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="home">Inicio</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Pedidos
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" routerLink="pedidos/nuevo">Registrar pedido</a></li>
+            <li><a class="dropdown-item" href="#" routerLink="pedidos/listado">Listado pedidos</a></li>
+            <li><a class="dropdown-item" href="#" routerLink="pedidos/pendientes">Pedidos pendientes</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Promociones
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" routerLink="promociones/nuevo">Registrar promoción</a></li>
+            <li><a class="dropdown-item" href="#" routerLink="promociones/listado">Listado promociones</a></li>
+          </ul>
+        </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,10 +69,42 @@
             <li><a class="dropdown-item" href="#" routerLink="reporte/cobros">Reporte cobros</a></li>
           </ul>
         </li>
-        </ul>
-          <button class="btn btn-dark" routerLink="registro" type="button">Registrarse</button>
-          <button class="btn btn-dark border border-secondary ms-3" routerLink="login" type="button" *ngIf="!sesionIniciada">Iniciar Sesión</button> 
-          <app-cerrar-sesion *ngIf="sesionIniciada"></app-cerrar-sesion>
-      </div>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol === 'Socio'">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="home">Inicio</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Pedidos
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" routerLink="pedidos/nuevo">Registrar pedido</a></li>
+            <li><a class="dropdown-item" href="#" routerLink="pedidos/propios">Mis pedidos</a></li>
+          </ul>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="#" routerLink="promociones/listado/vigentes">Promociones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="socios/nuevo" routerLinkActive="active" >Quiero ser socio</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="rol === 'SinLoggear'">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="home">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="pedidos/nuevo">Realizar un pedido</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="socios/nuevo" routerLinkActive="active">Quiero ser socio</a>
+        </li>
+      </ul>
+      <button class="btn btn-dark" routerLink="registro" type="button">Registrarme</button>
+      <button class="btn btn-dark border border-secondary ms-3" routerLink="login" type="button"
+        *ngIf="!sesionIniciada">Iniciar Sesión</button>
+      <app-cerrar-sesion *ngIf="sesionIniciada"></app-cerrar-sesion>
     </div>
-  </nav>
+  </div>
+</nav>
