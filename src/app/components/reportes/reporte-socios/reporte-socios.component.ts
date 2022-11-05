@@ -13,6 +13,7 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./reporte-socios.component.css']
 })
 export class ReporteSociosComponent implements OnInit, OnDestroy {
+  mostrarReporte: boolean = false;
   formulario : FormGroup;
   reqbody : any;
   datos: ChartData<'bar'>;
@@ -139,12 +140,13 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
     
   }
   generar(){
+    this.mostrarReporte = true;
     this.obtenerCantSociosNuevos();
   }
   openPDF(): void {
     let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA).then((canvas) => {
-      let fileWidth = 320;
+      let fileWidth = 290;
       let fileHeight = (canvas.height * fileWidth) / canvas.width;
       const FILEURI = canvas.toDataURL('image/png');
       let PDF = new jsPDF('l', 'mm', 'a4');
