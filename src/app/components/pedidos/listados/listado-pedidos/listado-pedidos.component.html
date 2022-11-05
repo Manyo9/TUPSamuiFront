@@ -23,7 +23,7 @@
                 <td>{{p.empleado ? p.empleado : '-'}}</td>
                 <td>{{p.estado}}</td>
                 <td>{{p.observaciones ? p.observaciones : '-'}}</td>
-                <td>{{p.fechaPedido | date:'mediumDate'}}</td>
+                <td>{{p.fechaPedido | date:'mediumDate':'UTC'}}</td>
                 <td>
                     <app-detalles-pedido [pedido]="p"></app-detalles-pedido>
                     <app-actualizar-estado (onActualizado)="cargarPedidos()" [pedido]="p"></app-actualizar-estado>

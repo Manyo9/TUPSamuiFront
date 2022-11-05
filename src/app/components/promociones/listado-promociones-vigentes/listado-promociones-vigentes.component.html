@@ -18,7 +18,7 @@
       <td>{{ p.nombre }}</td>
       <td>{{ p.descripcion }}</td>
       <td>{{ p.precioPuntos }}</td>
-      <td>{{ p.fechaHasta | date:'mediumDate'}}</td>
+      <td>{{ p.fechaHasta | date:'mediumDate':'UTC'}}</td>
       <td><app-boton-canjear (onCanjear)="cargarDatos()" [promocion]="p" [disabled]="misPuntos < p.precioPuntos" ></app-boton-canjear></td>
     </tr>
   </tbody>
