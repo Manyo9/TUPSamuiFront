@@ -5,6 +5,7 @@
     height: 600px;
     background-position: center;
     background-color: rgb(0, 4, 111);
+    min-height: 80vh;
 }
 
 a{
