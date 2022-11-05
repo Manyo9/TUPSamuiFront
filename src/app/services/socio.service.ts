@@ -136,4 +136,7 @@ export class SocioService {
     const requestOptions = { headers: headers };
       return this.http.get<ResultadoGenerico>(this.API_URL+'misPuntos',requestOptions);
    }
+   existeSocioConDNI(dni:number): Observable<boolean> {
+    return this.http.get<boolean>(this.API_URL+'exists?dni='+dni);
+   }
 }
