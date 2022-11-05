@@ -29,7 +29,6 @@ export class ActualizarEstadoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("ESTOY ACA");
     this.subscription = new Subscription();
     this.formulario = this.formBuilder.group({
       estadoPedido: [,Validators.required]
