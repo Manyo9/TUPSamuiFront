@@ -28,7 +28,7 @@ export class AltaUsuarioExternoComponent implements OnInit {
       {
         usuario: [, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
         contrasenia: [, [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
-        dni: [null,[Validators.required],[SocioValidator.dniValidator(this.servicioSocio)]]
+        dni: [null,[Validators.required, Validators.minLength(6), Validators.maxLength(8)],[SocioValidator.dniValidator(this.servicioSocio)]]
       }
     );
   }
@@ -42,10 +42,9 @@ export class AltaUsuarioExternoComponent implements OnInit {
 
   registrar(): void {
     if (this.formulario.valid) {
-      let usuLogin = new UsuarioLogin();
-      usuLogin = this.formulario.value as UsuarioLogin;
+      let body = this.formulario.value;
       this.subscription.add(
-        this.usuService.registrarExterno(usuLogin).subscribe({
+        this.usuService.registrarExterno(body).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok) {
               alert(`Usuario registrado exitosamente. Proceda a iniciar sesión con las mismas credenciales.`);
@@ -54,7 +53,10 @@ export class AltaUsuarioExternoComponent implements OnInit {
               alert(`Error: ${res.mensaje}`)
             }
           },
-          error: (err) => { alert("Error al registrarse") }
+          error: (err) => { 
+            alert("Error al registrarse: " + err.error.mensaje);
+            console.error(err);
+        }
         })
       );
     }

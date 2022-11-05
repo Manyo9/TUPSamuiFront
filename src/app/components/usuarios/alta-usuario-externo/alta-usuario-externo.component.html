@@ -5,24 +5,37 @@
             <div class="mb-3">
                 <label for="inputUsuario" class="form-label">Nombre de usuario</label>
                 <input type="text" class="form-control" id="inputUsuario" formControlName="usuario"
-                    [class.is-invalid]="formulario.controls['usuario'].hasError('required') && formulario.controls['usuario'].touched" />
-                <p *ngIf="formulario.controls['usuario'].hasError('required')" class="invalid-feedback">Debe ingresar un
-                    nombre de usuario.</p>
-                <p *ngIf="formulario.controls['usuario'].hasError('minLength')" class="invalid-feedback">El usuario debe
-                    tener más de 3 caracteres.</p>
-                <p *ngIf="formulario.controls['usuario'].hasError('maxLength')" class="invalid-feedback">El usuario no
-                    puede tener más de 30 caracteres.</p>
+                [class.is-invalid]="
+                (formulario.controls['usuario'].hasError('required') 
+                || formulario.controls['usuario'].hasError('minlength') 
+                || formulario.controls['usuario'].hasError('maxlength')  )
+                && formulario.controls['usuario'].touched" />
+                <span class="invalid-feedback">
+                    <div *ngIf="formulario.controls['usuario'].hasError('required')">Debe
+                        ingresar un usuario.</div>
+                    <div *ngIf="formulario.controls['usuario'].hasError('minlength')" >El
+                        usuario debe tener más de 3 caracteres.</div>
+                    <div *ngIf="formulario.controls['usuario'].hasError('maxlength')">El usuario
+                        debe tener más de 32 caracteres.</div>
+                </span>
             </div>
             <div class="mb-3">
                 <label for="inputContrasenia" class="form-label">Contraseña</label>
                 <input type="password" class="form-control" id="inputContrasenia" formControlName="contrasenia"
-                    [class.is-invalid]="formulario.controls['contrasenia'].hasError('required') && formulario.controls['contrasenia'].touched" />
-                <p *ngIf="formulario.controls['contrasenia'].hasError('required')" class="invalid-feedback">Debe
-                    ingresar una contraseña.</p>
-                <p *ngIf="formulario.controls['contrasenia'].hasError('minLength')" class="invalid-feedback">La
-                    contraseña debe tener más de 8 caracteres.</p>
-                <p *ngIf="formulario.controls['contrasenia'].hasError('max')" class="invalid-feedback">La contraseña
-                    debe tener más de 32 caracteres.</p>
+                    [class.is-invalid]="
+                    (formulario.controls['contrasenia'].hasError('required') 
+                    || formulario.controls['contrasenia'].hasError('minlength') 
+                    || formulario.controls['contrasenia'].hasError('maxlength')  )
+                    && formulario.controls['contrasenia'].touched" />
+                <span class="invalid-feedback">
+                    <div *ngIf="formulario.controls['contrasenia'].hasError('required')">Debe
+                        ingresar una contraseña.</div>
+                    <div *ngIf="formulario.controls['contrasenia'].hasError('minlength')" >La
+                        contraseña debe tener más de 8 caracteres.</div>
+                    <div *ngIf="formulario.controls['contrasenia'].hasError('maxlength')">La contraseña
+                        debe tener más de 32 caracteres.</div>
+                </span>
+                
             </div>
             <div class="form-group">
                 <div class="row align-items-end">
@@ -30,12 +43,16 @@
                         <label for="inputDni" class="form-label">DNI</label>
                         <input type="text" class="form-control" id="inputDni" formControlName="dni" [class.is-invalid]="(
                                     formulario.controls['dni'].hasError('required') ||
+                                    formulario.controls['dni'].hasError('minlength') ||
+                                    formulario.controls['dni'].hasError('maxlength') ||
                                     formulario.controls['dni'].hasError('socioNoExiste')
                                     )
                                 && formulario.controls['dni'].touched && formulario.controls['dni'] " />
                         <span class="invalid-feedback">
                             <div *ngIf="formulario.controls['dni'].hasError('required')">Debe
                                 ingresar un DNI.</div>
+                            <div *ngIf="formulario.controls['dni'].hasError('minlength')">El DNI ingresado debe contener al menos 6 digitos.</div>
+                            <div *ngIf="formulario.controls['dni'].hasError('maxlength')">El DNI ingresado puede contener como máximo 8 digitos.</div>
                             <div *ngIf="formulario.controls['dni'].hasError('socioNoExiste')">No
                                 existe un socio registrado con el DNI ingresado.</div>
                         </span>
