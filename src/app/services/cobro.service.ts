@@ -33,6 +33,6 @@ export class CobroService {
       });
     const requestOptions = { headers: headers };
 
-    return this.http.post<ResultadoGenerico>(this.API_URL + 'cobro' ,body,requestOptions);
+    return this.http.post<ResultadoGenerico>(this.API_URL + 'reporte' ,body,requestOptions);
   }
 }
