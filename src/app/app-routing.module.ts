@@ -19,6 +19,7 @@ import { ReporteSociosComponent } from './components/reportes/reporte-socios/rep
 import { ReporteProductosComponent } from './components/reportes/reporte-productos/reporte-productos.component';
 import { ListadoPedidosPendientesComponent } from './components/pedidos/listados/listado-pedidos-pendientes/listado-pedidos-pendientes.component';
 import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
+import { ReporteCobrosComponent } from './components/reportes/reporte-cobros/reporte-cobros.component';
 const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path : 'pedidos/nuevo', component: AltaPedidoComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path : 'productos/nuevo/:id', component: AltaProductoComponent},
   { path : 'reporte/productos', component: ReporteProductosComponent},
   {path : 'reporte/socios', component : ReporteSociosComponent},
+  {path : 'reporte/cobros', component : ReporteCobrosComponent},
   {path : 'registro',component : AltaUsuarioExternoComponent},
   {path : 'login', component: LoginComponent},
   { path : 'socios/nuevo', component : AltaSocioComponent},
