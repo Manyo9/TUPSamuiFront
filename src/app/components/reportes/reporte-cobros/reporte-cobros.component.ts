@@ -13,6 +13,7 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./reporte-cobros.component.css']
 })
 export class ReporteCobrosComponent implements OnInit, OnDestroy {
+  mostrarReporte: boolean = false;
   formulario : FormGroup;
   reqbody : any;
   datos: ChartData<'bar'>;
@@ -96,6 +97,7 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy {
   }
 
   generar(){
+    this.mostrarReporte = true;
     this.obtenerReporteCobros();
   }
   openPDF(): void {
