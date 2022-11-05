@@ -111,7 +111,7 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
         {
           label : 'Socios bajas',
           data: [
-            this.cantSociosBaja
+          this.cantSociosBaja 
           ]
         },
       ],
