@@ -52,9 +52,20 @@ export class PromocionService {
 
     return this.http.delete(this.API_URL+promocion.id,requestOptions)
   }
-
-
   obtenerVigentes(): Observable<ResultadoGenerico>{
     return this.http.get<ResultadoGenerico>(this.API_URL + 'vigentes');
+  }
+  canjear(promocion : Promocion) : Observable<ResultadoGenerico>{
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+
+    return this.http.post<ResultadoGenerico>(this.API_URL+'canjearPuntos',promocion,requestOptions);
   }
 }

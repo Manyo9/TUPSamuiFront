@@ -1,5 +1,6 @@
 <div class="container">
     <h1 class="display-4">Listado Promociones Vigentes</h1>
+    <h3>Mis Puntos: {{this.misPuntos}}</h3>
 <table class="table">
   <thead>
     <tr>
@@ -7,8 +8,8 @@
       <th scope="col">Nombre</th>
       <th scope="col">Descripción</th>
       <th scope="col">Precio puntos</th>
-      <th scope="col">Fecha desde</th>
-      <th scope="col">Fecha hasta</th>
+      <th scope="col">Valido hasta</th>
+      <th scope="col">Accion</th>
     </tr>
   </thead>
   <tbody>
@@ -17,8 +18,8 @@
       <td>{{ p.nombre }}</td>
       <td>{{ p.descripcion }}</td>
       <td>{{ p.precioPuntos }}</td>
-      <td>{{ p.fechaDesde | date:'mediumDate'}}</td>
       <td>{{ p.fechaHasta | date:'mediumDate'}}</td>
+      <td><app-boton-canjear (onCanjear)="cargarDatos()" [promocion]="p" [disabled]="misPuntos < p.precioPuntos" ></app-boton-canjear></td>
     </tr>
   </tbody>
 </table>

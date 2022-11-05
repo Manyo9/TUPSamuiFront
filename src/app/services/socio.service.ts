@@ -124,4 +124,16 @@ export class SocioService {
     const requestOptions = { headers: headers };
       return this.http.get<ResultadoGenerico>(this.API_URL +id,requestOptions);
    }
+   obtenerPuntosDeSocio() : Observable<ResultadoGenerico> {
+    let auth_token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+
+        'Content-Type': 'application/json',
+
+        'Authorization': `Bearer ${auth_token}`
+
+      });
+    const requestOptions = { headers: headers };
+      return this.http.get<ResultadoGenerico>(this.API_URL+'misPuntos',requestOptions);
+   }
 }

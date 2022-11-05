@@ -47,6 +47,7 @@ import { CobroService } from './services/cobro.service';
 import { ListadoPedidosPropiosComponent } from './components/pedidos/listados/listado-pedidos-propios/listado-pedidos-propios.component';
 import { EstadoPedidoService } from './services/estado-pedido.service';
 import { ActualizarEstadoComponent } from './components/pedidos/actualizar-estado/actualizar-estado.component';
+import { BotonCanjearComponent } from './components/promociones/boton-canjear/boton-canjear.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ActualizarEstadoComponent } from './components/pedidos/actualizar-estad
     CobroComponent,
     ListadoPedidosPendientesComponent,
     ListadoPedidosPropiosComponent,
-    ActualizarEstadoComponent
+    ActualizarEstadoComponent,
+    BotonCanjearComponent
   ],
   imports: [
     BrowserModule,
