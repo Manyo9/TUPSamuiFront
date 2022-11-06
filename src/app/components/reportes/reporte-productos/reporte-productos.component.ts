@@ -29,8 +29,13 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-  ordenarPor(array: any[], columna: string): any[] {
-    return array.sort((a,b) => (a[columna] > b[columna]) ? 1 : ((b[columna] > a[columna]) ? -1 : 0));
+  ordenarPor(array: any[], columna: string, menorMayor: boolean): any[] {
+    if (menorMayor) {
+      return array.sort((a,b) => (a[columna] > b[columna]) ? 1 : ((b[columna] > a[columna]) ? -1 : 0));
+    } else 
+    {
+      return array.sort((a,b) => (a[columna] < b[columna]) ? 1 : ((b[columna] < a[columna]) ? -1 : 0));
+    }
   }
   ngOnInit(): void {
     this.subscription = new Subscription();
@@ -40,7 +45,12 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
     })
     this.filtro.valueChanges.subscribe( x => {
       if(x){
-        this.filasReporte = this.ordenarPor(this.filasReporte,x);
+        if(x == 'nombre') {
+
+          this.filasReporte = this.ordenarPor(this.filasReporte,x,true);
+        } else {
+          this.filasReporte = this.ordenarPor(this.filasReporte,x,false);
+        }
       }
     })
   }
