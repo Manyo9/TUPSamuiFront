@@ -41,7 +41,7 @@
           <button class="btn btn-primary my-2" (click)="generar()">
             Generar reporte
           </button>
-          <button class="btn btn-danger ms-2" (click)="openPDF()"><i class="bi bi-file-earmark-pdf-fill"></i></button>
+          <button class="btn btn-danger ms-2" [disabled]="!mostrarReporte" (click)="openPDF()"><i class="bi bi-file-earmark-pdf-fill"></i></button>
         </div>
       </div>
     </div>
