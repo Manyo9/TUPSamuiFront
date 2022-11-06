@@ -4,7 +4,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">ID</th>
       <th scope="col">Nombre</th>
       <th scope="col">Descripción</th>
       <th scope="col">Precio puntos</th>
@@ -14,7 +13,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of listado">
-      <th scope="row">{{ p.id }}</th>
       <td>{{ p.nombre }}</td>
       <td>{{ p.descripcion }}</td>
       <td>{{ p.precioPuntos }}</td>

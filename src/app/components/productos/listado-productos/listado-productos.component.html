@@ -3,7 +3,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">ID</th>
       <th scope="col">Nombre</th>
       <th scope="col">Precio</th>
       <th scope="col">Descripción</th>
@@ -17,11 +16,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of listado">
-      <th scope="row">{{ p.id }}</th>
       <td>{{ p.nombre }}</td>
       <td>{{ p.precio }}</td>
       <td>{{ p.descripcion }}</td>
-      <td>{{ p.observaciones }}</td>
+      <td>{{ p.observaciones? p.observaciones : '-' }}</td>
       <td>{{ !p.activo ? 'NO' : 'SI'}}</td>
       <td>{{ !p.disponible ? 'NO' : 'SI'}}</td>
       <td>{{ p.puntosGanados }}</td>

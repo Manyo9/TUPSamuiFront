@@ -58,7 +58,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Tipo de cobro</th>
                 <th scope="col">Cantidad de cobros</th>
                 <th scope="col">Monto total cobrado</th>
@@ -66,7 +65,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let f of filasReporte">
-                <th scope="row">{{ f.idTipoPago }}</th>
                 <td>{{ f.nombre }}</td>
                 <td>{{ f.cantCobros }}</td>
                 <td>${{ f.total }}</td>

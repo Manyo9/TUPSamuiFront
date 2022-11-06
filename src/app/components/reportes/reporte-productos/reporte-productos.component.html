@@ -40,7 +40,6 @@
       <div class="col-md-6 col-sm-12">
         <label for="selectTipoPago" class="form-label">Filtrar por:</label>
         <select id="selectTipoPago" class="form-select" [formControl]="filtro">
-          <option value="id">Id</option>
           <option value="nombre">Producto</option>
           <option value="cantidadVendida">Unidades Vendidas</option>
           <option value="promedioCantidad">Promedio por pedido</option>
@@ -49,7 +48,6 @@
       <table class="table ">
         <thead>
           <tr>
-            <th scope="col">ID</th>
             <th scope="col">Producto</th>
             <th scope="col">Unidades Vendidas</th>
             <th scope="col">Promedio por pedido</th>
@@ -57,7 +55,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let f of filasReporte">
-            <th scope="row">{{ f.id }}</th>
             <td>{{ f.nombre }}</td>
             <td>{{ f.cantidadVendida }}</td>
             <td>{{ f.promedioCantidad }}</td>
