@@ -140,8 +140,12 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
     
   }
   generar(){
-    this.mostrarReporte = true;
-    this.obtenerCantSociosNuevos();
+    if (this.formulario.valid) {
+      this.mostrarReporte = true;
+      this.obtenerCantSociosNuevos();
+    } else  {
+      alert("¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!");
+    }
   }
   openPDF(): void {
     let DATA: any = document.getElementById('htmlData');

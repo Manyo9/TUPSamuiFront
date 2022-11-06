@@ -55,6 +55,10 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
     })
   }
   obtenerReporte(): void {
+    if (!this.formulario.valid) {
+      alert("¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!");
+      return
+    }
     this.mostrarReporte = true;
     if(this.formulario.valid){
       const {fechaDesde, fechaHasta} = this.formulario.value;

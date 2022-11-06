@@ -97,6 +97,10 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy {
   }
 
   generar(){
+    if (!this.formulario.valid) {
+      alert("¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!");
+      return
+    }
     this.mostrarReporte = true;
     this.obtenerReporteCobros();
   }
