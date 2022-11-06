@@ -11,7 +11,6 @@
       <th scope="col">Activo</th>
       <th scope="col">Disponible</th>
       <th scope="col">Puntos Ganados</th>
-      <th scope="col">Url Imagen</th>
       <th scope="col">Eliminar</th>
       <th scope="col">Editar</th>
     </tr>
@@ -26,7 +25,6 @@
       <td>{{ !p.activo ? 'NO' : 'SI'}}</td>
       <td>{{ !p.disponible ? 'NO' : 'SI'}}</td>
       <td>{{ p.puntosGanados }}</td>
-      <td>{{ p.urlImagen }}</td>
       <td><app-baja-producto [producto]="p" (onEliminado)="actualizarListado()"></app-baja-producto></td>
       <td><button class="btn btn-success bi bi-pencil" [routerLink]="['/productos/nuevo',p.id]"></button></td>
     </tr>
