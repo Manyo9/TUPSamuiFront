@@ -80,17 +80,18 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy {
 
   cargarDatos(): void {
     this.datos = {
-      labels: [],
+      labels: ['Monto total en $ cobrado por cada tipo de pago'],
       datasets: [
-        {
-          data: [],
-        },
       ],
     };
     this.filasReporte.forEach(f => {
-      this.datos.labels?.push(f.nombre);
-      this.datos.datasets[0].data.push(
-        f.total
+      this.datos.datasets.push(
+        {
+          label : f.nombre,
+          data: [
+            f.total
+          ],
+        }
       );
 
     });

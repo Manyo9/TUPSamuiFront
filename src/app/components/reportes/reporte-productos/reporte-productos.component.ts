@@ -16,7 +16,7 @@ import html2canvas from 'html2canvas';
 export class ReporteProductosComponent implements OnInit, OnDestroy {
   mostrarReporte: boolean = false;
   filasReporte: any[] = [];
-  datosPie: ChartData<'pie'>;
+  datosBarCant: ChartData<'bar'>;
   datosBar: ChartData<'bar'>;
   reqbody: any;
   filtro = new FormControl('');
@@ -89,18 +89,19 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
     }
   }
   cargarDatos(): void {
-    this.datosPie = {
-      labels: [],
+    this.datosBarCant = {
+      labels: ['Cantidad vendida por producto'],
       datasets: [
-        {
-          data: [],
-        },
       ],
     };
     this.filasReporte.forEach(f => {
-      this.datosPie.labels?.push(f.nombre);
-      this.datosPie.datasets[0].data.push(
-        f.cantidadVendida
+      this.datosBarCant.datasets.push(
+        {
+          label : f.nombre,
+          data: [
+            f.cantidadVendida
+          ],
+        }
       );
 
     });
