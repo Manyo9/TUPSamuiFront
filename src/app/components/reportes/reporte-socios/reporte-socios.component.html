@@ -56,12 +56,14 @@
             <thead>
               <tr>
                 <th scope="col">Nombre del socio</th>
+                <th scope="col">DNI</th>
                 <th scope="col">Cantidad de pedidos</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let f of filasPedidosSocios">
                 <td>{{ f.NombreSocio }}</td>
+                <td>{{ f.DNI }}</td>
                 <td>{{ f.cantPedidos }}</td>
               </tr>
             </tbody>
