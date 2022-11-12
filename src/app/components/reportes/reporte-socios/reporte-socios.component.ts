@@ -6,6 +6,8 @@ import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { SocioService } from 'src/app/services/socio.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-reporte-socios',
@@ -64,12 +66,13 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
             this.obtenerCantSociosBaja();
           }
         },
-        error :() =>{
-          alert('Error al generar reporte socios')
+        error :(e) =>{
+          swal({title:'Error!', text:`Error al generar reporte socios: ${e}`, icon: 'error'});
         }
       })
     )
   }
+
   obtenerSociosConMasPedidos() {
     this.subscription.add(
       this.servicioSocio.obtenerSociosConMasPedidos(this.reqbody).subscribe({
@@ -80,12 +83,13 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
           }
           this.obtenerSociosConMasPuntos();
         },
-        error :() =>{
-          alert('Error al generar reporte socios')
+        error :(e) =>{
+          swal({title:'Error!', text:`Error al generar reporte socios: ${e}`, icon: 'error'});
         }
       })
     )
   }
+
   obtenerCantSociosBaja() {
     this.subscription.add(
       this.servicioSocio.obtenerSociosBaja(this.reqbody).subscribe({
@@ -96,12 +100,13 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
           }
           this.obtenerSociosConMasPedidos();
         },
-        error :() =>{
-          alert('Error al generar reporte socios')
+        error :(e) =>{
+          swal({title:'Error!', text:`Error al generar reporte socios: ${e}`, icon: 'error'});
         }
       })
     )
   }
+
   obtenerSociosConMasPuntos(): void {
     this.subscription.add(
       this.servicioSocio.getSociosConMasPuntos(10).subscribe({
@@ -114,11 +119,13 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
           }
         },
         error: (e) => {
+          swal({title:'Error!', text:`Error al generar reporte socios: ${e}`, icon: 'error'});
           console.error(e);
         }
       })
     )
   }
+
   cargarDatos(): void {
     this.datos = {
       labels: this.leyenda,
@@ -137,16 +144,17 @@ export class ReporteSociosComponent implements OnInit, OnDestroy {
         },
       ],
     };
-    
   }
+
   generar(){
     if (this.formulario.valid) {
       this.mostrarReporte = true;
       this.obtenerCantSociosNuevos();
-    } else  {
-      alert("¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!");
+    } else { 
+      swal({title:'Atención!', text:`¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!`, icon: 'warning'});
     }
   }
+
   openPDF(): void {
     let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA).then((canvas) => {

@@ -6,6 +6,8 @@ import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { CobroService } from 'src/app/services/cobro.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-reporte-cobros',
@@ -74,7 +76,7 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy {
           }
         }))
     }else{
-      alert ('Debe especificar los filtros de fechas')
+      swal({title:'Atención!', text:`Debe especificar los filtros de fechas`, icon: 'warning'});
     }
   }
 
@@ -99,8 +101,8 @@ export class ReporteCobrosComponent implements OnInit, OnDestroy {
 
   generar(){
     if (!this.formulario.valid) {
-      alert("¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!");
-      return
+      swal({title:'Atención!', text:'¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!', icon: 'warning'});
+      return;
     }
     this.mostrarReporte = true;
     this.obtenerReporteCobros();

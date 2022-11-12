@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Promocion } from 'src/app/models/promocion';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PromocionService } from 'src/app/services/promocion.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-listado-promociones',
@@ -34,8 +36,8 @@ export class ListadoPromocionesComponent implements OnInit,OnDestroy {
             console.error(r.mensaje)
           }
         },
-        error :()=>{
-          alert('Error al actualizar listado de promociones');
+        error :(e)=>{
+          swal({title:'Error!', text:`Error al actualizar listado de promociones: ${e}`, icon: 'error'});
         }
       })
     )

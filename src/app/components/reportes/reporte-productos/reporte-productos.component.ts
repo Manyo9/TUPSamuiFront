@@ -6,6 +6,8 @@ import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { ProductoService } from 'src/app/services/producto.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-reporte-productos',
@@ -56,8 +58,8 @@ export class ReporteProductosComponent implements OnInit, OnDestroy {
   }
   obtenerReporte(): void {
     if (!this.formulario.valid) {
-      alert("¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!");
-      return
+      swal({title:'Atención!', text:`¡Debe ingresar una fecha desde y fecha hasta para generar el reporte!`, icon: 'warning'});
+      return;
     }
     this.mostrarReporte = true;
     if(this.formulario.valid){

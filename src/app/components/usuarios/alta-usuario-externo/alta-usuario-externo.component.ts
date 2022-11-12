@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
-import { UsuarioLogin } from 'src/app/models/usuario-login';
 import { SocioService } from 'src/app/services/socio.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { SocioValidator } from 'src/app/validators/socio-validator';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-alta-usuario-externo',
@@ -28,7 +29,7 @@ export class AltaUsuarioExternoComponent implements OnInit {
       {
         usuario: [, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
         contrasenia: [, [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
-        dni: [null,[Validators.required, Validators.minLength(6), Validators.maxLength(8)],[SocioValidator.dniValidator(this.servicioSocio)]]
+        dni: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(8)], [SocioValidator.dniValidator(this.servicioSocio)]]
       }
     );
   }
@@ -47,21 +48,20 @@ export class AltaUsuarioExternoComponent implements OnInit {
         this.usuService.registrarExterno(body).subscribe({
           next: (res: ResultadoGenerico) => {
             if (res.ok) {
-              alert(`Usuario registrado exitosamente. Proceda a iniciar sesión con las mismas credenciales.`);
+              swal({ title: 'Listo!', text: `Usuario registrado exitosamente. Proceda a iniciar sesión con las mismas credenciales.`, icon: 'success' });
               this.router.navigate(['login']);
             } else {
-              alert(`Error: ${res.mensaje}`)
+              swal({ title: 'Error!', text: `${res.mensaje}`, icon: 'error' });
             }
           },
-          error: (err) => { 
-            alert("Error al registrarse: " + err.error.mensaje);
-            console.error(err);
-        }
+          error: (err) => {
+            swal({ title: 'Error!', text: `Error al registrarse: ${err.error.mensaje}`, icon: 'error' });
+          }
         })
       );
     }
     else {
-      alert("Revise los campos.");
+      swal({ title: 'Atención!', text: `Revise y complete todos los campos!`, icon: 'warning' });
     }
   }
 

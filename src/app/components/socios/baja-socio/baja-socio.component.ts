@@ -2,6 +2,8 @@ import { Component, OnInit,Output,Input,EventEmitter, OnDestroy } from '@angular
 import { Subscription } from 'rxjs';
 import { Socio } from 'src/app/models/socio';
 import { SocioService } from 'src/app/services/socio.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-baja-socio',
@@ -23,11 +25,11 @@ export class BajaSocioComponent implements OnDestroy {
     this.subscription.add(
       this.socioService.eliminar(this.socio).subscribe({
         next : () =>{
-          alert('Elimino el socio con id'+' '+ this.socio.id+' ' +'correctamente');
+          swal({title:'Error!', text:`Elimino el socio con id ${this.socio.id} correctamente`, icon: 'error'});
           this.onEliminado.emit();
         },
-        error : () =>{
-          alert('Error al eleiminar');
+        error : (e) =>{
+          swal({title:'Error!', text:`Error al eliminar: ${e}`, icon: 'error'});
         }
       })
     )

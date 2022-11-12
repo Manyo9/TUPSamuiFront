@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { Socio } from 'src/app/models/socio';
 import { SocioService } from 'src/app/services/socio.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-listado-socios',
@@ -26,12 +28,12 @@ export class ListadoSociosComponent implements OnInit,OnDestroy {
             this.listado = r.resultado as Socio[];
           }else {
             console.error(r.mensaje);
-            alert('Error al actualizar listado socios');
+            swal({title:'Error!', text:`Error al actualizar listado socios: ${r.mensaje}`, icon: 'error'});
           } 
           
         },
-        error :() =>{
-          alert('Error al actualizar listado socios');
+        error :(e) =>{
+          swal({title:'Error!', text:`Error al actualizar listado socios: ${e}`, icon: 'error'});
        }
       })
     )

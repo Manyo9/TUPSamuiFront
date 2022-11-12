@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Promocion } from 'src/app/models/promocion';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PromocionService } from 'src/app/services/promocion.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-boton-canjear',
@@ -26,23 +28,20 @@ export class BotonCanjearComponent implements OnInit, OnDestroy {
   }
   canjear(): void {
     if(this.disabled) {
-      alert("No tienes suficientes puntos para canjear esta promocion!");
-      return;
+      swal({title:'Atención!', text:`No tienes suficientes puntos para canjear esta promocion!`, icon: 'warning'});
     }
     this.subscription.add(
       this.promocionService.canjear(this.promocion).subscribe({
         next: (r: ResultadoGenerico) => {
           if(r.ok){
-            alert("Se canjeó la promoción con éxito");
+            swal({title:'Listo!', text:`Se canjeó la promoción con éxito`, icon: 'success'});
             this.onCanjear.emit();
           } else {
-            console.error(r.mensaje);
-            alert("Error al canjear promoción");
+            swal({title:'Error!', text:`Error al canjear promoción: ${r.mensaje}`, icon: 'error'});
           }
         },
         error: (e) => {
-          console.error(e);
-          alert("Error al canjear promoción");
+          swal({title:'Error!', text:`Error al canjear promoción: ${e}`, icon: 'error'});
         }
       })
     )

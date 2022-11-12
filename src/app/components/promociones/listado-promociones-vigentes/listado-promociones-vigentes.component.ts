@@ -5,6 +5,9 @@ import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { SocioService } from 'src/app/services/socio.service';
 import { Router } from '@angular/router';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
+
 @Component({
   selector: 'app-listado-promociones-vigentes',
   templateUrl: './listado-promociones-vigentes.component.html',
@@ -41,8 +44,7 @@ export class ListadoPromocionesVigentesComponent implements OnInit {
           }
         },
         error: (e) => {
-          console.error(e);
-          alert("Error al obtener puntos");
+          swal({title:'Error!', text:`Error al obtener puntos: ${e}`, icon: 'error'})
           this.router.navigate(['home']);
 
         }
@@ -61,7 +63,7 @@ export class ListadoPromocionesVigentesComponent implements OnInit {
           }
         },
         error :()=>{
-          alert('Error al actualizar listado de promociones');
+          swal({title:'Error!', text:`Error al actualizar listado de promociones`, icon: 'error'});
         }
       })
     )

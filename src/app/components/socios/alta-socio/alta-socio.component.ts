@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { Socio } from 'src/app/models/socio';
 import { SocioService } from 'src/app/services/socio.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-alta-socio',
@@ -23,9 +25,11 @@ export class AltaSocioComponent implements OnInit,OnDestroy {
               private activatedRoute : ActivatedRoute) {
     this.socio=new Socio();
    }
+
    ngOnDestroy(): void {
      this.subscription.unsubscribe();
    }
+
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       nombre : [,Validators.required],
@@ -57,26 +61,24 @@ export class AltaSocioComponent implements OnInit,OnDestroy {
     return this.formulario.controls['email'] as FormControl;
   }
 
-
   guardar(){
     if(this.formulario.valid){
       this.socio=this.formulario.value as Socio;
       this.subscription.add(
         this.servicioSocio.agregar(this.socio).subscribe({
           next: () =>{
-            alert('Registro socio correctamente');
+            swal({title:'Listo!', text:`Se registro el socio correctamente`, icon: 'success'});
             this.router.navigate(['/home'])
           },
-          error : () =>{
-            alert('Error al registrar socio')
+          error : (e) =>{
+            swal({title:'Error!', text:`Error al registrar socio: ${e}`, icon: 'error'});
           }
         })
       )
     }else {
-      alert('Formulario invalido,revise y complete todos los campos!')
+      swal({title:'Atención!', text:`Revise y complete todos los campos!`, icon: 'warning'});
     }
   }
-
 
   editar(){
     console.log(this.formulario.value);
@@ -87,21 +89,19 @@ export class AltaSocioComponent implements OnInit,OnDestroy {
       this.servicioSocio.modificar(body).subscribe({
         next : (res : ResultadoGenerico) =>{
           if(res.ok){
-            alert('Edito el socio correctamente');
+            swal({title:'Listo!', text:`Se editó el socio correctamente`, icon: 'success'});
             this.router.navigate(['/socios/listado']);
           }else{
             console.log(res.mensaje);
           }
         },
-        error: (e) => { 
-          console.error(e);
-          alert('Error al editar socio')
+        error: (e) => {
+          swal({title:'Error!', text:`Error al editar socio: ${e}`, icon: 'error'});
         }
       })
     )
   }
 
-  
   cargar () : void{
     this.subscription.add(
       this.activatedRoute.params.subscribe(
@@ -121,7 +121,7 @@ export class AltaSocioComponent implements OnInit,OnDestroy {
                 },
                 error : (err) =>{
                   console.log(err);
-                  alert('No esta autorizado para editar un socio');
+                  swal({title:'Atención!', text:`No esta autorizado para editar un socio`, icon: 'warning'});
                 }
               }
             )
