@@ -7,6 +7,8 @@ import { TipoPago } from 'src/app/models/tipo-pago';
 import { CobroService } from 'src/app/services/cobro.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { TipoPagoService } from 'src/app/services/tipo-pago.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-cobro',
@@ -128,19 +130,21 @@ export class CobroComponent implements OnInit, OnDestroy {
             if(r.ok){
               this.onCobrado.emit();
               const verbo = this.pagaCliente ? 'Pago' : 'Cobro';
-              alert(verbo + " realizado con éxito");
+              swal({title:'Listo!', text:`${verbo} + " realizado con éxito`, icon: 'success'});
             } else {
+              swal({title:'Oops!', text:`Ocurrió un error`, icon: 'error'});
               console.error(r.mensaje);
             }
 
           },
           error: (e) => {
+            swal({title:'Oops!', text:`Ocurrió un error`, icon: 'error'});
             console.error(e);
           }
         })
       )
     } else {
-      alert("Error al registrar cobro: Revise los campos!");
+      swal({title:'Atención!', text:`Revise los campos!`, icon: 'warning'});
     }
   }
   get controlTipoPago(): FormControl {

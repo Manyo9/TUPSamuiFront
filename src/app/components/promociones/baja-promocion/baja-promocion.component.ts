@@ -1,7 +1,9 @@
-import { Component, OnInit,Input, Output,EventEmitter, OnDestroy} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Promocion } from 'src/app/models/promocion';
 import { PromocionService } from 'src/app/services/promocion.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-baja-promocion',
@@ -23,11 +25,11 @@ export class BajaPromocionComponent implements OnDestroy {
     this.subscription.add(
       this.servicioPromocion.eliminar(this.promocion).subscribe({
         next : () =>{
-          alert('Elimino la promoción con id'+' '+ this.promocion.id+' ' +'correctamente');
+          swal({title:'Listo!', text:`Se elimino la promoción con id ${this.promocion.id} correctamente`, icon: 'success'});
           this.onEliminado.emit();
         },
-        error : () =>{
-          alert('Error al eleiminar');
+        error : (e) =>{
+          swal({title:'Error!', text:`Error al eliminar: ${e}`, icon: 'error'});
         }
       })
     )

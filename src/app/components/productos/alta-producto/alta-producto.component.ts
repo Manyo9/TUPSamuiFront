@@ -1,10 +1,13 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
+
 @Component({
   selector: 'app-alta-producto',
   templateUrl: './alta-producto.component.html',
@@ -51,19 +54,21 @@ constructor(private formBuilder : FormBuilder,
         this.servicioProducto.agregar(this.producto).subscribe({
           next : (resultado : ResultadoGenerico)=>{
             if(resultado.ok){
-              alert('Registro el producto con éxito'); 
+              swal({title:'Listo!', text:`Se registró el producto con éxito`, icon: 'success'});
               this.router.navigate(['/productos/listado']);
             }else{
+              swal({title:'Error!', text:`${resultado.mensaje}`, icon: 'error'});
               console.log(resultado.mensaje);
             }
           },
-          error : () =>{
-            alert('Error al registrar producto');
+          error : (e) =>{
+            swal({title:'Error!', text:`Error al registrar producto`, icon: 'error'});
+            console.error(e);
           }
         })
       )
     }else{
-      alert('Formulario invalido,revise y complete todos los campos!')
+      swal({title:'Atención!', text:`Revise y complete todos los campos!`, icon: 'warning'});
     }
   }
 
@@ -88,15 +93,15 @@ constructor(private formBuilder : FormBuilder,
       this.servicioProducto.modificar(body).subscribe({
         next : (res : ResultadoGenerico) =>{
           if(res.ok){
-            alert('Edito el producto correctamente');
+            swal({title:'Listo!', text:`Se editó el producto correctamente`, icon: 'success'});
             this.router.navigate(['/productos/listado']);
           }else{
-            console.log(res.mensaje);
+            swal({title:'Error!', text:`${res.mensaje}`, icon: 'error'});
           }
         },
         error: (e) => { 
+          swal({title:'Error!', text:`Error al editar producto`, icon: 'error'});
           console.error(e);
-          alert('Error al editar producto')
         }
       })
     )
@@ -117,12 +122,12 @@ constructor(private formBuilder : FormBuilder,
                     this.producto=r.resultado[0];
                     this.formulario.patchValue(this.producto);
                   }else{
-                    console.log(r.mensaje);                   
+                    swal({title:'Error!', text:`${r.mensaje}`, icon: 'error'});               
                   }
                 },
                 error : (err) =>{
+                  swal({title:'Atención!', text:`No esta autorizado para editar un producto`, icon: 'warning'});
                   console.log(err);
-                  alert('No esta autorizado para editar un producto');
                 }
               }
             )

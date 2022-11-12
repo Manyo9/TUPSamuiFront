@@ -8,6 +8,8 @@ import { Promocion } from 'src/app/models/promocion';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { ProductoService } from 'src/app/services/producto.service';
 import { PromocionService } from 'src/app/services/promocion.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-alta-promocion',
@@ -88,16 +90,16 @@ export class AltaPromocionComponent implements OnInit {
       this.subscription.add(
         this.servicioPromocion.agregar(this.promocion).subscribe({
           next: () => {
-            alert('Registro la promoción con éxito');
+            swal({title:'Listo!', text:`Se registro la promoción con éxito`, icon: 'success'});
             this.router.navigate(['/home']);
           },
           error: () => {
-            alert('Error al registrar producto');
+            swal({title:'Error!', text:`Error al registrar promoción`, icon: 'error'});
           }
         })
       )
     } else {
-      alert('Formulario invalido,revise y complete todos los campos!')
+      swal({title:'Atención!', text:`Revise y complete todos los campos!`, icon: 'warning'});
     }
   }
 

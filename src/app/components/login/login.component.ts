@@ -2,11 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { UsuarioLogin } from '../../models/usuario-login';
-import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { ResultadoGenerico } from '../../models/resultado-generico';
 import { SesionIniciadaService } from '../../services/sesion-iniciada.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-login',
@@ -49,19 +50,19 @@ export class LoginComponent implements OnInit, OnDestroy {
           next: (res: ResultadoGenerico) => {
             if (res.ok && res.resultado != null) {
               localStorage.setItem('token',res.resultado[0]);
-              alert('Bienvenido/a!');
+              swal({title:'Bienvenido/a!', icon:'success'});
               this.sesionService.cambiarEstado(true);
               this.router.navigate(['home']);
             } else {
-              alert(`Error: ${res.mensaje}`)
+              swal({title:'Error', text:`${res.mensaje}`, icon: 'error'})
             }
           },
-          error: (err) => { alert("Error al iniciar sesión:") }
+          error: (err) => { swal({title:'Error al iniciar sesión', text: `${err.message}`, icon: 'error'}); }
         })
       );
     }
     else {
-      alert("Complete los campos");
+      swal({title:'Atención', text: 'Complete los campos', icon: 'warning'});
     }
   }
 

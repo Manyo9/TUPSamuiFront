@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core
 import { Subscription } from 'rxjs';
 import { Gusto } from 'src/app/models/gusto';
 import { GustoService } from 'src/app/services/gusto.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-baja-gustos',
@@ -22,11 +24,11 @@ export class BajaGustosComponent implements  OnDestroy {
     this.subscription.add(
       this.servicioGusto.eliminar(this.gusto).subscribe({
         next : () =>{
-          alert('Elimino el gusto con id'+' '+ this.gusto.id+' ' +'correctamente');
+          swal({title:'Listo!', text:`Se eliminó el gusto con id ${this.gusto.id} correctamente`, icon:'success'});
           this.onEliminado.emit();
         },
         error : () =>{
-          alert('Error al eleiminar');
+          swal({title:'Error', text:'Error al eliminar', icon: 'error'})
         }
       })
     )

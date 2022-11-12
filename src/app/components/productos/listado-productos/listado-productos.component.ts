@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { Producto } from 'src/app/models/producto';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { ProductoService } from 'src/app/services/producto.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-listado-productos',
@@ -29,8 +31,9 @@ export class ListadoProductosComponent implements OnDestroy,OnInit {
             this.listado=listado.resultado;
           }
         },
-        error :() =>{
-          alert('Error al actualizar listado productos')
+        error : (e) =>{
+          swal({title:'Error!', text:`Error al actualizar listado productos`, icon: 'error'});
+          console.error(e);
         }
       })
     )

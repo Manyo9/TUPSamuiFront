@@ -10,14 +10,17 @@ import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { GustoService } from 'src/app/services/gusto.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { ProductoService } from 'src/app/services/producto.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-alta-pedido',
   templateUrl: './alta-pedido.component.html',
   styleUrls: ['./alta-pedido.component.css']
 })
+
 export class AltaPedidoComponent implements OnInit, OnDestroy {
-  cantidadTotal: number =0;
+  cantidadTotal: number = 0;
   importeTotal: number = 0;
   controlObservaciones = new FormControl('');
   productos: Producto[];
@@ -39,17 +42,19 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     this.pedido = new Pedido();
     this.pedido.detalles = [];
   }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
   obtenerGustos(): void {
     this.subscription.add(
       this.gustoService.obtenerTodos().subscribe({
         next: (r: ResultadoGenerico) => {
-          if(r.ok){
-            this.gustos = r.resultado ? r.resultado.filter(x => x.activo==1) : [];
-          }else{
-            console.log(r.mensaje);            
+          if (r.ok) {
+            this.gustos = r.resultado ? r.resultado.filter(x => x.activo == 1) : [];
+          } else {
+            console.log(r.mensaje);
           }
         },
         error: (e) => {
@@ -58,6 +63,7 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
       })
     )
   }
+
   obtenerProductos(): void {
     this.subscription.add(
       this.productoService.obtenerActivos().subscribe({
@@ -73,6 +79,7 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
       })
     )
   }
+
   calcularTotal(): void {
     let total = 0;
     this.pedido.detalles.forEach(x => {
@@ -80,6 +87,7 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     });
     this.importeTotal = total;
   }
+
   calcularCantidadTotal(): void {
     let total = 0;
     this.pedido.detalles.forEach(x => {
@@ -87,11 +95,13 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     })
     this.cantidadTotal = total;
   }
+
   agregarDetalle(detalle: DetallePedido): void {
     this.pedido.detalles.push(detalle);
     this.calcularCantidadTotal();
     this.calcularTotal();
   }
+
   quitarDetalle(detalle: DetallePedido): void {
     let indice = this.pedido.detalles.indexOf(detalle);
 
@@ -99,21 +109,24 @@ export class AltaPedidoComponent implements OnInit, OnDestroy {
     this.calcularCantidadTotal();
     this.calcularTotal();
   }
+
   guardar() {
     this.pedido.observaciones = this.controlObservaciones.value ? this.controlObservaciones.value : "";
     this.subscription.add(
       this.pedidoService.agregar(this.pedido).subscribe({
         next: () => {
-          alert('Registro el pedido con éxito');
+          swal({ title: 'Listo!', text: 'Registraste tu pedido con éxito.', icon: 'success' });
           this.router.navigate(['/home']);
         },
-        error: (e) => { 
+        error: (e) => {
+          swal({ title: 'Error!', text: 'Ocurrió un error', icon: 'error' });
           console.error(e);
         }
       })
     )
   }
-  estaAgregado(p: Producto): boolean{
+
+  estaAgregado(p: Producto): boolean {
     let cond = this.pedido.detalles.find(x => x.producto === p);
     if (cond) {
       return true;

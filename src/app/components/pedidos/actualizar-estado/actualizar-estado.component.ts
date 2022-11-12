@@ -5,6 +5,8 @@ import { EstadoPedido } from 'src/app/models/estado-pedido';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { EstadoPedidoService } from 'src/app/services/estado-pedido.service';
 import { PedidoService } from 'src/app/services/pedido.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-actualizar-estado',
@@ -60,19 +62,19 @@ export class ActualizarEstadoComponent implements OnInit, OnDestroy {
         this.pedidoService.actualizarEstado(reqbody).subscribe({
           next: (r: ResultadoGenerico) => {
             if(r.ok) {
-              alert("Se actualizó el estado con éxito");
+              swal({title:'Listo!', text:'Se actualizó el estado con éxito', icon: 'success'})
               this.onActualizado.emit();
             } else {
-              alert("Error al actualizar el estado");
+              swal({title:'Error!', text: 'Error al actualizar el estado', icon: 'error'});
             }
           },
           error: (e) => {
-            console.error(e);
+            swal({title:'Error!', text: `${e.message}`, icon: 'error'});
           }
         })
       )
     }else {
-      alert("Debe seleccionar un estado!");
+      swal({title:'Atención!', text:'Debe seleccionar un estado!', icon: 'warning'})
     }
   }
   get controlEstadoPedido(): FormControl {

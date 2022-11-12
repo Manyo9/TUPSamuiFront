@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PedidoService } from 'src/app/services/pedido.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-cancelar-pedido',
@@ -31,10 +33,10 @@ export class CancelarPedidoComponent implements OnInit, OnDestroy {
       this.pedidoService.cancelar(this.pedido.id).subscribe({
         next: (r:ResultadoGenerico)  => {
           if(r.ok){
-            alert("Pedido cancelado con exito");
+            swal({title:'Listo!', text:'Pedido cancelado con exito', icon: 'success'});
             this.onCancelar.emit();
           } else {
-            alert("Error al cancelar pedido");
+            swal({title:'Error!', text:`Ocurrió un error al cancelar el pedido: ${r.mensaje}`, icon: 'error'});
             console.error(r.mensaje);
           }
         },

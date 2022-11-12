@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
 import { PedidoService } from 'src/app/services/pedido.service';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
 
 @Component({
   selector: 'app-listado-pedidos-propios',
@@ -33,8 +35,8 @@ export class ListadoPedidosPropiosComponent implements OnInit {
           }
         },
         error: (e) => {
+          swal({title:'Oops!', text: `Error al actualizar tu listado de pedidos`, icon: 'error'});
           console.error(e);
-          alert('Error al actualizar listado de pedidos propios');
         }
       })
     )

@@ -5,7 +5,9 @@ import { Subscription } from 'rxjs';
 import { GustoService } from 'src/app/services/gusto.service';
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
-import { ResultadoGenerico } from 'src/app/models/resultado-generico';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
+
 @Component({
   selector: 'app-alta-gustos',
   templateUrl: './alta-gustos.component.html',
@@ -47,16 +49,16 @@ export class AltaGustosComponent implements OnInit, OnDestroy {
       this.subscription.add(
         this.servicioGusto.agregar(this.gusto).subscribe({
           next : ()=>{
-            alert('Registro el gusto con éxito'); 
+            swal({title:'Listo!', text:'Registró el gusto con éxito', icon:'success'});
             this.onAgregar.emit();
           },
           error : () =>{
-            alert('Error al registrar gusto');
+            swal({title:'Error', text:'Error al registrar gusto', icon: 'error'});
           }
         })
       )
     }else{
-      alert('Formulario invalido,revise y complete todos los campos!')
+      swal({title:'Atención', text:'Formulario invalido, revise y complete todos los campos!', icon: 'warning'});
     }
   }
   editar(){
@@ -66,16 +68,16 @@ export class AltaGustosComponent implements OnInit, OnDestroy {
       this.subscription.add(
         this.servicioGusto.modificar(body).subscribe({
           next : ()=>{
-            alert('Modificó el gusto con éxito'); 
+            swal({title:'Listo!', text:'Modificó el gusto con éxito', icon:'success'});
             this.onAgregar.emit();
           },
           error : () =>{
-            alert('Error al modificar gusto');
+            swal({title:'Error', text:'Error al modificar gusto', icon: 'error'})
           }
         })
       )
     }else{
-      alert('Formulario invalido,revise y complete todos los campos!')
+      swal({title:'Atención', text:'Formulario invalido, revise y complete todos los campos!', icon: 'warning'})
     }
   }
 

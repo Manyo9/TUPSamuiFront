@@ -1,9 +1,11 @@
-import { Component, OnInit,Input,OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit,Input,OnDestroy } from '@angular/core';
 import { Gusto } from 'src/app/models/gusto';
 import { GustoService } from 'src/app/services/gusto.service';
 import { Subscription } from 'rxjs';
 import { ResultadoGenerico } from 'src/app/models/resultado-generico';
-import { Router } from '@angular/router';
+import { SweetAlert } from 'sweetalert/typings/core';
+const swal: SweetAlert = require('sweetalert');
+
 @Component({
   selector: 'app-listado-gustos',
   templateUrl: './listado-gustos.component.html',
@@ -30,7 +32,7 @@ export class ListadoGustosComponent implements OnInit,OnDestroy {
           }
         },
         error :() =>{
-          alert('Error al actualizar listado gustos')
+          swal({title:'Error', text:'Error al actualizar listado gustos', icon: 'error'})
         }
       })
     )
