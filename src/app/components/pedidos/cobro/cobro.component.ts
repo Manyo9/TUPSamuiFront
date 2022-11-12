@@ -130,7 +130,7 @@ export class CobroComponent implements OnInit, OnDestroy {
             if(r.ok){
               this.onCobrado.emit();
               const verbo = this.pagaCliente ? 'Pago' : 'Cobro';
-              swal({title:'Listo!', text:`${verbo} + " realizado con éxito`, icon: 'success'});
+              swal({title:'Listo!', text:`${verbo} realizado con éxito`, icon: 'success'});
             } else {
               swal({title:'Oops!', text:`Ocurrió un error`, icon: 'error'});
               console.error(r.mensaje);
