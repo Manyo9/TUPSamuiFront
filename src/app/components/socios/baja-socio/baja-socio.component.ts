@@ -25,7 +25,7 @@ export class BajaSocioComponent implements OnDestroy {
     this.subscription.add(
       this.socioService.eliminar(this.socio).subscribe({
         next : () =>{
-          swal({title:'Error!', text:`Elimino el socio con id ${this.socio.id} correctamente`, icon: 'error'});
+          swal({title:'Listo!', text:`Elimino el socio con id ${this.socio.id} correctamente`, icon: 'success'});
           this.onEliminado.emit();
         },
         error : (e) =>{
